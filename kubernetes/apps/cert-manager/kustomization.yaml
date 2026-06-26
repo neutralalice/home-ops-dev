@@ -7,5 +7,6 @@ components:
   - ../../components/sops
 
 resources:
+  - ./limitrange.yaml
   - ./namespace.yaml
   - ./cert-manager/ks.yaml
