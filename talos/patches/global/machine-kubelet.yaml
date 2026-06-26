@@ -1,0 +1,14 @@
+machine:
+  kubelet:
+    extraConfig:
+      cpuManagerPolicy: static
+      reservedSystemCPUs: "0"
+      imageGCHighThresholdPercent: 70
+      imageGCLowThresholdPercent: 50
+      serializeImagePulls: false
+      featureGates:
+        NativeHistograms: true
+    nodeIP:
+      validSubnets:
+        - 172.16.69.0/24
+        - fdca:fec0:ffee:0069::/64

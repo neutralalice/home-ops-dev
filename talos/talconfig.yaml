@@ -1,0 +1,199 @@
+---
+clusterName: kubernetes
+
+talosVersion: "${talosVersion}"
+kubernetesVersion: "${kubernetesVersion}"
+
+endpoint: https://172.16.69.10:6443
+additionalApiServerCertSans: &sans
+  - "127.0.0.1"
+  - "172.16.69.10"
+additionalMachineCertSans: *sans
+
+clusterPodNets: ["10.42.0.0/16", "fdca:fec0:ffee:42::/108"]
+clusterSvcNets: ["10.43.0.0/16", "fdca:fec0:ffee:43::/108"]
+
+# Disable built-in CNI to use Cilium
+cniConfig:
+  name: none
+
+nodes:
+  - hostname: "k8s-01"
+    ipAddress: "172.16.69.11"
+    installDisk: "/dev/sda"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/f2a7df127f2f5707b0f2b969a94e31f8c9815131aad05567803f0756d9cbcb83
+    controlPlane: true
+    schematic:
+      customization:
+        extraKernelArgs:
+          - -selinux # disables selinux 1 is permissive
+          - intel_iommu=on
+          - iommu=pt
+          - mitigations=off
+          - security=none # disables LSM
+          - talos.dashboard.disabled=1
+          - thunderbolt.host_reset=0
+          - i915.force_probe=!46a6 # disable igpu device id for i915
+          - xe.force_probe=46a6 # enable igpu device id for xe
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/i915 # note: xe takes guc from i915
+            - siderolabs/intel-ucode
+            - siderolabs/thunderbolt
+            - siderolabs/xe
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "48:21:0b:35:a3:c7"
+        dhcp: false
+        addresses:
+          - "172.16.69.11/24"
+        routes:
+          - gateway: "172.16.69.1"
+            network: 0.0.0.0/0
+        mtu: 1500
+        vip:
+          ip: "172.16.69.10"
+      - mtu: 65520
+        addresses:
+          - 169.254.255.11/32
+        routes:
+          - network: 169.254.255.12/32
+            metric: 2048
+        deviceSelector:
+          busPath: 0-1.0
+          driver: thunderbolt-net
+      - mtu: 65520
+        addresses:
+          - 169.254.255.11/32
+        routes:
+          - network: 169.254.255.13/32
+            metric: 2048
+        deviceSelector:
+          busPath: 1-1.0
+          driver: thunderbolt-net
+  - hostname: "k8s-02"
+    ipAddress: "172.16.69.12"
+    installDisk: "/dev/sda"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/f2a7df127f2f5707b0f2b969a94e31f8c9815131aad05567803f0756d9cbcb83
+    controlPlane: true
+    schematic:
+      customization:
+        extraKernelArgs:
+          - -selinux # disables selinux 1 is permissive
+          - intel_iommu=on
+          - iommu=pt
+          - mitigations=off
+          - security=none # disables LSM
+          - talos.dashboard.disabled=1
+          - thunderbolt.host_reset=0
+          - i915.force_probe=!46a6 # disable igpu device id for i915
+          - xe.force_probe=46a6 # enable igpu device id for xe
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/i915 # note: xe takes guc from i915
+            - siderolabs/intel-ucode
+            - siderolabs/thunderbolt
+            - siderolabs/xe
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "48:21:0b:3d:9e:f9"
+        dhcp: false
+        addresses:
+          - "172.16.69.12/24"
+        routes:
+          - gateway: "172.16.69.1"
+            network: 0.0.0.0/0
+        mtu: 1500
+        vip:
+          ip: "172.16.69.10"
+      - mtu: 65520
+        addresses:
+          - 169.254.255.12/32
+        routes:
+          - network: 169.254.255.11/32
+            metric: 2048
+        deviceSelector:
+          busPath: 1-1.0
+          driver: thunderbolt-net
+      - mtu: 65520
+        addresses:
+          - 169.254.255.12/32
+        routes:
+          - network: 169.254.255.13/32
+            metric: 2048
+        deviceSelector:
+          busPath: 0-1.0
+          driver: thunderbolt-net
+  - hostname: "k8s-03"
+    ipAddress: "172.16.69.13"
+    installDisk: "/dev/sda"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/f2a7df127f2f5707b0f2b969a94e31f8c9815131aad05567803f0756d9cbcb83
+    controlPlane: true
+    schematic:
+      customization:
+        extraKernelArgs:
+          - -selinux # disables selinux 1 is permissive
+          - intel_iommu=on
+          - iommu=pt
+          - mitigations=off
+          - security=none # disables LSM
+          - talos.dashboard.disabled=1
+          - thunderbolt.host_reset=0
+          - i915.force_probe=!46a6 # disable igpu device id for i915
+          - xe.force_probe=46a6 # enable igpu device id for xe
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/i915 # note: xe takes guc from i915
+            - siderolabs/intel-ucode
+            - siderolabs/thunderbolt
+            - siderolabs/xe
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "48:21:0b:36:00:38"
+        dhcp: false
+        addresses:
+          - "172.16.69.13/24"
+        routes:
+          - gateway: "172.16.69.1"
+            network: 0.0.0.0/0
+        mtu: 1500
+        vip:
+          ip: "172.16.69.10"
+      - mtu: 65520
+        addresses:
+          - 169.254.255.13/32
+        routes:
+          - network: 169.254.255.11/32
+            metric: 2048
+        deviceSelector:
+          busPath: 0-1.0
+          driver: thunderbolt-net
+      - mtu: 65520
+        addresses:
+          - 169.254.255.13/32
+        routes:
+          - network: 169.254.255.12/32
+            metric: 2048
+        deviceSelector:
+          busPath: 1-1.0
+          driver: thunderbolt-net
+# Global patches
+patches:
+  - "@./patches/global/machine-files.yaml"
+  - "@./patches/global/machine-kernel.yaml"
+  - "@./patches/global/machine-kubelet.yaml"
+  - "@./patches/global/machine-network.yaml"
+  - "@./patches/global/machine-sysctls.yaml"
+  - "@./patches/global/machine-time.yaml"
+  - "@./patches/global/machine-udev.yaml"
+
+# Controller patches
+controlPlane:
+  patches:
+    - "@./patches/controller/cluster.yaml"

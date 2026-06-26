@@ -1,0 +1,7 @@
+machine:
+  udev:
+    rules:
+      - # Thunderbolt - Disable Power Management
+        ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{power/control}="on"
+      - # SR-IOV - Enable for my Alder Lake P processors
+        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x46a6", ATTR{sriov_numvfs}="7"
