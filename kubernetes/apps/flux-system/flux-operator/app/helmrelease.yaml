@@ -9,5 +9,22 @@ spec:
     name: flux-operator
   interval: 1h
   values:
+    resources:
+      limits:
+        cpu: 2000m
+        memory: 512Mi
+      requests:
+        cpu: 30m
+        memory: 512Mi
     serviceMonitor:
       create: true
+    web:
+      networkPolicy:
+        create: false
+      httpRoute:
+        enabled: true
+        hostnames:
+          - flux-operator.${SECRET_DOMAIN}
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
