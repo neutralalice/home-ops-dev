@@ -13,6 +13,8 @@ spec:
     domainFilters: ["${SECRET_DOMAIN}"]
     extraArgs:
       - --gateway-name=envoy-internal
+      - --annotation-filter=external-dns.alpha.kubernetes.io/internal in (true)
+      - --ignore-ingress-tls-spec
     interval: 10m
     logLevel: &logLevel debug
     policy: sync
