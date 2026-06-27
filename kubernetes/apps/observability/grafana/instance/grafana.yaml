@@ -1,0 +1,98 @@
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
+metadata:
+  name: grafana
+  labels:
+    grafana.internal/instance: grafana
+spec:
+  config:
+    analytics:
+      check_for_updates: "false"
+      check_for_plugin_updates: "false"
+      feedback_links_enabled: "false"
+      reporting_enabled: "false"
+    auth:
+      disable_login_form: "false"
+    auth.anonymous:
+      enabled: "true"
+      org_name: Main Org.
+      org_role: Viewer
+      hide_version: "false"
+    log:
+      mode: console
+    metrics:
+      enabled: "true"
+    news:
+      news_feed_enabled: "false"
+    plugins:
+      disable_plugins: "elasticsearch"
+      plugin_admin_enabled: "false"
+      preinstall_auto_update: "false"
+    security:
+      angular_support_enabled: "true"
+    server:
+      enable_gzip: "true"
+      root_url: https://grafana.${SECRET_DOMAIN}
+    time_picker:
+      quick_ranges: '"""[{"from":"now-5m","to":"now","display":"Last 5 minutes"},{"from":"now-20m","to":"now","display":"Last 20 minutes"},{"from":"now-1h","to":"now","display":"Last 1 hour"},{"from":"now-6h","to":"now","display":"Last 6 hours"},{"from":"now-12h","to":"now","display":"Last 12 hours"},{"from":"now-1d","to":"now","display":"Last 1 day"},{"from":"now-2d","to":"now","display":"Last 2 days"},{"from":"now-1w","to":"now","display":"Last 1 week"},{"from":"now-2w","to":"now","display":"Last 2 weeks"},{"from":"now/w","to":"now/w","display":"Current week"},{"from":"now-1w/w","to":"now-1w/w","display":"Previous week"}]"""'
+  deployment:
+    spec:
+      strategy:
+        type: Recreate
+      template:
+        spec:
+          automountServiceAccountToken: false
+          containers:
+            - name: grafana
+              env:
+                - name: GF_SECURITY_ADMIN_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-admin-password-secret
+                      key: GF_SECURITY_ADMIN_PASSWORD
+              securityContext:
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: true
+                capabilities: { drop: ["ALL"] }
+              resources:
+                limits:
+                  cpu: 2000m
+                  memory: 512Mi
+                requests:
+                  cpu: 50m
+                  memory: 512Mi
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+            seccompProfile:
+              type: RuntimeDefault
+          volumes:
+            - name: grafana-data
+              persistentVolumeClaim:
+                claimName: grafana-pvc
+  disableDefaultAdminSecret: false
+  disableDefaultSecurityContext: All
+  httpRoute:
+    spec:
+      hostnames:
+        - grafana.${SECRET_DOMAIN}
+      parentRefs:
+        - name: envoy-internal
+          namespace: network
+          sectionName: https
+      rules:
+        - backendRefs:
+            - name: grafana-service
+              port: 3000
+  persistentVolumeClaim:
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: ceph-block

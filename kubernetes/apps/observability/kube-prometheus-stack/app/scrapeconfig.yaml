@@ -1,0 +1,17 @@
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: node-exporter
+spec:
+  staticConfigs:
+    - targets:
+        - 172.16.69.1:9100
+        - 172.16.69.5:9100
+        - 172.16.69.6:9100
+        - 172.16.69.17:9100
+  metricsPath: /metrics
+  relabelings:
+    - action: replace
+      targetLabel: job
+      replacement: node-exporter

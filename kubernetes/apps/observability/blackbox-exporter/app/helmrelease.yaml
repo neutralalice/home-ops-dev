@@ -1,0 +1,90 @@
+---
+# yaml-language-server: $schema=https://datreeio.github.io/CRDs-catalog/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: blackbox-exporter
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: blackbox-exporter
+  interval: 1h
+  values:
+    fullnameOverride: blackbox-exporter
+    config:
+      modules:
+        http_3xx:
+          prober: http
+          http:
+            preferred_ip_protocol: "ip6"
+            enable_http3: true
+            enable_http2: false
+            valid_http_versions: ["HTTP/3.0"]
+        http4:
+          prober: http
+          http:
+            preferred_ip_protocol: "ip4"
+            ip_protocol_fallback: false
+        http6:
+          prober: http
+          http:
+            preferred_ip_protocol: "ip6"
+            ip_protocol_fallback: false
+        icmp:
+          prober: icmp
+          icmp:
+            preferred_ip_protocol: "ip4"
+            ip_protocol_fallback: false
+        icmp6:
+          prober: icmp
+          icmp:
+            preferred_ip_protocol: "ip6"
+            ip_protocol_fallback: false
+        tcp_connect:
+          prober: tcp
+          timeout: 5s
+          tcp:
+            preferred_ip_protocol: "ip4"
+    podAnnotations:
+      reloader.stakater.com/auto: "true"
+    podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+      fsGroupChangePolicy: OnRootMismatch
+      seccompProfile:
+        type: RuntimeDefault
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      capabilities:
+        add:
+          - "NET_RAW"
+        drop:
+          - "ALL"
+    service:
+      ipFamilyPolicy: PreferDualStack
+    resources:
+      limits:
+        cpu: 2000m
+        memory: 64Mi
+      requests:
+        cpu: 10m
+        memory: 64Mi
+    serviceMonitor:
+      enabled: true
+      defaults:
+        interval: 1m
+        scrapeTimeout: 10s
+    prometheusRule:
+      enabled: true
+      rules:
+        - alert: BlackboxProbeFailed
+          expr: probe_success == 0
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: |-
+              The host {{ $labels.target }} is currently unreachable
