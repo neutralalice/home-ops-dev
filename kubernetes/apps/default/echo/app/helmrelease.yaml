@@ -21,6 +21,7 @@ spec:
       parentRefs:
         - name: envoy-external
           namespace: network
+          sectionName: https
     monitoring:
       serviceMonitor:
         enabled: true
