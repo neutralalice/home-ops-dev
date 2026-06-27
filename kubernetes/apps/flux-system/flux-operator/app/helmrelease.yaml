@@ -23,8 +23,7 @@ spec:
         create: false
       httpRoute:
         enabled: true
-        hostnames:
-          - flux-operator.${SECRET_DOMAIN}
+        hostnames: ["flux-operator.${SECRET_DOMAIN}"]
         parentRefs:
           - name: envoy-internal
             namespace: network
