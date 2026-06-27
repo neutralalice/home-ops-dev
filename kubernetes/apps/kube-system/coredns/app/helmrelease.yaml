@@ -17,8 +17,22 @@ spec:
       create: true
     service:
       name: kube-dns
-      clusterIP: "10.43.0.10"
+      clusterIP: 10.43.0.10
+      clusterIPs:
+        - 10.43.0.10
+        - fdca:fec0:ffee:43::a
+      ipFamilyPolicy: PreferDualStack
+      ipFamilies:
+        - IPv4
+        - IPv6
     replicaCount: 2
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 64Mi
+      requests:
+        cpu: 15m
+        memory: 64Mi
     servers:
       - zones:
           - zone: .
@@ -65,3 +79,10 @@ spec:
       - key: node-role.kubernetes.io/control-plane
         operator: Exists
         effect: NoSchedule
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/instance: coredns
