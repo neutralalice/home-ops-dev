@@ -23,8 +23,6 @@ spec:
         create: false
       httpRoute:
         enabled: true
-        annotations:
-          external-dns.alpha.kubernetes.io/internal: "true"
         hostnames: ["flux-operator.${SECRET_DOMAIN}"]
         parentRefs:
           - name: envoy-internal
