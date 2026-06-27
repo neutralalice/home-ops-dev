@@ -19,14 +19,26 @@ spec:
     cni:
       # Required for pairing with Multus CNI
       exclusive: false
+      resources:
+        limits:
+          cpu: 100m
+          memory: 100Mi
+        requests:
+          cpu: 100m
+          memory: 100Mi
     cgroup:
-      automount:
-        enabled: false
+      autoMount:
+        enabled: true
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
       hostRoot: /sys/fs/cgroup
     # NOTE: devices might need to be set if you have more than one active NIC on your hosts
     # devices: eno+ eth+
     dashboards:
       enabled: true
+    enableIPv6Masquerade: true
     endpointRoutes:
       enabled: true
     envoy:
@@ -35,9 +47,21 @@ spec:
       enabled: false
     hubble:
       enabled: false
+    initResources:
+      limits:
+        cpu: 100m
+        memory: 100Mi
     ipam:
       mode: kubernetes
+    ipv4:
+      enabled: true
     ipv4NativeRoutingCIDR: "10.42.0.0/16"
+    ipv6:
+      enabled: true
+    ipv6NativeRoutingCIDR: "fdca:fec0:ffee:42::/108"
+    k8s:
+      requireIPv4PodCIDR: true
+      requireIPv6PodCIDR: false
     k8sServiceHost: 127.0.0.1
     k8sServicePort: 7445
     kubeProxyReplacement: true
@@ -56,13 +80,25 @@ spec:
         enabled: true
         serviceMonitor:
           enabled: true
+          interval: 15s
+          scrapeTimeout: 10s
       replicas: 1
+      resources:
+        limits:
+          cpu: 1000m
+          memory: 300Mi
       rollOutPods: true
     prometheus:
       enabled: true
       serviceMonitor:
         enabled: true
+        interval: 15s
+        scrapeTimeout: 10s
         trustCRDsExist: true
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
     rollOutCiliumPods: true
     routingMode: native
     securityContext:
