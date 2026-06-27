@@ -25,11 +25,18 @@ spec:
       - --gateway-name=envoy-external
     triggerLoopOnEvent: true
     policy: sync
-    sources: ["crd", "gateway-httproute"]
-    txtPrefix: k8s.
-    txtOwnerId: default
-    domainFilters: ["${SECRET_DOMAIN}"]
+    resources:
+      limits:
+        cpu: 2000m
+        memory: 256Mi
+      requests:
+        cpu: 8m
+        memory: 256Mi
     serviceMonitor:
       enabled: true
+    sources: ["crd", "gateway-httproute"]
+    txtPrefix: k8s-%{record_type}.
+    txtOwnerId: default
+    domainFilters: ["${SECRET_DOMAIN}"]
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
