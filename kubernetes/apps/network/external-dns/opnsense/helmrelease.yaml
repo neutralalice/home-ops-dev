@@ -75,8 +75,9 @@ spec:
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
     sources:
-      - service
+      - crd
       - gateway-httproute
+      - service
     triggerLoopOnEvent: true
     txtOwnerId: k8s-internal
     txtPrefix: k8s-%{record_type}.
