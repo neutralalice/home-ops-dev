@@ -28,17 +28,17 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: &secret opnsense-dns-secret
-                key: OPNSENSE_API_KEY
+                key: opnsense_api_key
           - name: OPNSENSE_API_SECRET
             valueFrom:
               secretKeyRef:
                 name: *secret
-                key: OPNSENSE_API_SECRET
+                key: opnsense_api_secret
           - name: OPNSENSE_HOST
             valueFrom:
               secretKeyRef:
                 name: *secret
-                key: OPNSENSE_HOST
+                key: opnsense_host
           - name: OPNSENSE_SKIP_TLS_VERIFY
             value: "true"
           - name: LOG_LEVEL
