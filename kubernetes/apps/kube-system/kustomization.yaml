@@ -7,6 +7,7 @@ components:
   - ../../components/sops
 
 resources:
+  - ./limitrange.yaml
   - ./namespace.yaml
   - ./cilium/ks.yaml
   - ./coredns/ks.yaml
