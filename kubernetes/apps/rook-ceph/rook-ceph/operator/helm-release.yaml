@@ -1,0 +1,232 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: rook-ceph
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: rook-ceph
+  interval: 30m
+  releaseName: rook-ceph
+  values:
+    ceph-csi-operator:
+      controllerManager:
+        manager:
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 128Mi
+    csi:
+      serviceMonitor:
+        enabled: true
+      csiRBDProvisionerResource: |
+        - name : csi-attacher
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+        - name : csi-omap-generator
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 1024Mi
+            requests:
+              cpu: 250m
+              memory: 1024Mi
+        - name : csi-provisioner
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+        - name : csi-rbdplugin
+          resource:
+            limits:
+              memory: 1024Mi
+            requests:
+              memory: 1024Mi
+        - name : csi-resizer
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              memory: 256Mi
+              cpu: 100m
+        - name : csi-snapshotter
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+        - name : liveness-prometheus
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 50m
+              memory: 256Mi
+      csiRBDPluginResource: |
+        - name : csi-rbdplugin
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 1024Mi
+            requests:
+              cpu: 250m
+              memory: 1024Mi
+        - name : driver-registrar
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 50m
+              memory: 256Mi
+        - name : liveness-prometheus
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 50m
+              memory: 256Mi
+      #      csiCephFSProvisionerResource: |
+      #        - name : csi-attacher
+      #          resource:
+      #            limits:
+      #              cpu: 1000m
+      #              memory: 256Mi
+      #            requests:
+      #              cpu: 100m
+      #              memory: 256Mi
+      #        - name : csi-cephfsplugin
+      #          resource:
+      #            limits:
+      #              cpu: 1000m
+      #              memory: 1024Mi
+      #            requests:
+      #              cpu: 250m
+      #              memory: 1024Mi
+      #        - name : csi-provisioner
+      #          resource:
+      #            limits:
+      #              cpu: 1000m
+      #              memory: 256Mi
+      #            requests:
+      #              cpu: 100m
+      #              memory: 256Mi
+      #        - name : csi-resizer
+      #          resource:
+      #            limits:
+      #              cpu: 1000m
+      #              memory: 256Mi
+      #            requests:
+      #              cpu: 100m
+      #              memory: 256Mi
+      #        - name : csi-snapshotter
+      #          resource:
+      #            limits:
+      #              cpu: 1000m
+      #              memory: 256Mi
+      #            requests:
+      #              cpu: 100m
+      #              memory: 256Mi
+      #        - name : liveness-prometheus
+      #          resource:
+      #            limits:
+      #              cpu: 1000m
+      #              memory: 256Mi
+      #            requests:
+      #              cpu: 50m
+      #              memory: 128Mi
+      #      csiCephFSPluginResource: |
+      #        - name : csi-cephfsplugin
+      #          resource:
+      #            limits:
+      #              cpu: 1000m
+      #              memory: 1024Mi
+      #            requests:
+      #              cpu: 250m
+      #              memory: 1024Mi
+      #        - name : driver-registrar
+      #          resource:
+      #            limits:
+      #              cpu: 1000m
+      #              memory: 256Mi
+      #            requests:
+      #              cpu: 50m
+      #              memory: 256Mi
+      #        - name : liveness-prometheus
+      #          resource:
+      #            limits:
+      #              cpu: 1000m
+      #              memory: 256Mi
+      #            requests:
+      #              cpu: 50m
+      #              memory: 256Mi
+      csiNFSProvisionerResource: |
+        - name : csi-attacher
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 1024Mi
+            requests:
+              cpu: 250m
+              memory: 1024Mi
+        - name : csi-nfsplugin
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 1024Mi
+            requests:
+              cpu: 250m
+              memory: 1024Mi
+        - name : csi-provisioner
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+      csiNFSPluginResource: |
+        - name : csi-nfsplugin
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 1024Mi
+            requests:
+              cpu: 250m
+              memory: 1024Mi
+        - name : driver-registrar
+          resource:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 50m
+              memory: 256Mi
+    image:
+      repository: ghcr.io/rook/ceph
+    monitoring:
+      enabled: true
+    resources:
+      limits:
+        cpu: 2000m
+        memory: 256Mi
+      requests:
+        cpu: 50m
+        memory: 256Mi
