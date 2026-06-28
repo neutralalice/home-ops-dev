@@ -45,6 +45,9 @@ concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
 
+permissions:
+  contents: read
+
 jobs:
   renovate:
     name: Renovate
