@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: rook-ceph
 
 resources:
-  - ./limitrange.yaml
-  - ./namespace.yaml
-  - ./ceph-csi-drivers/ks.yaml
-  - ./rook-ceph/ks.yaml
+#  - ./limitrange.yaml
+#  - ./namespace.yaml
+#  - ./ceph-csi-drivers/ks.yaml
+#  - ./rook-ceph/ks.yaml
