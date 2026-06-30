@@ -50,7 +50,7 @@ spec:
                   valueFrom:
                     secretKeyRef:
                       name: grafana-secrets
-                      key: initial_admin_password
+                      key: GRAFANA_INITIAL_ADMIN_PASSWORD
               securityContext:
                 allowPrivilegeEscalation: false
                 readOnlyRootFilesystem: true
