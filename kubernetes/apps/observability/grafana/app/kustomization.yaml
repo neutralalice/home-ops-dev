@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - ./secret.sops.yaml
   - ./grafanadashboard.yaml
-  - ./oci-repository.yaml
-  - ./helm-release.yaml
+  - ./ocirepository.yaml
+  - ./helmrelease.yaml
