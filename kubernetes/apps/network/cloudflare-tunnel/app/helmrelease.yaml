@@ -24,10 +24,14 @@ spec:
                 valueFrom:
                   secretKeyRef: cloudflare-secrets
                   key: TUNNEL_TOKEN
-                NO_AUTOUPDATE: true
-                TUNNEL_METRICS: 0.0.0.0:8080
-                TUNNEL_POST_QUANTUM: true # disable when using http2
-                TUNNEL_TRANSPORT_PROTOCOL: quic # or http2
+              - name: NO_AUTOUPDATE
+                value: true
+              - name: TUNNEL_METRICS
+                value: 0.0.0.0:8080
+              - name: TUNNEL_POST_QUANTUM
+                value: true # disable when using http2
+              - name: TUNNEL_TRANSPORT_PROTOCOL
+                value: quic # or http2
             args: ["tunnel", "run"]
             probes:
               liveness: &probes
