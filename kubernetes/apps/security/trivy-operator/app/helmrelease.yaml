@@ -1,0 +1,91 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app trivy-operator
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    serviceMonitor:
+      enabled: true
+
+    nodeCollector:
+      volumeMounts:
+        - name: etc-os-release
+          mountPath: /host/etc/os-release
+          readOnly: true
+      volumes:
+        - name: etc-os-release
+          hostPath:
+            path: /etc/os-release
+
+    operator:
+      scanJobsConcurrentLimit: 3
+      scanJobTTL: 300s
+      scanJobTimeout: 20m
+      builtInTrivyServer: true
+      vulnerabilityScannerScanOnlyCurrentRevisions: true
+      configAuditScannerScanOnlyCurrentRevisions: true
+      annotations:
+        reloader.stakater.com/auto: "true"
+
+    trivy:
+      slow: true
+      ignoreUnfixed: true
+
+      server:
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: { drop: ["ALL"] }
+          privileged: false
+          readOnlyRootFilesystem: true
+        podSecurityContext:
+          runAsNonRoot: true
+          runAsUser: 65534
+          runAsGroup: 65534
+          fsGroup: 65534
+          fsGroupChangePolicy: OnRootMismatch
+          seccompProfile:
+            type: RuntimeDefault
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 432Mi
+          requests:
+            cpu: 17m
+            memory: 432Mi
+
+    trivyOperator:
+      skipResourceByLabels: "app.kubernetes.io/created-by=volsync"
+      scanJobPodTemplatePodSecurityContext:
+        runAsNonRoot: true
+        runAsUser: 10000
+        runAsGroup: 10000
+        fsGroup: 10000
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile:
+          type: RuntimeDefault
+
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities: { drop: ["ALL"] }
+      privileged: false
+      readOnlyRootFilesystem: true
+    podSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 10000
+      runAsGroup: 10000
+      fsGroup: 10000
+      fsGroupChangePolicy: OnRootMismatch
+      seccompProfile:
+        type: RuntimeDefault
+    resources:
+      limits:
+        cpu: 2000m
+        memory: 1520Mi
+      requests:
+        cpu: 32m
+        memory: 1520Mi
