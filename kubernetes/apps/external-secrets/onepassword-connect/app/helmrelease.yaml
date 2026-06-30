@@ -28,7 +28,7 @@ spec:
           allowPrivilegeEscalation: false
           capabilities: { drop: ["ALL"] }
           readOnlyRootFilesystem: true
-      credentialsName: onepassword-connect-credentials-secret
+      credentialsName: onepassword-credentials
       podSecurityContext:
         fsGroup: 999
         fsGroupChangePolicy: OnRootMismatch
