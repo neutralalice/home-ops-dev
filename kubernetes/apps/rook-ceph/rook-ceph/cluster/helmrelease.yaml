@@ -114,10 +114,10 @@ spec:
         prepareosd:
           limits:
             cpu: 2000m
-            memory: 512Mi
+            memory: 512Mi # This needs to be above 128 or phantom oomkills happen during osd provisioning
           requests:
             cpu: 500m
-            memory: 512Mi
+            memory: 512Mi #
       storage:
         useAllNodes: true
         useAllDevices: false
