@@ -31,7 +31,7 @@ spec:
               - name: TUNNEL_TOKEN
                 valueFrom:
                   secretKeyRef:
-                    name: cloudflare-secrets
+                    name: cloudflare-tunnel-secrets
                     key: TUNNEL_TOKEN
             args: ["tunnel", "run"]
             probes:
