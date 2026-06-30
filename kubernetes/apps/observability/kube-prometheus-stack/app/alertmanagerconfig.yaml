@@ -51,8 +51,8 @@ spec:
     - name: heartbeat
       webhookConfigs:
         - urlSecret:
-            name: &secret alertmanager-secret
-            key: ALERTMANAGER_HEARTBEAT_URL
+            name: &secret alertmanager-secrets
+            key: heartbeat_url
     - name: pushover
       pushoverConfigs:
         - html: true
@@ -85,8 +85,8 @@ spec:
           ttl: 86400s
           token:
             name: *secret
-            key: ALERTMANAGER_PUSHOVER_TOKEN
+            key: token
           userKey:
             name: *secret
-            key: PUSHOVER_USER_KEY
+            key: user_key
           urlTitle: View in Alertmanager
