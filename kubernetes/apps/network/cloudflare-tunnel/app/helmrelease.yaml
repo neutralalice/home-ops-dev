@@ -20,13 +20,14 @@ spec:
               repository: docker.io/cloudflare/cloudflared
               tag: 2026.6.1
             env:
-              NO_AUTOUPDATE: true
-              TUNNEL_METRICS: 0.0.0.0:8080
-              TUNNEL_POST_QUANTUM: true # disable when using http2
-              TUNNEL_TRANSPORT_PROTOCOL: quic # or http2
-            envFrom:
-              - secretRef:
-                  name: cloudflare-tunnel-secret
+              - name: TUNNEL_TOKEN
+                valueFrom:
+                  secretKeyRef: cloudflare-secrets
+                  key: TUNNEL_TOKEN
+                NO_AUTOUPDATE: true
+                TUNNEL_METRICS: 0.0.0.0:8080
+                TUNNEL_POST_QUANTUM: true # disable when using http2
+                TUNNEL_TRANSPORT_PROTOCOL: quic # or http2
             args: ["tunnel", "run"]
             probes:
               liveness: &probes
