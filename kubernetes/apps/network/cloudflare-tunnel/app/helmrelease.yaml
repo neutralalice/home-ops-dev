@@ -32,7 +32,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: cloudflare-tunnel-secrets
-                    key: TUNNEL_TOKEN
+                    key: CLOUDFLARE_TUNNEL_TOKEN
             args: ["tunnel", "run"]
             probes:
               liveness: &probes
