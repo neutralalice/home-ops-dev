@@ -30,8 +30,9 @@ spec:
                 value: quic # or http2
               - name: TUNNEL_TOKEN
                 valueFrom:
-                  secretKeyRef: cloudflare-secrets
-                  key: TUNNEL_TOKEN
+                  secretKeyRef:
+                    name: cloudflare-secrets
+                    key: TUNNEL_TOKEN
             args: ["tunnel", "run"]
             probes:
               liveness: &probes
