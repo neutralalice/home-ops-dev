@@ -6,4 +6,4 @@ resources:
   - ./ocirepository.yaml
   - ./helmrelease.yaml
   - ./grafanadashboard.yaml
-  - ./kustomization2.yaml
+  - ./probes.yaml
