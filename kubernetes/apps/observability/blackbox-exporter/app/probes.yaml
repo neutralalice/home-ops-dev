@@ -23,8 +23,8 @@ spec:
   targets:
     staticConfig:
       static:
-        - https://ipv4test.${SECRET_DOMAIN}
-        - https://${SECRET_IP4}:8443
+        - https://${BLACKBOX_IP4_EXTERNAL_ADDRESS}:8443
+        - https://${BLACKBOX_IP4_EXTERNAL_DOMAIN}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
@@ -37,8 +37,8 @@ spec:
   targets:
     staticConfig:
       static:
-        - https://ipv6test.${SECRET_DOMAIN}
-        - https://[${SECRET_IP6}]:8443
+        - https://${BLACKBOX_IP6_EXTERNAL_ADDRESS}:8443
+        - https://${BLACKBOX_IP6_EXTERNAL_DOMAIN}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
