@@ -37,7 +37,7 @@ spec:
   targets:
     staticConfig:
       static:
-        - https://${BLACKBOX_IP6_EXTERNAL_ADDRESS}:8443
+        - https://[${BLACKBOX_IP6_EXTERNAL_ADDRESS}]:8443
         - https://${BLACKBOX_IP6_EXTERNAL_DOMAIN}
 ---
 apiVersion: monitoring.coreos.com/v1
