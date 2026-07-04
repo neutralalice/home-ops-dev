@@ -53,10 +53,10 @@ spec:
         resources:
           limits:
             cpu: 1000m
-            memory: 432Mi
+            memory: 512Mi
           requests:
             cpu: 17m
-            memory: 432Mi
+            memory: 512Mi
 
     trivyOperator:
       skipResourceByLabels: "app.kubernetes.io/created-by=volsync"
