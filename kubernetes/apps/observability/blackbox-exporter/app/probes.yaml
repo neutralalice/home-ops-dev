@@ -2,6 +2,81 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
+  name: dns-a
+spec:
+  module: dna_a
+  prober:
+    url: blackbox-exporter.observability.svc.cluster.local:9115
+  targets:
+    staticConfig:
+      static:
+        - 172.16.69.1
+        - 1.0.0.1
+        - 1.1.1.1
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: dns-aaaa
+spec:
+  module: dna_aaaa
+  prober:
+    url: blackbox-exporter.observability.svc.cluster.local:9115
+  targets:
+    staticConfig:
+      static:
+        - 172.16.69.1
+        - 1.0.0.1
+        - 1.1.1.1
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: dns-caa
+spec:
+  module: dna_caa
+  prober:
+    url: blackbox-exporter.observability.svc.cluster.local:9115
+  targets:
+    staticConfig:
+      static:
+        - 172.16.69.1
+        - 1.0.0.1
+        - 1.1.1.1
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: dns-soa
+spec:
+  module: dna_soa
+  prober:
+    url: blackbox-exporter.observability.svc.cluster.local:9115
+  targets:
+    staticConfig:
+      static:
+        - 172.16.69.1
+        - 1.0.0.1
+        - 1.1.1.1
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: dns-txt
+spec:
+  module: dna_txt
+  prober:
+    url: blackbox-exporter.observability.svc.cluster.local:9115
+  targets:
+    staticConfig:
+      static:
+        - 172.16.69.1
+        - 1.0.0.1
+        - 1.1.1.1
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
   name: quic-check
 spec:
   module: quic
