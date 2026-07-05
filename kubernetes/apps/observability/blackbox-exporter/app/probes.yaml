@@ -5,6 +5,8 @@ metadata:
   name: dns-a
 spec:
   module: dns_a
+  interval: 90s
+  scrapeTimeout: 5s
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
@@ -20,6 +22,8 @@ metadata:
   name: dns-aaaa
 spec:
   module: dns_aaaa
+  interval: 90s
+  scrapeTimeout: 5s
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
@@ -35,6 +39,8 @@ metadata:
   name: dns-caa
 spec:
   module: dns_caa
+  interval: 90s
+  scrapeTimeout: 5s
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
@@ -50,6 +56,8 @@ metadata:
   name: dns-soa
 spec:
   module: dns_soa
+  interval: 90s
+  scrapeTimeout: 5s
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
@@ -65,6 +73,8 @@ metadata:
   name: dns-txt
 spec:
   module: dns_txt
+  interval: 90s
+  scrapeTimeout: 5s
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
@@ -80,6 +90,7 @@ metadata:
   name: quic-check
 spec:
   module: quic
+  scrapeTimeout: 5s
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
@@ -94,6 +105,7 @@ metadata:
   name: ip4-check
 spec:
   module: http4
+  scrapeTimeout: 5s
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
@@ -108,6 +120,7 @@ metadata:
   name: ip6-check
 spec:
   module: http6
+  scrapeTimeout: 5s
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
@@ -122,6 +135,7 @@ metadata:
   name: nfs
 spec:
   module: tcp
+  scrapeTimeout: 5s
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:

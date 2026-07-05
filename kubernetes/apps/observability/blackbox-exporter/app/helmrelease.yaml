@@ -88,13 +88,11 @@ spec:
           prober: tcp
         tcp4:
           prober: tcp
-          timeout: 5s
           tcp:
             preferred_ip_protocol: "ip4"
             ip_protocol_fallback: false
         tcp6:
           prober: tcp
-          timeout: 5s
           tcp:
             preferred_ip_protocol: "ip6"
             ip_protocol_fallback: false
@@ -102,7 +100,6 @@ spec:
           prober: websocket
         unix_socket:
           prober: unix
-          timeout: 5s
           unix:
             query_response:
               - send: "PING"
