@@ -4,7 +4,7 @@ kind: Probe
 metadata:
   name: quic-check
 spec:
-  module: http_3xx
+  module: quic
   params:
     enable_http3: true
     enable_http2: false
