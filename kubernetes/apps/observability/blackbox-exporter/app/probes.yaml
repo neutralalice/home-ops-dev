@@ -4,7 +4,7 @@ kind: Probe
 metadata:
   name: dns-a
 spec:
-  module: dna_a
+  module: dns_a
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
@@ -19,7 +19,7 @@ kind: Probe
 metadata:
   name: dns-aaaa
 spec:
-  module: dna_aaaa
+  module: dns_aaaa
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
@@ -34,7 +34,7 @@ kind: Probe
 metadata:
   name: dns-caa
 spec:
-  module: dna_caa
+  module: dns_caa
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
@@ -49,7 +49,7 @@ kind: Probe
 metadata:
   name: dns-soa
 spec:
-  module: dna_soa
+  module: dns_soa
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
@@ -64,7 +64,7 @@ kind: Probe
 metadata:
   name: dns-txt
 spec:
-  module: dna_txt
+  module: dns_txt
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
