@@ -1,16 +1,17 @@
-#---
-#apiVersion: monitoring.coreos.com/v1
-#kind: Probe
-#metadata:
-#  name: devices
-#spec:
-#  module: http_3xx
-#  prober:
-#    url: blackbox-exporter.observability.svc.cluster.local:9115
-#  targets:
-#    staticConfig:
-#      static:
-#        - quic.${SECRET_DOMAIN}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: quic-check
+spec:
+  module: http_3xx
+  prober:
+    url: blackbox-exporter.observability.svc.cluster.local:9115
+  targets:
+    staticConfig:
+      static:
+        - https://${BLACKBOX_IP4_EXTERNAL_ADDRESS}:8443
+        - https://[${BLACKBOX_IP6_EXTERNAL_ADDRESS}]:8443
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
