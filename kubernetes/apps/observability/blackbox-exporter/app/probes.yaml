@@ -118,6 +118,8 @@ spec:
       static:
         - https://${BLACKBOX_IP4_EXTERNAL_ADDRESS}:8443
         - https://[${BLACKBOX_IP6_EXTERNAL_ADDRESS}]:8443
+      labels:
+        prober: http
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
@@ -133,6 +135,8 @@ spec:
       static:
         - https://${BLACKBOX_IP4_EXTERNAL_ADDRESS}:8443
         - https://${BLACKBOX_IP4_EXTERNAL_DOMAIN}
+      labels:
+        prober: http
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
@@ -148,6 +152,8 @@ spec:
       static:
         - https://[${BLACKBOX_IP6_EXTERNAL_ADDRESS}]:8443
         - https://${BLACKBOX_IP6_EXTERNAL_DOMAIN}
+      labels:
+        prober: http
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
@@ -162,3 +168,5 @@ spec:
     staticConfig:
       static:
         - 172.16.69.17:2049
+      labels:
+        prober: tcp
