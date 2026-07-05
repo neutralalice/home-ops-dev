@@ -46,7 +46,7 @@ kind: Probe
 metadata:
   name: nfs
 spec:
-  module: tcp_connect
+  module: tcp
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
