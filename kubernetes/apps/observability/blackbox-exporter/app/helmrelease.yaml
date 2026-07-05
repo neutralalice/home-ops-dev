@@ -13,6 +13,28 @@ spec:
     fullnameOverride: blackbox-exporter
     config:
       modules:
+        dns:
+          prober: dns
+        dns_a:
+          prober: dns
+          dns:
+            query_type: "A"
+        dns_aaaa:
+          prober: dns
+          dns:
+            query_type: "AAAA"
+        dns_caa:
+          prober: dns
+          dns:
+            query_type: "CAA"
+        dns_soa:
+          prober: dns
+          dns:
+            query_type: "SOA"
+        dns_txt:
+          prober: dns
+          dns:
+            query_type: "TXT"
         http:
           prober: http
         http4:
@@ -73,6 +95,15 @@ spec:
           tcp:
             preferred_ip_protocol: "ip6"
             ip_protocol_fallback: false
+        websocket:
+          prober: websocket
+        unix_socket:
+          prober: unix
+          timeout: 5s
+          unix:
+            query_response:
+              - send: "PING"
+              - expect: "PONG"
     podAnnotations:
       reloader.stakater.com/auto: "true"
     podSecurityContext:
