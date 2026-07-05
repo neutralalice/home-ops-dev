@@ -5,12 +5,12 @@ metadata:
   name: quic-check
 spec:
   module: http_3xx
-  prober:
-    url: blackbox-exporter.observability.svc.cluster.local:9115
-  http:
+  params:
     enable_http3: true
     enable_http2: false
     valid_http_versions: ["HTTP/3.0"]
+  prober:
+    url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
     staticConfig:
       static:
