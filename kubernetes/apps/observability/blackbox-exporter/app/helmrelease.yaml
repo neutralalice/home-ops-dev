@@ -13,27 +13,30 @@ spec:
     fullnameOverride: blackbox-exporter
     config:
       modules:
-        dns:
-          prober: dns
         dns_a:
           prober: dns
           dns:
+            query_name: "${SECRET_DOMAIN}"
             query_type: "A"
         dns_aaaa:
           prober: dns
           dns:
+            query_name: "${SECRET_DOMAIN}"
             query_type: "AAAA"
         dns_caa:
           prober: dns
           dns:
+            query_name: "${SECRET_DOMAIN}"
             query_type: "CAA"
         dns_soa:
           prober: dns
           dns:
+            query_name: "${SECRET_DOMAIN}"
             query_type: "SOA"
         dns_txt:
           prober: dns
           dns:
+            query_name: "${SECRET_DOMAIN}"
             query_type: "TXT"
         http:
           prober: http
