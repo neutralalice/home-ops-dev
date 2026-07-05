@@ -13,12 +13,8 @@ spec:
     fullnameOverride: blackbox-exporter
     config:
       modules:
-        quic:
+        http:
           prober: http
-          http:
-            enable_http3: true
-            enable_http2: false
-            valid_http_versions: ["HTTP/3.0"]
         http4:
           prober: http
           http:
@@ -31,6 +27,8 @@ spec:
             ip_protocol_fallback: false
         icmp:
           prober: icmp
+        icmp4:
+          prober: icmp
           icmp:
             preferred_ip_protocol: "ip4"
             ip_protocol_fallback: false
@@ -39,11 +37,42 @@ spec:
           icmp:
             preferred_ip_protocol: "ip6"
             ip_protocol_fallback: false
-        tcp_connect:
+        quic:
+          prober: http
+          http:
+            enable_http3: true
+            enable_http2: false
+            valid_http_versions: ["HTTP/3.0"]
+        quic4:
+          prober: http
+          http:
+            preferred_ip_protocol: "ip4"
+            ip_protocol_fallback: false
+            enable_http3: true
+            enable_http2: false
+            valid_http_versions: ["HTTP/3.0"]
+        quic6:
+          prober: http
+          http:
+            preferred_ip_protocol: "ip6"
+            ip_protocol_fallback: false
+            enable_http3: true
+            enable_http2: false
+            valid_http_versions: ["HTTP/3.0"]
+        tcp:
+          prober: tcp
+        tcp4:
           prober: tcp
           timeout: 5s
           tcp:
             preferred_ip_protocol: "ip4"
+            ip_protocol_fallback: false
+        tcp6:
+          prober: tcp
+          timeout: 5s
+          tcp:
+            preferred_ip_protocol: "ip6"
+            ip_protocol_fallback: false
     podAnnotations:
       reloader.stakater.com/auto: "true"
     podSecurityContext:
