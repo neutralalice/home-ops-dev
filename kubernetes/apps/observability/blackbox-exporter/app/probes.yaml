@@ -2,44 +2,39 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
-  name: dns-a
+  name: dns-a-aaaa
 spec:
-  module: dns_a
   interval: 90s
   scrapeTimeout: 5s
   prober:
     url: blackbox-exporter.observability.svc.cluster.local:9115
   targets:
     staticConfig:
-      static:
-        - 172.16.69.1
-        - 1.0.0.1
-        - 1.1.1.1
-        - 2606:4700:4700::1001
-        - 2606:4700:4700::1111
-      labels:
-        prober: dns
----
-apiVersion: monitoring.coreos.com/v1
-kind: Probe
-metadata:
-  name: dns-aaaa
-spec:
-  module: dns_aaaa
-  interval: 90s
-  scrapeTimeout: 5s
-  prober:
-    url: blackbox-exporter.observability.svc.cluster.local:9115
-  targets:
-    staticConfig:
-      static:
-        - 172.16.69.1
-        - 1.0.0.1
-        - 1.1.1.1
-        - 2606:4700:4700::1001
-        - 2606:4700:4700::1111
-      labels:
-        prober: dns
+      - static:
+          - 172.16.69.1
+          - 1.0.0.1
+          - 1.1.1.1
+          - 2606:4700:4700::1001
+          - 2606:4700:4700::1111
+        relabelingConfigs:
+          - source_labels: [module]
+            target_label: __param_module
+        labels:
+          prober: dns
+          module: dns_a
+      - static:
+          - 172.16.69.1
+          - 1.0.0.1
+          - 1.1.1.1
+          - 2606:4700:4700::1001
+          - 2606:4700:4700::1111
+        relabelingConfigs:
+          - source_labels: [module]
+            target_label: __param_module
+        labels:
+          prober: dns
+          module: dns_aaaa
+          # toDO: https://prometheus.io/docs/guides/multi-target-exporter/ relabel all modules
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
