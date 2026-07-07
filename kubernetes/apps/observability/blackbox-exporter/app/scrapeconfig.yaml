@@ -45,29 +45,21 @@ spec:
         prober: dns
         module: dns_soa
     - targets:
-        - opnsense-ipv4-primary/172.16.69.1
-        - cloudflare-ipv4-primary/1.1.1.1
-        - cloudflare-ipv4-secondary/1.0.0.1
-        - cloudflare-ipv6-primary/2606:4700:4700::1111
-        - cloudflare-ipv6-secondary/2606:4700:4700::1001
+        - 172.16.69.1
+        - 1.1.1.1
+        - 1.0.0.1
+        - 2606:4700:4700::1111
+        - 2606:4700:4700::1001
       labels:
         prober: dns
         module: dns_txt
   metricsPath: /probe
   relabelings:
     - sourceLabels: [__address__]
-      regex: "([^/]+)"
+      action: replace
       targetLabel: instance
     - sourceLabels: [__address__]
-      regex: "([^/]+)"
-      targetLabel: __param_target
-    - sourceLabels: [__address__]
-      regex: "(.+)/(.+)"
-      replacement: "${1}"
-      targetLabel: instance
-    - sourceLabels: [__address__]
-      regex: "(.+)/(.+)"
-      replacement: "${2}"
+      action: replace
       targetLabel: __param_target
     - targetLabel: __address__
       action: replace
@@ -107,6 +99,9 @@ spec:
   relabelings:
     - sourceLabels: [__address__]
       action: replace
+      targetLabel: instance
+    - sourceLabels: [__address__]
+      action: replace
       targetLabel: __param_target
     - targetLabel: __address__
       action: replace
@@ -131,6 +126,9 @@ spec:
         module: tcp
   metricsPath: /probe
   relabelings:
+    - sourceLabels: [__address__]
+      action: replace
+      targetLabel: instance
     - sourceLabels: [__address__]
       action: replace
       targetLabel: __param_target
