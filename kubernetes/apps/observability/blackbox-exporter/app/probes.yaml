@@ -2,69 +2,6 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
-  name: dns-caa
-spec:
-  module: dns_caa
-  interval: 90s
-  scrapeTimeout: 5s
-  prober:
-    url: blackbox-exporter.observability.svc.cluster.local:9115
-  targets:
-    staticConfig:
-      static:
-        - 172.16.69.1
-        - 1.0.0.1
-        - 1.1.1.1
-        - 2606:4700:4700::1001
-        - 2606:4700:4700::1111
-      labels:
-        prober: dns
----
-apiVersion: monitoring.coreos.com/v1
-kind: Probe
-metadata:
-  name: dns-soa
-spec:
-  module: dns_soa
-  interval: 90s
-  scrapeTimeout: 5s
-  prober:
-    url: blackbox-exporter.observability.svc.cluster.local:9115
-  targets:
-    staticConfig:
-      static:
-        - 172.16.69.1
-        - 1.0.0.1
-        - 1.1.1.1
-        - 2606:4700:4700::1001
-        - 2606:4700:4700::1111
-      labels:
-        prober: dns
----
-apiVersion: monitoring.coreos.com/v1
-kind: Probe
-metadata:
-  name: dns-txt
-spec:
-  module: dns_txt
-  interval: 90s
-  scrapeTimeout: 5s
-  prober:
-    url: blackbox-exporter.observability.svc.cluster.local:9115
-  targets:
-    staticConfig:
-      static:
-        - 172.16.69.1
-        - 1.0.0.1
-        - 1.1.1.1
-        - 2606:4700:4700::1001
-        - 2606:4700:4700::1111
-      labels:
-        prober: dns
----
-apiVersion: monitoring.coreos.com/v1
-kind: Probe
-metadata:
   name: quic-check
 spec:
   module: quic
