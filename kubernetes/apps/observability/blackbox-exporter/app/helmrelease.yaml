@@ -132,10 +132,12 @@ spec:
         cpu: 10m
         memory: 64Mi
     serviceMonitor:
-      enabled: true
+      enabled: false
       defaults:
         interval: 1m
         scrapeTimeout: 10s
+      selfMonitor:
+        enabled: true
     prometheusRule:
       enabled: true
       rules:
