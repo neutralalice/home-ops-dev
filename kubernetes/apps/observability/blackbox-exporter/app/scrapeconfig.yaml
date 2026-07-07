@@ -67,8 +67,6 @@ spec:
     - sourceLabels: [module]
       action: replace
       targetLabel: __param_module
-    - sourceLabels: [module]
-      action: labeldrop
 ---
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
@@ -111,8 +109,6 @@ spec:
     - sourceLabels: [module]
       action: replace
       targetLabel: __param_module
-    - sourceLabels: [module]
-      action: labeldrop
 ---
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
@@ -142,5 +138,3 @@ spec:
     - sourceLabels: [module]
       action: replace
       targetLabel: __param_module
-    - sourceLabels: [module]
-      action: labeldrop
