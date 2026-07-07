@@ -64,3 +64,68 @@ spec:
     - sourceLabels: [module]
       action: replace
       targetLabel: __param_module
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: blackbox-exporter-http
+spec:
+  jobName: blackbox-http
+  scrapeInterval: 15s
+  scrapeTimeout: 5s
+  staticConfigs:
+    - targets:
+        - https://${BLACKBOX_IP4_EXTERNAL_ADDRESS}:8443
+        - https://[${BLACKBOX_IP6_EXTERNAL_ADDRESS}]:8443
+      labels:
+        prober: http
+        module: quic
+    - targets:
+        - https://${BLACKBOX_IP4_EXTERNAL_ADDRESS}:8443
+        - https://${BLACKBOX_IP4_EXTERNAL_DOMAIN}
+      labels:
+        prober: http
+        module: http4
+    - targets:
+        - https://[${BLACKBOX_IP6_EXTERNAL_ADDRESS}]:8443
+        - https://${BLACKBOX_IP6_EXTERNAL_DOMAIN}
+      labels:
+        prober: http
+        module: http6
+  metricsPath: /probe
+  relabelings:
+    - sourceLabels: [__address__]
+      action: replace
+      targetLabel: __param_target
+    - targetLabel: __address__
+      action: replace
+      replacement: blackbox-exporter.observability.svc.cluster.local:9115
+    - sourceLabels: [module]
+      action: replace
+      targetLabel: __param_module
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: blackbox-exporter-tcp
+spec:
+  jobName: blackbox-tcp
+  scrapeInterval: 15s
+  scrapeTimeout: 5s
+  staticConfigs:
+    - targets:
+        - 172.16.69.17:2049
+      labels:
+        prober: tcp
+        module: tcp
+  metricsPath: /probe
+  relabelings:
+    - sourceLabels: [__address__]
+      action: replace
+      targetLabel: __param_target
+    - targetLabel: __address__
+      action: replace
+      replacement: blackbox-exporter.observability.svc.cluster.local:9115
+    - sourceLabels: [module]
+      action: replace
+      targetLabel: __param_module

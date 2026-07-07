@@ -7,4 +7,3 @@ resources:
   - ./helmrelease.yaml
   - ./grafanadashboard.yaml
   - ./scrapeconfig.yaml
-  - ./probes.yaml
