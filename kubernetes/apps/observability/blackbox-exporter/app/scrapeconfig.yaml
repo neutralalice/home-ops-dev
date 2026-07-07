@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
-  name: dns-a-aaaa
+  name: blackbox-exporter
 spec:
   jobName: blackbox-dns
   scrapeInterval: 90s
