@@ -19,9 +19,12 @@ spec:
         module: dns_a
   metricsPath: /probe
   relabelings:
-    - source_labels: __address__
-      target_label: __param_target
-    - target_label: __address__
+    - sourceLabels: __address__
+      action: replace
+      targetLabel: __param_target
+    - targetLabel: __address__
+      action: replace
       replacement: blackbox-exporter.observability.svc.cluster.local:9115
-    - source_labels: module
-      target_label: __param_module
+    - sourceLabels: module
+      action: replace
+      targetLabel: __param_module
