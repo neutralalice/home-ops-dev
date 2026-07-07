@@ -1,0 +1,27 @@
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: dns-a-aaaa
+spec:
+  jobName: blackbox-dns
+  scrapeInterval: 90s
+  scrapeTimeout: 5s
+  staticConfigs:
+    - targets:
+        - 172.16.69.1
+        - 1.0.0.1
+        - 1.1.1.1
+        - 2606:4700:4700::1001
+        - 2606:4700:4700::1111
+      labels:
+        prober: dns
+        module: dns_a
+  metricsPath: /probe
+  relabelings:
+    - source_labels: __address__
+      target_label: __param_target
+    - target_label: __address__
+      replacement: blackbox-exporter.observability.svc.cluster.local:9115
+    - source_labels: module
+      target_label: __param_module

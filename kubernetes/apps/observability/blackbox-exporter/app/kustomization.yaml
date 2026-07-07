@@ -6,4 +6,5 @@ resources:
   - ./ocirepository.yaml
   - ./helmrelease.yaml
   - ./grafanadashboard.yaml
+  - ./scrapeconfig.yaml
   - ./probes.yaml
