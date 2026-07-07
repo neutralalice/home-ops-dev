@@ -8,4 +8,3 @@ resources:
   - ./grafanadashboard.yaml
   - ./alertmanagerconfig.yaml
   - ./scrapeconfig.yaml
-  - ./probes.yaml
