@@ -1,0 +1,22 @@
+---
+apiVersion: kopiur.home-operations.com/v1alpha1
+kind: ClusterRepository
+metadata:
+  name: aureole
+spec:
+  allowedNamespaces:
+    all: true
+  backend:
+    filesystem:
+    path: /repo
+    volume:
+      nfs:
+        server: 172.16.69.17
+        path: /volume1/backups_kopiur
+  encryption:
+    passwordSecretRef:
+      name: kopiur-nas-secret
+      namespace: kopiur-system
+      key: KOPIA_PASSWORD
+  scheduleDefaults:
+    timezone: Europe/London
