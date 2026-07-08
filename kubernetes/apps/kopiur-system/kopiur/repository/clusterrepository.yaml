@@ -8,11 +8,11 @@ spec:
     all: true
   backend:
     filesystem:
-    path: /repo
-    volume:
-      nfs:
-        server: 172.16.69.17
-        path: /volume1/backups_kopiur
+      path: /repo
+      volume:
+        nfs:
+          server: 172.16.69.17
+          path: /volume1/backups_kopiur
   encryption:
     passwordSecretRef:
       name: kopiur-nas-secret
