@@ -1,4 +1,6 @@
 set quiet
+set minimum-version := '1.55.1'
+set default-list
 set shell := ['bash', '-euo', 'pipefail', '-c']
 set script-interpreter := ['bash', '-euo', 'pipefail']
 
@@ -12,14 +14,8 @@ mod? kube 'kubernetes'
 mod? talos 'talos'
 
 [private]
-default:
-    just -l
-
-[private]
 log lvl msg *args:
     gum log -t rfc3339 -s -l "{{ lvl }}" "{{ msg }}" {{ args }}
-
-
 
 [group: 'template']
 mod template 'template'
