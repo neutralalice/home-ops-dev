@@ -65,7 +65,7 @@ spec:
           type: RuntimeDefault
     persistence:
       config:
-        existingClaim: qbittorrent-config
+        existingClaim: "{{ .Release.Name }}"
       media:
         enabled: true
         type: nfs
@@ -85,7 +85,7 @@ spec:
     route:
       app:
         hostnames:
-          - torrent.${SECRET_DOMAIN}
+          - "{{ .Release.Name }}.${SECRET_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
@@ -95,7 +95,7 @@ spec:
                 port: *port
     service:
       app:
-        forceRename: ${APP}
+        forceRename: "{{ .Release.Name }}"
         primary: true
         ports:
           http:
