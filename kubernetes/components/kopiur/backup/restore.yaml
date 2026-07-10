@@ -4,8 +4,6 @@ kind: Restore
 metadata:
   name: ${APP}
 spec:
-  credentialProjection:
-    enabled: true
   policy:
     onMissingSnapshot: Continue
   source:

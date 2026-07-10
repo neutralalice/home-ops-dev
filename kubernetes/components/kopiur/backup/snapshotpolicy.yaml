@@ -6,8 +6,6 @@ metadata:
 spec:
   compression:
     compressor: zstd
-  credentialProjection:
-    enabled: true
   mover:
     securityContext:
       runAsUser: ${KOPIUR_PUID:=1000}

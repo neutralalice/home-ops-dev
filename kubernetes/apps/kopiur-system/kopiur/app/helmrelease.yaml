@@ -17,9 +17,6 @@ spec:
     extraVolumeMounts:
       - name: repo
         mountPath: /repo
-    features:
-      credentialProjection:
-        enabled: true
     monitoring:
       dashboards:
         enabled: true

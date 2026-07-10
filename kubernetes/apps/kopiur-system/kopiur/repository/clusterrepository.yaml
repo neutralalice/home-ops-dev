@@ -13,8 +13,6 @@ spec:
         nfs:
           server: 172.16.69.17
           path: /volume1/backups_kopiur
-  credentialProjection:
-    allowed: true
   encryption:
     passwordSecretRef:
       name: kopiur-nas-secret
