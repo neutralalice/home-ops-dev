@@ -11,4 +11,4 @@ resources:
   - ./namespace.yaml
   - ./limitrange.yaml
   - ./jellyfin/ks.yaml
-#  - ./qbittorrent/ks.yaml
+  - ./qbittorrent/ks.yaml
