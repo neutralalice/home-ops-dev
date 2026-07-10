@@ -8,7 +8,7 @@ spec:
     enabled: true
   repository:
     kind: ClusterRepository
-    name: nas
+    name: aureole
   retention:
     keepDaily: 7
     keepHourly: 24
