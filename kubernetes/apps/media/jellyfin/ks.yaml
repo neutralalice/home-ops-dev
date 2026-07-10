@@ -10,6 +10,7 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../components/gpu
+    - ../../../../components/kopiur/backup
   dependsOn:
     - name: intel-gpu-resource-driver
       namespace: kube-system
@@ -20,7 +21,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      NAMESPACE: *namespace
+      KOPIUR_CAPACITY: 50Gi
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
