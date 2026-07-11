@@ -67,6 +67,10 @@ spec:
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
+        advancedMounts:
+          qbittorrent:
+            app:
+              - path: /config
       media:
         enabled: true
         type: nfs
