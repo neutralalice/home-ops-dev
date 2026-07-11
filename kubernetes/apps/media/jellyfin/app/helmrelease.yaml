@@ -65,10 +65,6 @@ spec:
         existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /config
-      config-old:
-        existingClaim: jellyfin-config
-        globalMounts:
-          - path: /config-old
       media:
         enabled: true
         type: nfs
