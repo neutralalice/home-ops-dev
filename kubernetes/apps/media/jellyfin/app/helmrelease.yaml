@@ -62,19 +62,23 @@ spec:
           type: RuntimeDefault
     persistence:
       config:
+        existingClaim: "{{ .Release.Name }}"
+        globalMounts:
+          - path: /config
+      config-old:
         existingClaim: jellyfin-config
-        advancedMounts:
-          jellyfin:
-            app:
-              - path: /config
+        globalMounts:
+          - path: /config-old
       media:
         enabled: true
         type: nfs
         server: 172.16.69.17
         path: /volume1/media
-        globalMounts:
-          - path: /media
-            readOnly: true
+        advancedMounts:
+          jellyfin:
+            app:
+              - path: /media
+                readOnly: true
       tmpfs:
         type: emptyDir
         advancedMounts:
