@@ -7,6 +7,13 @@ spec:
   compression:
     compressor: zstd
   mover:
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+      requests:
+        cpu: 20m
+        memory: 1024Mi
     securityContext:
       runAsUser: ${KOPIUR_PUID:=1000}
       runAsGroup: ${KOPIUR_PGID:=1000}
