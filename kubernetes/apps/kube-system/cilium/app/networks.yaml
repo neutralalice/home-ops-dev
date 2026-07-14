@@ -81,11 +81,11 @@ spec:
               addressFamily: ipv4
           peerConfigRef:
             name: bgp-peer-config-v4
-        - name: peer-64512-v6
-          peerASN: 64512
-          autoDiscovery:
-            mode: "DefaultGateway"
-            defaultGateway:
-              addressFamily: ipv6
-          peerConfigRef:
-            name: bgp-peer-config-v6
+#        - name: peer-64512-v6
+#          peerASN: 64512
+#          autoDiscovery:
+#            mode: "DefaultGateway"
+#            defaultGateway:
+#              addressFamily: ipv6
+#          peerConfigRef:
+#            name: bgp-peer-config-v6
