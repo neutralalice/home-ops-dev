@@ -100,8 +100,9 @@ spec:
             port: *port
       bittorrent:
         type: LoadBalancer
-        annotations:
-          lbipam.cilium.io/ips: 172.16.88.101
+        ipFamilyPolicy: PreferDualStack
+        #        annotations:
+        #          lbipam.cilium.io/ips: 172.16.88.101
         externalTrafficPolicy: Local
         ports:
           bittorrent-tcp:
