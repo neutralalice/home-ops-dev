@@ -99,7 +99,7 @@ spec:
   infrastructure:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: internal.${SECRET_DOMAIN}
-      lbipam.cilium.io/ips: "172.16.88.69"
+      lbipam.cilium.io/ips: "172.16.88.69,fdca:fec0:ffee:0088::69"
   listeners:
     - name: http
       protocol: HTTP
