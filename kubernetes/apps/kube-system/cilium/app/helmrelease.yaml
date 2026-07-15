@@ -61,7 +61,7 @@ spec:
     ipv6NativeRoutingCIDR: "fdca:fec0:ffee:42::/108"
     k8s:
       requireIPv4PodCIDR: true
-      requireIPv6PodCIDR: false
+      requireIPv6PodCIDR: true
     k8sServiceHost: 127.0.0.1
     k8sServicePort: 7445
     kubeProxyReplacement: true
