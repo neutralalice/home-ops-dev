@@ -115,7 +115,7 @@ kind: ScrapeConfig
 metadata:
   name: blackbox-exporter-tcp
 spec:
-  jobName: blackbox-tcp
+  jobName: blackbox-nfs-tcp
   scrapeInterval: 15s
   scrapeTimeout: 5s
   staticConfigs:
