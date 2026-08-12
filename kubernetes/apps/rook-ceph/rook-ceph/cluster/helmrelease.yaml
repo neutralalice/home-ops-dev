@@ -25,6 +25,7 @@ spec:
           mon_cluster_log_level: info
         mgr:
           mgr/crash/warn_recent_interval: "7200" # 2h
+          log_max_recent: "100"
       cleanupPolicy:
         wipeDevicesFromOtherClusters: true
       crashCollector:
