@@ -1,0 +1,5 @@
+---
+apiVersion: v1alpha1
+kind: KmsgLogConfig
+name: fluent-bit
+url: tcp://127.0.0.1:5170/

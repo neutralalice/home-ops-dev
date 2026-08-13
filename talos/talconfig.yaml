@@ -185,6 +185,7 @@ nodes:
           driver: thunderbolt-net
 # Global patches
 patches:
+  - "@./patches/global/machine-docs.yaml"
   - "@./patches/global/machine-files.yaml"
   - "@./patches/global/machine-kernel.yaml"
   - "@./patches/global/machine-kubelet.yaml"

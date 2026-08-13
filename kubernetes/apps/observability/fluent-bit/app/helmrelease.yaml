@@ -9,6 +9,11 @@ spec:
     name: fluent-bit
   interval: 1h
   values:
+    env:
+      - name: NODE_NAME
+        valueFrom:
+          fieldRef:
+            fieldPath: spec.nodeName
     config:
       service: |-
         [SERVICE]
@@ -32,6 +37,16 @@ spec:
           skip_empty_lines on
           skip_long_lines on
 
+        [INPUT]
+          name tcp
+          alias talos_kernel
+          listen 127.0.0.1
+          port 5170
+          tag talos.kernel
+          format json
+          chunk_size 32
+          buffer_size 64
+
       filters: |-
         [FILTER]
           name kubernetes
@@ -43,6 +58,13 @@ spec:
           namespace_labels off
           buffer_size 2MB
           annotations off
+
+        [FILTER]
+          name modify
+          match talos.*
+          add node ${NODE_NAME}
+          rename talos-level level
+          rename talos-time talos_time
 
         [FILTER]
           name nest
@@ -80,6 +102,17 @@ spec:
           host victoria-logs-server.observability.svc.cluster.local
           port 9428
           uri /insert/jsonline?_stream_fields=stream,k_namespace_name,k_pod_name,app&_msg_field=log&_time_field=date
+          format json_lines
+          json_date_format iso8601
+          compress gzip
+          log_response_payload false
+
+        [OUTPUT]
+          name http
+          match talos.*
+          host victoria-logs-server.observability.svc.cluster.local
+          port 9428
+          uri /insert/jsonline?_stream_fields=node,facility,priority,level&_msg_field=msg&_time_field=date
           format json_lines
           json_date_format iso8601
           compress gzip
