@@ -14,6 +14,11 @@ spec:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
+    extraPorts:
+      - port: 5170
+        containerPort: 5170
+        protocol: TCP
+        name: talos
     config:
       service: |-
         [SERVICE]
@@ -31,7 +36,7 @@ spec:
         [INPUT]
           name tcp
           alias talos_kernel
-          listen 127.0.0.1
+          listen 0.0.0.0
           port 5170
           tag talos.kernel
           format json
