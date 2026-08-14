@@ -14,7 +14,7 @@ spec:
       enabled: true
     remoteWrite:
       - url: http://victoria-logs-server.observability.svc.cluster.local:9428
-        maxDiskUsagePerURL: 10G
+        maxDiskUsagePerURL: 10GB
     streamFields:
       - kubernetes.container_name
       - kubernetes.pod_name
