@@ -17,10 +17,10 @@ spec:
         maxDiskUsagePerURL: 10GB
     collector:
       includePodLabels: true
-    streamFields:
-      - kubernetes.container_name
-      - kubernetes.pod_name
-      - kubernetes.pod_namespace
-      - kubernetes.pod_labels.app.kubernetes.io/name
+      streamFields:
+        - kubernetes.container_name
+        - kubernetes.pod_name
+        - kubernetes.pod_namespace
+        - kubernetes.pod_labels.app.kubernetes.io/name
     extraArgs:
       "kubernetesCollector.decolorizeFields": _msg
