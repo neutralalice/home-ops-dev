@@ -9,6 +9,8 @@ spec:
     name: fluent-bit
   interval: 1h
   values:
+    hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
     env:
       - name: NODE_NAME
         valueFrom:
@@ -17,6 +19,10 @@ spec:
     extraPorts:
       - port: 5170
         containerPort: 5170
+        protocol: TCP
+        name: talos
+      - port: 5171
+        containerPort: 5171
         protocol: TCP
         name: talos
     config:
@@ -39,6 +45,16 @@ spec:
           listen 0.0.0.0
           port 5170
           tag talos.kernel
+          format json
+          chunk_size 32
+          buffer_size 64
+
+        [INPUT]
+          name tcp
+          alias talos_service
+          listen 0.0.0.0
+          port 5171
+          tag talos.service
           format json
           chunk_size 32
           buffer_size 64
