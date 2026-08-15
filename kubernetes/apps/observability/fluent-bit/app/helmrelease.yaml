@@ -65,6 +65,7 @@ spec:
           match talos.*
           add node ${NODE_NAME}
           rename talos-level level
+          rename talos-service talos_service
           rename talos-time talos_time
 
       outputs: |-
