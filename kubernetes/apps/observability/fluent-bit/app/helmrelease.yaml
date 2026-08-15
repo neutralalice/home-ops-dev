@@ -20,11 +20,11 @@ spec:
       - port: 5170
         containerPort: 5170
         protocol: TCP
-        name: talos
+        name: talos-kernel
       - port: 5171
         containerPort: 5171
         protocol: TCP
-        name: talos
+        name: talos-service
     config:
       service: |-
         [SERVICE]
