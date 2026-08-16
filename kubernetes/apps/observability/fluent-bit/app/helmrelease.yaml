@@ -74,7 +74,7 @@ spec:
           match talos.*
           host victoria-logs-server.observability.svc.cluster.local
           port 9428
-          uri /insert/jsonline?_stream_fields=node,facility,priority,level,talos_service&_msg_field=msg&_time_field=date
+          uri /insert/jsonline?_stream_fields=node,facility,talos_service&_msg_field=msg&_time_field=date
           format json_lines
           json_date_format iso8601
           compress gzip
