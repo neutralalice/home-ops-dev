@@ -16,7 +16,16 @@ spec:
       - url: http://victoria-logs-server.observability.svc.cluster.local:9428
         maxDiskUsagePerURL: 10GB
     collector:
+      ignoreFields:
+        - request.payload*
+        - password
+        - token
       includePodLabels: true
+      msgField:
+        - message
+        - msg
+        - log
+        - log_message
       streamFields:
         - kubernetes.container_name
         - kubernetes.pod_name
