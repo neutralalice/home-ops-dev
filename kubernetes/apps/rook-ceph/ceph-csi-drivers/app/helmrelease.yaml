@@ -21,3 +21,13 @@ spec:
         enabled: true
         name: rook-ceph.rbd.csi.ceph.com
         snapshotPolicy: volumeSnapshot
+    operatorConfig:
+      driverSpecDefaults:
+        controllerPlugin:
+          containerExtraArgs:
+            csi-rbdplugin:
+              - --logtostderr=true
+        nodePlugin:
+          containerExtraArgs:
+            csi-rbdplugin:
+              - --logtostderr=true
