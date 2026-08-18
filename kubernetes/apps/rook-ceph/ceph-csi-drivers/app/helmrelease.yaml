@@ -31,6 +31,9 @@ spec:
             csi-rbdplugin:
               - --logtostderr=true
         nodePlugin:
+          log:
+            rotation:
+              enabled: false
           containerExtraArgs:
             csi-rbdplugin:
               - --logtostderr=true
