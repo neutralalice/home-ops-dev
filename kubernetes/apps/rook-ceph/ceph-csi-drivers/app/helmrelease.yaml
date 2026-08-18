@@ -23,6 +23,9 @@ spec:
         snapshotPolicy: volumeSnapshot
     operatorConfig:
       driverSpecDefaults:
+        log:
+          rotation:
+            enabled: false
         controllerPlugin:
           containerExtraArgs:
             csi-rbdplugin:
