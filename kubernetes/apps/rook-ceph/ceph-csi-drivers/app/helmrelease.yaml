@@ -21,6 +21,9 @@ spec:
         enabled: true
         name: rook-ceph.rbd.csi.ceph.com
         snapshotPolicy: volumeSnapshot
+        log:
+          rotation:
+            enabled: false
     operatorConfig:
       driverSpecDefaults:
         log:
@@ -31,9 +34,6 @@ spec:
             csi-rbdplugin:
               - --logtostderr=true
         nodePlugin:
-          log:
-            rotation:
-              enabled: false
           containerExtraArgs:
             csi-rbdplugin:
               - --logtostderr=true
