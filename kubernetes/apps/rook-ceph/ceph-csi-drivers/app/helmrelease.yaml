@@ -29,11 +29,3 @@ spec:
         log:
           rotation:
             enabled: false
-        controllerPlugin:
-          containerExtraArgs:
-            csi-rbdplugin:
-              - --logtostderr=true
-        nodePlugin:
-          containerExtraArgs:
-            csi-rbdplugin:
-              - --logtostderr=true
