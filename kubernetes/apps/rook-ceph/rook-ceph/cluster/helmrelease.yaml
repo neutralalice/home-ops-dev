@@ -50,7 +50,7 @@ spec:
           - name: pg_autoscaler
             enabled: true
           - name: rook
-            enabled: true
+            enabled: false # disable until node_proxy issue fixed https://github.com/rook/rook/issues/18124#issuecomment-5332493066
       network:
         provider: host
         addressRanges:
