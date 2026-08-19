@@ -9,4 +9,5 @@ components:
 
 resources:
   - ./namespace.yaml
+  - ./limitrange.yaml
   - ./kopiur/ks.yaml
