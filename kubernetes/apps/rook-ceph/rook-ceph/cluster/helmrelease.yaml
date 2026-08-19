@@ -215,4 +215,4 @@ spec:
     #      deletionPolicy: Delete
     cephObjectStores: []
     cephImage:
-      tag: "v20.2.2"
+      tag: "v20.2.4"
