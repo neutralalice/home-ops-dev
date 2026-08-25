@@ -12,6 +12,7 @@ spec:
     config:
       log:
         level: info
+        format: json
     fullnameOverride: kepler
     daemonset:
       resources:
