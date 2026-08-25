@@ -59,7 +59,7 @@ spec:
             memory: 1024Mi
 
     trivyOperator:
-      skipResourceByLabels: "app.kubernetes.io/created-by=volsync"
+      skipResourceByLabels: "app.kubernetes.io/managed-by=kopiur"
       scanJobPodTemplatePodSecurityContext:
         runAsNonRoot: true
         runAsUser: 10000
