@@ -10,5 +10,11 @@ spec:
   interval: 1h
   values:
     controller:
+      args:
+        logging-format: json
+        leaderElection: true
+        leaderElectionNamespace: "$(NAMESPACE)"
+        httpEndpoint: ":8080"
+        featureGates: CSIVolumeGroupSnapshot=true
       serviceMonitor:
         create: true
