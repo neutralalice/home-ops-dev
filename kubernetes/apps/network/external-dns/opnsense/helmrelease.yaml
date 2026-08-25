@@ -14,6 +14,7 @@ spec:
     extraArgs:
       - --gateway-name=envoy-internal
     interval: 10m
+    logFormat: json
     logLevel: &logLevel debug
     policy: sync
     provider:
