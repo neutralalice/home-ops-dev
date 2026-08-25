@@ -10,6 +10,9 @@ spec:
     name: blackbox-exporter
   interval: 1h
   values:
+    extraArgs:
+      - --log.format=json
+      - --log.level=info
     fullnameOverride: blackbox-exporter
     config:
       modules:
