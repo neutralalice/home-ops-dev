@@ -33,7 +33,6 @@ cluster:
   etcd:
     extraArgs:
       listen-metrics-urls: http://0.0.0.0:2381
-      logging-format: json
     advertisedSubnets:
       - 172.16.69.0/24
   proxy:
