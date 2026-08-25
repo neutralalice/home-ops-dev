@@ -73,6 +73,8 @@ spec:
       requests:
         cpu: 10m
         memory: 256Mi
+    cmdOptions:
+      logging-format: "json"
     service:
       enabled: true
     serviceMonitor:
