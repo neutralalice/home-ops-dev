@@ -24,6 +24,8 @@ spec:
         alertmanagerConfiguration:
           name: alertmanager
         externalUrl: https://alertmanager.${SECRET_DOMAIN}
+        logFormat: json
+        logLevel: info
         resources:
           limits:
             cpu: 2000m
@@ -96,15 +98,8 @@ spec:
         scrapeInterval: 15s
         scrapeTimeout: 10s
         serviceMonitorSelectorNilUsesHelmValues: false
-        logLevel: info
         logFormat: json
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: ceph-block
-              resources:
-                requests:
-                  storage: 50Gi
+        logLevel: info
         retention: 14d
         retentionSize: 47GB
         resources:
@@ -114,6 +109,13 @@ spec:
           requests:
             cpu: 160m
             memory: 2000Mi
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: ceph-block
+              resources:
+                requests:
+                  storage: 50Gi
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       resources:
