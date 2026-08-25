@@ -11,6 +11,8 @@ spec:
   values:
     fullnameOverride: reloader
     reloader:
+      logFormat: json
+      logLevel: info
       readOnlyRootFileSystem: true
       podMonitor:
         enabled: true
