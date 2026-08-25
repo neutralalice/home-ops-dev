@@ -33,7 +33,7 @@ spec:
                   secretKeyRef:
                     name: cloudflare-tunnel-secrets
                     key: CLOUDFLARE_TUNNEL_TOKEN
-            args: ["tunnel", "run"]
+            args: ["tunnel", "--log-format", "json", "run"]
             probes:
               liveness: &probes
                 enabled: true
