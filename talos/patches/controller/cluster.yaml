@@ -7,6 +7,7 @@ cluster:
       # https://kubernetes.io/docs/tasks/extend-kubernetes/configure-aggregation-layer/
       enable-aggregator-routing: true
       feature-gates: NativeHistograms=true,HPAScaleToZero=true
+      logging-format: json
     resources:
       limits:
         cpu: 1000m
@@ -19,6 +20,7 @@ cluster:
       bind-address: 0.0.0.0
       node-cidr-mask-size-ipv6: "112"
       feature-gates: NativeHistograms=true,HPAScaleToZero=true
+      logging-format: json
     resources:
       limits:
         cpu: 1000m
@@ -31,16 +33,16 @@ cluster:
   etcd:
     extraArgs:
       listen-metrics-urls: http://0.0.0.0:2381
+      logging-format: json
     advertisedSubnets:
       - 172.16.69.0/24
   proxy:
     disabled: true
-    extraArgs:
-      feature-gates: NativeHistograms=true
   scheduler:
     extraArgs:
       bind-address: 0.0.0.0
       feature-gates: NativeHistograms=true
+      logging-format: json
     resources:
       limits:
         cpu: 1000m
