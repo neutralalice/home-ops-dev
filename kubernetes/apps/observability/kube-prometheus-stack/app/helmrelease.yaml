@@ -96,6 +96,8 @@ spec:
         scrapeInterval: 15s
         scrapeTimeout: 10s
         serviceMonitorSelectorNilUsesHelmValues: false
+        logLevel: info
+        logFormat: json
         storageSpec:
           volumeClaimTemplate:
             spec:
