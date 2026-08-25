@@ -2,10 +2,10 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: idm-${SECRET_DOMAIN/./-}
+  name: "idm-${SECRET_DOMAIN/./-}"
 spec:
   dnsNames:
-    - idm.${SECRET_DOMAIN}
+    - "idm.${SECRET_DOMAIN}"
   duration: 160h
   issuerRef:
     kind: ClusterIssuer
