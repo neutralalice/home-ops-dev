@@ -73,6 +73,8 @@ spec:
       mode: "dsr"
     localRedirectPolicies:
       enabled: true
+    logOptions:
+      format: json
     operator:
       dashboards:
         enabled: true
