@@ -7,4 +7,5 @@ components:
 resources:
   - ./limitrange.yaml
   - ./namespace.yaml
+  - ./kaniop/ks.yaml
   - ./trivy-operator/ks.yaml
