@@ -10,10 +10,14 @@ spec:
   interval: 1h
   values:
     automountServiceAccountToken: false
+    extraArgs:
+      - --logging-format=json
     serviceAccount:
       automountServiceAccountToken: false
     cainjector:
       automountServiceAccountToken: false
+      extraArgs:
+        - --logging-format=json
       serviceAccount:
         automountServiceAccountToken: false
       resources:
@@ -114,6 +118,8 @@ spec:
         readOnly: true
     webhook:
       automountServiceAccountToken: false
+      extraArgs:
+        - --logging-format=json
       serviceAccount:
         automountServiceAccountToken: false
       resources:
