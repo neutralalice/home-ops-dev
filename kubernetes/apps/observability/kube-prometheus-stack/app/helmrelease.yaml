@@ -118,6 +118,7 @@ spec:
                   storage: 50Gi
     prometheus-node-exporter:
       extraArgs:
+        - --log.format=json
         - --log.level=info
       fullnameOverride: node-exporter
       resources:
