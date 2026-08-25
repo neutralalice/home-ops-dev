@@ -11,6 +11,8 @@ spec:
   values:
     fullnameOverride: *app
     provider: cloudflare
+    logFormat: json
+    logLevel: info
     env:
       - name: CF_API_TOKEN
         valueFrom:
