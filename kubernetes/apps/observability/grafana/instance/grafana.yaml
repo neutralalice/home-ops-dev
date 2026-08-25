@@ -21,6 +21,8 @@ spec:
       hide_version: "false"
     log:
       mode: console
+    log.console:
+      format: json
     metrics:
       enabled: "true"
     news:
