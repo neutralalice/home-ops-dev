@@ -9,6 +9,9 @@ spec:
     name: grafana-operator
   interval: 1h
   values:
+    logging:
+      level: info
+      encoder: json
     dashboard:
       enabled: true
     serviceMonitor:
