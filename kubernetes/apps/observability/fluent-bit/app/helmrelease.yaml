@@ -59,6 +59,9 @@ spec:
           chunk_size 32
           buffer_size 64
 
+      # need to adjust for a talos-service kernel transform before I can remove the klogmsgconfig
+      # currently there is duplicated kernel messages, but the level information is only appropriate
+      # for the klogmsgs
       filters: |-
         [FILTER]
           name modify
