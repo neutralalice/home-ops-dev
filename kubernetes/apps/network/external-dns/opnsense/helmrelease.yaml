@@ -15,7 +15,7 @@ spec:
       - --gateway-name=envoy-internal
     interval: 10m
     logFormat: json
-    logLevel: &logLevel debug
+    logLevel: &logLevel info
     policy: sync
     provider:
       name: webhook
@@ -42,8 +42,8 @@ spec:
                 key: OPNSENSE_HOST
           - name: OPNSENSE_SKIP_TLS_VERIFY
             value: "true"
-        #          - name: LOG_LEVEL
-        #            value: *logLevel
+          - name: LOG_LEVEL
+            value: *logLevel
         livenessProbe:
           httpGet:
             path: /healthz
