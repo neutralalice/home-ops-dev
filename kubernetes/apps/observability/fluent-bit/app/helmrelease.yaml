@@ -82,10 +82,6 @@ spec:
           json_date_format iso8601
           compress gzip
           log_response_payload false
-        [OUTPUT]
-          name stdout
-          Match *
-          format json_lines
     dashboards:
       enabled: true
     logLevel: warn
