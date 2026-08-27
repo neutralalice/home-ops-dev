@@ -132,6 +132,8 @@ spec:
         ipDualStack:
           enabled: false
     prometheusOperator:
+      logFormat: json
+      logLevel: info
       resources:
         limits:
           cpu: 1000m
