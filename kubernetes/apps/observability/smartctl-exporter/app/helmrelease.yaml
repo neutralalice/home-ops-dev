@@ -10,6 +10,9 @@ spec:
   interval: 1h
   values:
     fullnameOverride: smartctl-exporter
+    extraArgs:
+      log.format: json
+      log.level: info
     serviceMonitor:
       enabled: true
     prometheusRules:
