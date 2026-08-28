@@ -11,7 +11,13 @@ spec:
   values:
     deploymentAnnotations:
       reloader.stakater.com/auto: "true"
+    logging:
+      format: json
+      level: info
     webhook:
+      logging:
+        format: json
+        level: info
       enabled: true
     metrics:
       enabled: true
