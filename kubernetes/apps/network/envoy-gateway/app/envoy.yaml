@@ -144,7 +144,10 @@ spec:
       port: 514
       allowedRoutes:
         namespaces:
-          from: observability
+          from: Selector
+          selector:
+            matchLabels:
+              kubernetes.io/metadata.name: observability
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: BackendTrafficPolicy
