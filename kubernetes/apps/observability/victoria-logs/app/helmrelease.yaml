@@ -26,24 +26,30 @@ spec:
           memory: 768Mi
       retentionPeriod: 14d
       route:
-        enabled: true
-        hostnames:
-          - victoria-logs.${SECRET_DOMAIN}
-        parentRefs:
-          - name: envoy-internal
-            namespace: network
-        extraRules:
-          - filters:
-              - type: RequestRedirect
-                requestRedirect:
-                  path:
-                    type: ReplaceFullPath
-                    replaceFullPath: /select/vmui/
-                  statusCode: 302
-            matches:
-              - path:
-                  type: Exact
-                  value: /
+        - enabled: true
+          hostnames:
+            - victoria-logs.${SECRET_DOMAIN}
+          parentRefs:
+            - name: envoy-internal
+              namespace: network
+          extraRules:
+            - filters:
+                - type: RequestRedirect
+                  requestRedirect:
+                    path:
+                      type: ReplaceFullPath
+                      replaceFullPath: /select/vmui/
+                    statusCode: 302
+              matches:
+                - path:
+                    type: Exact
+                    value: /
+        - enabled: true
+          kind: udproute
+          parentRefs:
+            - name: envoy-internal
+              namespace: network
+              sectionName: syslog-udp
       serviceMonitor:
         enabled: true
       syslog:
