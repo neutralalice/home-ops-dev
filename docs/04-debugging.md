@@ -41,3 +41,17 @@ Resolving problems that you have could take some tweaking of your YAML manifests
 in order to get things working, other times it could be a external factor like
 permissions on a NFS server. If you are unable to figure out your problem see
 the support sections below.
+
+## debugging volumes
+
+1. make a custom profile for kubectl debug
+
+```sh
+{ "volumeMounts": [{ "mountPath": "/config", "name": "config" }] }
+```
+
+2. launch the profile in target pod with
+
+```sh
+kubectl debug <pod> -n <ns> -it --custom <json/yaml profile> --image=busybox
+```
