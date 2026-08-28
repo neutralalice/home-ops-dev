@@ -16,5 +16,4 @@ spec:
   rules:
     - backendRefs:
         - name: victoria-logs-server
-          kind: service
           port: 514
