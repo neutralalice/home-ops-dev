@@ -140,13 +140,11 @@ spec:
           - kind: Secret
             name: ${SECRET_DOMAIN/./-}-production-tls
     - name: syslog-udp
-      protocol: udp
+      protocol: UDP
       port: 514
       allowedRoutes:
-        namespaces:
-          from: Selector
-          selector:
-            matchLabels: kubernetes.io/metadata.name=observability
+        kinds:
+          - kind: UDPRoute
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: BackendTrafficPolicy
