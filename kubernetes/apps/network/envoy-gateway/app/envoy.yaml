@@ -139,6 +139,12 @@ spec:
         certificateRefs:
           - kind: Secret
             name: ${SECRET_DOMAIN/./-}-production-tls
+    - name: syslog-udp
+      protocol: udp
+      port: 514
+      allowedRoutes:
+        namespaces:
+          from: observability
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: BackendTrafficPolicy
