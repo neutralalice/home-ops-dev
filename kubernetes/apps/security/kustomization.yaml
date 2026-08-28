@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: security
 components:
   - ../../components/sops
+  - ../../components/kopiur/secret
 resources:
   - ./limitrange.yaml
   - ./namespace.yaml
