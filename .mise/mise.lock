@@ -875,9 +875,15 @@ url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/532935192"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64"]
+<<<<<<< Updated upstream
 checksum = "sha256:788f18abea7c5f55d6216e4f5613fd89d4d59b631efeec117b2b07fe72f1da21"
 url = "https://github.com/astral-sh/uv/releases/download/0.12.7/uv-x86_64-unknown-linux-gnu.tar.gz"
 url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/532935280"
+=======
+checksum = "sha256:14e4172aace66a475062cebec7ca04f497d5619e95325dfcc9e4447b9c516846"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.6/uv-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/529690844"
+>>>>>>> Stashed changes
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-musl"]
