@@ -15,3 +15,10 @@ some grafana dashboards for stat analysis, particularly on access-logs.
 
 - syslog at udp 541 - will probably switch this to tcp
 - other jsonlogs at 9428
+
+# Strategies
+
+In general, I am trying to set all applications I run to natively emit jsonline.
+This is preferable as it reduces the amount of transforms I have to think about.
+
+Also looking at instrumenting certain things with otel
