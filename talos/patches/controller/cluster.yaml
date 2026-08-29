@@ -11,10 +11,10 @@ cluster:
     resources:
       limits:
         cpu: 1000m
-        memory: 2048Mi
+        memory: 3072Mi
       requests:
         cpu: 1000m
-        memory: 2048Mi
+        memory: 3072Mi
   controllerManager:
     extraArgs:
       bind-address: 0.0.0.0
