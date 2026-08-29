@@ -42,6 +42,17 @@ cluster:
       bind-address: 0.0.0.0
       feature-gates: NativeHistograms=true
       logging-format: json
+    config:
+      profiles:
+        - schedulerName: default-scheduler
+          pluginConfig:
+            - name: PodTopologySpread
+              args:
+                defaultingType: List
+                defaultConstraints:
+                  - maxSkew: 1
+                    topologyKey: kubernetes.io/hostname
+                    whenUnsatisfiable: ScheduleAnyway
     resources:
       limits:
         cpu: 1000m
