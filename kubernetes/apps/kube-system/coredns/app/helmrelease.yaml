@@ -25,6 +25,7 @@ spec:
       ipFamilies:
         - IPv4
         - IPv6
+    priorityClassName: system-cluster-critical
     replicaCount: 2
     resources:
       limits:
@@ -58,6 +59,7 @@ spec:
             configBlock: |-
               prefetch 20
               serve_stale
+              servfail 0
           - name: loop
           - name: reload
           - name: loadbalance
