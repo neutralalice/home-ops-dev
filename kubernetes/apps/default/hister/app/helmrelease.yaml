@@ -37,7 +37,6 @@ spec:
               repository: ghcr.io/asciimoo/hister
               tag: v0.18.0@sha256:55ca3b00da9d3245cc689a7f4455be5f4a3931c29d3450d6d1f46f8c931cce35
             env:
-              TZ: ${TZ}
               GOMEMLIMIT: 1000MiB
               HISTER__SERVER__ADDRESS: 0.0.0.0:4433
               HISTER__SERVER__BASE_URL: https://hister.${SECRET_DOMAIN}
