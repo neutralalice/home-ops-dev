@@ -84,7 +84,7 @@ spec:
           enabled: true
           interval: 15s
           scrapeTimeout: 10s
-      replicas: 1
+      replicas: 2
       resources:
         limits:
           cpu: 1000m
