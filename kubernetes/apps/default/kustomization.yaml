@@ -10,3 +10,4 @@ resources:
   - ./limitrange.yaml
   - ./namespace.yaml
   - ./echo/ks.yaml
+  - ./hister/ks.yaml
