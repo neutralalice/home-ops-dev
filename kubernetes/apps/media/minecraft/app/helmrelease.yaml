@@ -20,6 +20,7 @@ spec:
               EULA: "true"
               GAMEMODE: survival
               DIFFICULTY: normal
+              VERSION: "1.21.73.01"
               SERVER_PORT: &port "19132"
             probes:
               liveness:
