@@ -4,6 +4,8 @@ kind: UDPRoute
 metadata:
   name: victoria-logs-server
   namespace: observability
+  annotations:
+    external-dns.kubernetes.io/hostname: victoria-logs.${SECRET_DOMAIN}
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/instance: victoria-logs
