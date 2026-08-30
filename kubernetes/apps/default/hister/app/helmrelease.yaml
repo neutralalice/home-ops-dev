@@ -40,6 +40,7 @@ spec:
               GOMEMLIMIT: 512MiB
               HISTER__SERVER__ADDRESS: 0.0.0.0:4433
               HISTER__SERVER__BASE_URL: https://hister.${SECRET_DOMAIN}
+              HISTER__APP__LOG_FORMAT: json
             probes:
               liveness: &probes
                 enabled: true
