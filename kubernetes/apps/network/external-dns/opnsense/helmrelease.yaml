@@ -15,7 +15,7 @@ spec:
       - --gateway-name=envoy-internal
     interval: 10m
     logFormat: json
-    logLevel: &logLevel info
+    logLevel: &logLevel debug
     policy: sync
     provider:
       name: webhook
