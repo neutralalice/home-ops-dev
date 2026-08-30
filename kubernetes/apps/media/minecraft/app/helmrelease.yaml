@@ -80,9 +80,7 @@ spec:
           type: RuntimeDefault
     persistence:
       data:
-        type: persistentVolumeClaim
-        accessMode: ReadWriteOnce
-        size: 10Gi
+        existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /data
       tmp:
