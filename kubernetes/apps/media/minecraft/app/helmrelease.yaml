@@ -20,7 +20,7 @@ spec:
               EULA: "true"
               GAMEMODE: survival
               DIFFICULTY: normal
-              ENABLE_SSH: "true"
+              ENABLE_SSH: "false"
               VERSION: "1.21.73.01"
               SERVER_PORT: &port "19132"
             probes:
