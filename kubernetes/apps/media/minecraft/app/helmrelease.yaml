@@ -93,6 +93,7 @@ spec:
         kind: UDPRoute
         annotations:
           external-dns.kubernetes.io/hostname: "bedrock.${SECRET_DOMAIN}"
+          external-dns.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
