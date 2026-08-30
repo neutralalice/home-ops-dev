@@ -20,6 +20,7 @@ spec:
               EULA: "true"
               GAMEMODE: survival
               DIFFICULTY: normal
+              ENABLE_SSH: "true"
               VERSION: "1.21.73.01"
               SERVER_PORT: &port "19132"
             probes:
@@ -101,10 +102,25 @@ spec:
           - backendRefs:
               - name: minecraft
                 port: 19132
+      ssh:
+        kind: TCPRoute
+        annotations:
+          external-dns.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+            sectionName: ssh-tcp
+        rules:
+          - backendRefs:
+              - name: minecraft
+                port: 2222
     service:
       app:
         controller: *app
         ports:
+          ssh:
+            port: 2222
+            protocol: TCP
           minecraft:
             port: 19132
             protocol: UDP
