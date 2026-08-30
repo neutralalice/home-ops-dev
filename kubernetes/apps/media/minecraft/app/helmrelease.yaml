@@ -91,6 +91,8 @@ spec:
     route:
       app:
         kind: UDPRoute
+        annotations:
+          external-dns.kubernetes.io/hostname: "bedrock.${SECRET_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
@@ -102,8 +104,6 @@ spec:
     service:
       app:
         controller: *app
-        annotations:
-          external-dns.kubernetes.io/hostname: "bedrock.${SECRET_DOMAIN}"
         ports:
           minecraft:
             port: 19132
