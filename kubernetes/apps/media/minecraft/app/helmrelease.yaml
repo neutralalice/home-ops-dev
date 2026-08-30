@@ -105,7 +105,7 @@ spec:
       ssh:
         kind: TCPRoute
         annotations:
-          external-dns.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
+          external-dns.kubernetes.io/hostname: "bedrock.${SECRET_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
