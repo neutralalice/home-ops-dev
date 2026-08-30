@@ -22,6 +22,8 @@ spec:
               DIFFICULTY: normal
               ENABLE_SSH: "false"
               ONLINE_MODE: "false"
+              WHITE_LIST: "true"
+              WHITE_LIST_USERS: "Kalax48"
               VERSION: "1.26.45.1"
               SERVER_PORT: &port "19132"
             probes:
