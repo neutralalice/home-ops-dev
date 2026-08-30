@@ -85,7 +85,8 @@ spec:
           - path: /data
       tmp:
         type: emptyDir
-        medium: Memory
+        globalMounts:
+          - path: /tmp
     route:
       app:
         kind: UDPRoute
@@ -106,4 +107,3 @@ spec:
           minecraft:
             port: *port
             protocol: UDP
-            targetPort: *port
