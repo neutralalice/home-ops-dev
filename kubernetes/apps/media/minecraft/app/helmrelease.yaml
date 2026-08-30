@@ -103,7 +103,7 @@ spec:
       app:
         controller: *app
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: "bedrock.${SECRET_DOMAIN}"
+          external-dns.kubernetes.io/hostname: "bedrock.${SECRET_DOMAIN}"
         ports:
           minecraft:
             port: 19132
