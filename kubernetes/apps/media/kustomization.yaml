@@ -12,3 +12,4 @@ resources:
   - ./limitrange.yaml
   - ./jellyfin/ks.yaml
   - ./qbittorrent/ks.yaml
+  - ./minecraft/ks.yaml
