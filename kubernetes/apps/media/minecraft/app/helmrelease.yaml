@@ -21,7 +21,7 @@ spec:
               GAMEMODE: survival
               DIFFICULTY: normal
               ENABLE_SSH: "false"
-              ONLINE_MODE: "false"
+              ONLINE_MODE: "true"
               ALLOW_LIST: "true"
               ALLOW_LIST_USERS: "Kalax48"
               VERSION: "1.26.45.1"
