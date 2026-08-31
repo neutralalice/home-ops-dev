@@ -13,6 +13,9 @@ spec:
   interval: 1h
   path: ./kubernetes/apps/default/hister/app
   postBuild:
+    substitute:
+      APP: *app
+      KOPIUR_CAPACITY: 10Gi
     substituteFrom:
       - name: cluster-secrets
         kind: Secret

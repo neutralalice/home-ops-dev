@@ -82,9 +82,7 @@ spec:
             namespace: network
     persistence:
       data:
-        type: persistentVolumeClaim
-        accessMode: ReadWriteOnce
-        size: 10Gi
+        existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /hister/data
       tmp:
