@@ -44,6 +44,7 @@ spec:
     substitute:
       APP: *app
       KOPIUR_CLAIM: kanidm-data-kanidm-default-0
+      KOPIUR_CAPACITY: 150Mi
       KOPIUR_PUID: "2000"
       KOPIUR_PGID: "2000"
     substituteFrom:
