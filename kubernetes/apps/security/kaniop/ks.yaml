@@ -43,6 +43,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
+      KOPIUR_CLAIM: kanidm-data-kanidm-default-0
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
