@@ -18,8 +18,8 @@ spec:
     substitute:
       APP: *app
       KOPIUR_CAPACITY: 10Gi
-      KOPIUR_PUID: 65532
-      KOPIUR_PGID: 65532
+      KOPIUR_PUID: "65532"
+      KOPIUR_PGID: "65532"
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
