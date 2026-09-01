@@ -99,7 +99,7 @@ spec:
       app:
         kind: UDPRoute
         annotations:
-          external-dns.kubernetes.io/hostname: "bedrock.${SECRET_DOMAIN}"
+          external-dns.kubernetes.io/hostname: "play.galaxite.net"
         parentRefs:
           - name: envoy-internal
             namespace: network
