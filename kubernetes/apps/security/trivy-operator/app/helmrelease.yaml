@@ -22,6 +22,8 @@ spec:
           hostPath:
             path: /etc/os-release
 
+    image:
+      tag: v0.34.0
     operator:
       scanJobsConcurrentLimit: 3
       scanJobTTL: 300s
