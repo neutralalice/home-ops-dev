@@ -26,9 +26,9 @@ spec:
               ALLOW_LIST_USERS: "Kalax48,arita1052"
               CONTENT_LOG_CONSOLE_OUTPUT_ENABLED: "true"
               VERSION: "1.26.45.1"
-              ENABLE_BDS_V6BIND_FIX: "true"
+              #              ENABLE_BDS_V6BIND_FIX: "true"
               SERVER_PORT: &port "19132"
-              SERVER_PORT_V6: *port
+            #              SERVER_PORT_V6: *port
             probes:
               liveness:
                 enabled: true
