@@ -15,5 +15,5 @@ spec:
         memory: 1024Mi
       min:
         cpu: 4m
-        memory: 32Mi
+        memory: 8Mi
       type: Container
