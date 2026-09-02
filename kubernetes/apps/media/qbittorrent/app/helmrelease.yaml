@@ -96,7 +96,7 @@ spec:
         parentRefs:
           - name: envoy-external-tcp
             namespace: network
-            sectionName: torrent-tcp
+            sectionName: bittorrent-tcp
         rules:
           - backendRefs:
               - name: *app
