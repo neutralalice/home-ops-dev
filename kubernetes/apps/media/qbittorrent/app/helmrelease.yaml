@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: qbittorrent
+  name: &app qbittorrent
 spec:
   chartRef:
     kind: OCIRepository
@@ -89,8 +89,18 @@ spec:
             namespace: network
         rules:
           - backendRefs:
-              - identifier: app
+              - name: *app
                 port: *port
+      bittorrent:
+        kind: TCPRoute
+        parentRefs:
+          - name: envoy-external-tcp
+            namespace: network
+            sectionName: torrent-tcp
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *torrentPort
     service:
       app:
         forceRename: "{{ .Release.Name }}"
@@ -98,13 +108,6 @@ spec:
         ports:
           http:
             port: *port
-      bittorrent:
-        type: LoadBalancer
-        ipFamilyPolicy: PreferDualStack
-        #        annotations:
-        #          lbipam.cilium.io/ips: 172.16.88.101
-        externalTrafficPolicy: Local
-        ports:
-          bittorrent-tcp:
+          bittorrent-client:
             port: *torrentPort
             protocol: TCP
