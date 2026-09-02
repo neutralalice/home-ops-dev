@@ -105,6 +105,8 @@ spec:
       app:
         forceRename: "{{ .Release.Name }}"
         primary: true
+        ipFamilies: IPv4
+        ipFamilyPolicy: SingleStack
         ports:
           http:
             port: *port
