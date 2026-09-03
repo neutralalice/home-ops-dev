@@ -116,7 +116,9 @@ spec:
         kinds:
           - kind: TCPRoute
         namespaces:
-          from: media
+          from: Selector
+          selector:
+            matchLabels: kubernetes.io/metadata.name=media
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
