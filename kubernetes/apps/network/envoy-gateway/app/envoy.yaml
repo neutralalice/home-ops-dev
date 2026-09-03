@@ -165,7 +165,10 @@ spec:
         kinds:
           - kind: UDPRoute
         namespaces:
-          from: All
+          from: Selector
+          selector:
+            matchLabels:
+              kubernetes.io/metadata.name: media
     - name: ssh-tcp
       protocol: TCP
       port: 2222
@@ -173,7 +176,10 @@ spec:
         kinds:
           - kind: TCPRoute
         namespaces:
-          from: All
+          from: Selector
+          selector:
+            matchLabels:
+              kubernetes.io/metadata.name: media
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: BackendTrafficPolicy
