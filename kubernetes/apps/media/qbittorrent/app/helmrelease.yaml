@@ -94,7 +94,7 @@ spec:
       bittorrent:
         kind: TCPRoute
         parentRefs:
-          - name: envoy-external-tcp
+          - name: envoy-external
             namespace: network
             sectionName: bittorrent-tcp
         rules:
