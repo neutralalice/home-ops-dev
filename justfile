@@ -1,31 +1,23 @@
 set quiet
 set minimum-version := '1.55.1'
 set default-list
+set default-script
 set shell := ['bash', '-euo', 'pipefail', '-c']
 set script-interpreter := ['bash', '-euo', 'pipefail']
 
-[group: 'bootstrap']
+[group('bootstrap')]
 mod? bootstrap 'bootstrap'
 
-[group: 'kubernetes']
+[group('kubernetes')]
 mod? kube 'kubernetes'
 
-[group: 'talos']
+[group('talos')]
 mod? talos 'talos'
 
 [private]
 log lvl msg *args:
-    gum log -t rfc3339 -s -l "{{ lvl }}" "{{ msg }}" {{ args }}
+  gum log -t rfc3339 -s -l "{{ lvl }}" "{{ msg }}" {{ args }}
 
-#[group: 'template']
-#mod template 'template'
-
-#[doc('Render and validate configuration files')]
-#[group('template')]
-#configure:
-#    just template configure
-
-#[doc('Initialize configuration files (cluster.toml, age key, deploy key, push token)')]
-#[group('template')]
-#init:
-#    just template init
+[private]
+template file *args:
+  minijinja-cli "{{ file }}" {{ args }} | op inject
