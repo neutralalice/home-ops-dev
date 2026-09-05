@@ -1,0 +1,18 @@
+---
+customization:
+  extraKernelArgs:
+    - -selinux # disables selinux 1 is permissive
+    - intel_iommu=on
+    - iommu=pt
+    - mitigations=off
+    - security=none # disables LSM
+    - talos.dashboard.disabled=1
+    - thunderbolt.host_reset=0
+    - i915.force_probe=!46a6 # disable igpu device id for i915
+    - xe.force_probe=46a6 # enable igpu device id for xe
+  systemExtensions:
+    officialExtensions:
+      - siderolabs/i915 # note: xe takes guc from i915
+      - siderolabs/intel-ucode
+      - siderolabs/thunderbolt
+      - siderolabs/xe

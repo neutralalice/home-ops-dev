@@ -1,0 +1,42 @@
+---
+apiVersion: v1alpha1
+kind: HostnameConfig
+hostname: k8s-01
+---
+apiVersion: v1alpha1
+kind: LinkAliasConfig
+name: ethSel0
+selector:
+  match: glob("48:21:0b:35:a3:c7", mac(link.hardware_addr))
+---
+apiVersion: v1alpha1
+kind: LinkAliasConfig
+name: ethSel1
+selector:
+  match: glob("0-1.0", link.bus_path) && glob("thunderbolt-net", link.driver)
+---
+apiVersion: v1alpha1
+kind: LinkAliasConfig
+name: ethSel2
+selector:
+  match: glob("1-1.0", link.bus_path) && glob("thunderbolt-net", link.driver)
+---
+apiVersion: v1alpha1
+kind: LinkConfig
+name: ethSel1
+mtu: 65520
+addresses:
+  - address: 169.254.255.11/32
+routes:
+  - destination: 169.254.255.12/32
+    metric: 2048
+---
+apiVersion: v1alpha1
+kind: LinkConfig
+name: ethSel2
+mtu: 65520
+addresses:
+  - address: 169.254.255.11/32
+routes:
+  - destination: 169.254.255.13/32
+    metric: 2048
