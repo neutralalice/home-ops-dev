@@ -1,5 +1,0 @@
-machine:
-  logging:
-    destinations:
-      - endpoint: "tcp://127.0.0.1:5171"
-        format: "json_lines"
