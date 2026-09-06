@@ -157,7 +157,10 @@ spec:
         kinds:
           - kind: UDPRoute
         namespaces:
-          from: All
+          from: Selector
+          selector:
+            matchLabels:
+              kubernetes.io/metadata.name: observability
     - name: bedrock-udp
       protocol: UDP
       port: 19132
