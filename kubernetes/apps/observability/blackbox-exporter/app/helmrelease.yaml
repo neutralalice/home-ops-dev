@@ -121,8 +121,9 @@ spec:
       readOnlyRootFilesystem: true
       runAsNonRoot: true
       capabilities:
-        add:
-          - "NET_RAW"
+        # add this cap back if icmp scrapeconfigs get used
+        #        add:
+        #         - "NET_RAW"
         drop:
           - "ALL"
     service:
