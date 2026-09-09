@@ -2,11 +2,6 @@
 
 ### ⚙️ Updating Talos node configuration
 
-> [!TIP]
-> Ensure you have updated `talconfig.yaml` and any patches with your updated
-> configuration. In some cases you **not only need to apply the configuration
-> but also upgrade talos** to apply new configuration.
-
 ```sh
 # (Re)generate the Talos config
 just talos generate-config

@@ -1,4 +1,4 @@
-## 🐛 Debugging
+# 🐛 Debugging
 
 General tips to debug issues
 
@@ -8,24 +8,27 @@ General tips to debug issues
     state_
 
     ```sh
+    just kube::reconcile
     flux get sources git -A
     flux get ks -A
     flux get hr -A
     ```
 
-2. Do you see the pod of the workload you are debugging:
+2. Check if the pod is there:
 
     ```sh
     kubectl -n <namespace> get pods -o wide
     ```
 
-3. Check the logs of the pod if it's there:
+- If it's not here check if there are replicaset or controller events
+
+3. Check if the pod has logs:
 
     ```sh
     kubectl -n <namespace> logs <pod-name> -f
     ```
 
-4. If a resource exists, try to describe it to see what problems it might have:
+4. Check the resource events:
 
     ```sh
     kubectl -n <namespace> describe <resource> <name>
@@ -37,21 +40,62 @@ General tips to debug issues
     kubectl -n <namespace> get events --sort-by='.metadata.creationTimestamp'
     ```
 
-Resolving problems that you have could take some tweaking of your YAML manifests
-in order to get things working, other times it could be a external factor like
-permissions on a NFS server. If you are unable to figure out your problem see
-the support sections below.
-
 ## debugging volumes
 
 1. make a custom profile for kubectl debug
 
-```sh
+```json
 { "volumeMounts": [{ "mountPath": "/config", "name": "config" }] }
 ```
 
 2. launch the profile in target pod with
 
 ```sh
-kubectl debug <pod> -n <ns> -it --custom <json/yaml profile> --image=busybox
+kubectl debug <pod> -n <ns> -it --profile=<base/restricted> --custom <json/yaml profile> --image=busybox --target=<targe>
+```
+
+## Privileged actions
+
+If firmware needs to be updated, one of the possible ways to do it is with a
+privileged pod
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+    name: firmware-flash
+    namespace: default
+spec:
+    hostNetwork: true
+    hostIPC: true
+    hostPID: true
+    containers:
+        - name: ubuntu
+          image: ubuntu:26.04
+          command: ["/bin/bash", "-c", "sleep infinity"]
+          securityContext:
+              privileged: true
+              runAsUser: 0
+              capabilities:
+                  add: ["ALL"]
+          volumeMounts:
+              - mountPath: /host
+                name: host-root
+                readOnly: true
+              - mountPath: /dev
+                name: dev-devices
+              - mountPath: /sys
+                name: sys-bus
+    volumes:
+        - name: host-root
+          hostPath:
+              path: /
+        - name: dev-devices
+          hostPath:
+              path: /dev
+        - name: sys-bus
+          hostPath:
+              path: /sys
+    nodeSelector:
+        kubernetes.io/hostname: "k8s-01"
 ```
