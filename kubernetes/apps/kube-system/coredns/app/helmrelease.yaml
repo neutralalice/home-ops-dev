@@ -11,6 +11,7 @@ spec:
   values:
     fullnameOverride: coredns
     image:
+      tag: 1.14.7
       repository: mirror.gcr.io/coredns/coredns
     k8sAppLabelOverride: kube-dns
     serviceAccount:
