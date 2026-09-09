@@ -13,6 +13,8 @@ spec:
       staticPath: /run/cdi
       dynamicPath: /run/cdi
     kubeletPlugin:
+      extraArgs:
+        - --logging-format=json
       privileged: true # disable this if using xpumd
       healthMonitoring:
         enabled: false # enable this if using xpumd
