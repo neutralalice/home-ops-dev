@@ -48,7 +48,7 @@ spec:
               claims:
                 - name: gpu
     defaultPodOptions:
-      terminationGracePeriodSeconds: 1200s
+      terminationGracePeriodSeconds: 1200
       automountServiceAccountToken: false
       resourceClaims:
         - name: gpu
