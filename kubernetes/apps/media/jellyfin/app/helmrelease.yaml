@@ -27,12 +27,12 @@ spec:
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
-                  failureThreshold: 500
+                  failureThreshold: 5
               readiness: *probes
               startup:
                 enabled: true
                 spec:
-                  failureThreshold: 300
+                  failureThreshold: 3
                   periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
@@ -48,7 +48,7 @@ spec:
               claims:
                 - name: gpu
     defaultPodOptions:
-      terminationGracePeriodSeconds: 1200
+      terminationGracePeriodSeconds: 600
       automountServiceAccountToken: false
       resourceClaims:
         - name: gpu
