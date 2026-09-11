@@ -50,7 +50,7 @@ spec:
         udp:
           - name: syslog-udp
             value: :514
-            decolorizeFields: _msg
+            decolorizeFields: "_msg"
     dashboards:
       enabled: true
     vector:
