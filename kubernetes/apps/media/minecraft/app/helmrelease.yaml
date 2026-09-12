@@ -113,7 +113,7 @@ spec:
         type: LoadBalancer
         externalTrafficPolicy: Cluster
         annotations:
-          lbipam.cilium.io/ips: 172.16.69.99
+          lbipam.cilium.io/ips: "172.16.69.99"
         ports:
           minecraft:
             port: 19132
