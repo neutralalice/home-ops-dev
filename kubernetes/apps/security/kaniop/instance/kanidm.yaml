@@ -7,7 +7,7 @@ spec:
   domain: idm.${SECRET_DOMAIN}
   ldapPortName: ldaps
   tlsSecretName: idm-${SECRET_DOMAIN/./-}-tls
-  image: kanidm/server:1.11.1
+  image: kanidm/server:1.11.2
   oauth2ClientNamespaceSelector:
     matchLabels: {}
   groupNamespaceSelector:
