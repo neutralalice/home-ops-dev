@@ -106,26 +106,15 @@ spec:
           - backendRefs:
               - name: minecraft
                 port: 19132
-      ssh:
-        kind: TCPRoute
-        annotations:
-          external-dns.kubernetes.io/hostname: "bedrock.${SECRET_DOMAIN}"
-        parentRefs:
-          - name: envoy-internal
-            namespace: network
-            sectionName: ssh-tcp
-        rules:
-          - backendRefs:
-              - name: minecraft
-                port: 2222
     service:
       app:
         controller: *app
         ipFamilyPolicy: SingleStack
+        type: LoadBalancer
+        externalTrafficPolicy: Cluster
+        annotations:
+          lbipam.cilium.io/ips: 172.16.69.99
         ports:
-          ssh:
-            port: 2222
-            protocol: TCP
           minecraft:
             port: 19132
             protocol: UDP
