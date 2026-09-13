@@ -100,10 +100,10 @@ mode: 0o644
 contents: |
   [ NFSMount_Global_Options ]
   nfsvers=4.1
-  hard
+  hard=true
   nconnect=16
   max_connect=4
-  trunkdiscovery
+  trunkdiscovery=true
   rsize=1048576
   wsize=1048576
 ---
@@ -158,11 +158,11 @@ nodeCIDRMaskSizeIPv6: 112
 apiVersion: v1alpha1
 kind: KubePrismConfig
 port: 7445
----
-apiVersion: v1alpha1
-kind: KmsgLogConfig
-name: fluent-bit
-url: tcp://127.0.0.1:5170/
+#---
+#apiVersion: v1alpha1
+#kind: KmsgLogConfig
+#name: fluent-bit
+#url: tcp://fluent-bit.observability.svc.cluster.local:5171/
 ---
 apiVersion: v1alpha1
 kind: UdevRulesConfig
