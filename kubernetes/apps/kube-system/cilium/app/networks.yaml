@@ -10,6 +10,8 @@ spec:
     - cidr: "fdca:fec0:ffee:88::/64"
     - start: "172.16.69.90"
       stop: "172.16.69.99"
+    - start: "fdca:fec0:ffee:69::90"
+      stop: "fdca:fec0:ffee:69::99"
 ---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumL2AnnouncementPolicy
