@@ -120,7 +120,9 @@ spec:
             port: 19132
             protocol: UDP
             targetPort: 19132
+            nodePort: 19132
           minecraft-tcp:
             port: 19132
             protocol: TCP
             targetPort: 19132
+            nodePort: 19132
