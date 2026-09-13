@@ -21,9 +21,11 @@ spec:
               GAMEMODE: survival
               DIFFICULTY: normal
               ENABLE_SSH: "false"
+              ALLOW_CHEATS: "false"
               ONLINE_MODE: "true"
               ALLOW_LIST: "true"
               ALLOW_LIST_USERS: "Kalax48,arita1052"
+              VIEW_DISTANCE: "16"
               CONTENT_LOG_CONSOLE_OUTPUT_ENABLED: "true"
               VERSION: "1.26.45.1"
               ENABLE_BDS_V6BIND_FIX: "true"
