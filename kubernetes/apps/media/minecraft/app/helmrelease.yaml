@@ -110,7 +110,7 @@ spec:
     service:
       app:
         controller: *app
-        ipFamilyPolicy: DualStack
+        ipFamilyPolicy: RequireDualStack
         type: LoadBalancer
         externalTrafficPolicy: Cluster
         annotations:
