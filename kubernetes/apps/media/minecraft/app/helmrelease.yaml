@@ -112,7 +112,7 @@ spec:
         controller: *app
         ipFamilyPolicy: RequireDualStack
         type: LoadBalancer
-        externalTrafficPolicy: local
+        externalTrafficPolicy: Local
         annotations:
           lbipam.cilium.io/ips: "172.16.88.99,fdca:fec0:ffee:88::99"
         ports:
