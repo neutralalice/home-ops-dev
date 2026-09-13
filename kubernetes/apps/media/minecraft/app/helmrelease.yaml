@@ -22,7 +22,7 @@ spec:
               DIFFICULTY: normal
               ENABLE_SSH: "false"
               ONLINE_MODE: "false"
-              ALLOW_LIST: "true"
+              ALLOW_LIST: "false"
               ALLOW_LIST_USERS: "Kalax48,arita1052"
               CONTENT_LOG_CONSOLE_OUTPUT_ENABLED: "true"
               VERSION: "1.26.45.1"
