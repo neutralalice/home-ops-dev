@@ -38,7 +38,7 @@ spec:
     # devices: eno+ eth+
     dashboards:
       enabled: true
-    enableIPv6Masquerade: true
+    enableIPv6Masquerade: false
     endpointRoutes:
       enabled: true
     envoy:
