@@ -46,7 +46,7 @@ spec:
     gatewayAPI:
       enabled: false
     hubble:
-      enabled: false
+      enabled: true
     initResources:
       limits:
         cpu: 100m
