@@ -47,6 +47,8 @@ spec:
       enabled: false
     hubble:
       enabled: true
+      relay:
+        enabled: true
     initResources:
       limits:
         cpu: 100m
