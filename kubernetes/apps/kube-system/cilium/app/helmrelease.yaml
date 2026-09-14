@@ -49,6 +49,8 @@ spec:
       enabled: true
       relay:
         enabled: true
+      ui:
+        enabled: true
     initResources:
       limits:
         cpu: 100m
