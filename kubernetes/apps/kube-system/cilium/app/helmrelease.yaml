@@ -63,7 +63,7 @@ spec:
     ipv4NativeRoutingCIDR: "10.42.0.0/16"
     ipv6:
       enabled: true
-    ipv6NativeRoutingCIDR: "fdca:fec0:ffee:42::/108"
+    ipv6NativeRoutingCIDR: "fdca:fec0:ffee:69:42::/108"
     k8s:
       requireIPv4PodCIDR: true
       requireIPv6PodCIDR: true
