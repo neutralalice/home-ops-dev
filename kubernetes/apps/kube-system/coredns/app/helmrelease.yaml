@@ -21,7 +21,7 @@ spec:
       clusterIP: 10.43.0.10
       clusterIPs:
         - 10.43.0.10
-        - fdca:fec0:ffee:43::a
+        - fdca:fec0:ffee:69:43::a
       ipFamilyPolicy: PreferDualStack
       ipFamilies:
         - IPv4
