@@ -47,6 +47,7 @@ spec:
       enabled: false
     hubble:
       enabled: true
+      hostUsers: false
       relay:
         enabled: true
       ui:
