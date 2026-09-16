@@ -52,6 +52,14 @@ spec:
         enabled: true
       ui:
         enabled: true
+        httpRoute:
+          enabled: true
+          parentRefs:
+            - name: envoy-internal
+              namespace: network
+              sectionName: https
+          hostnames:
+            - hubble.arita.moe
     initResources:
       limits:
         cpu: 100m
