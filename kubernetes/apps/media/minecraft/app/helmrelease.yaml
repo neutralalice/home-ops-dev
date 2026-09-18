@@ -138,13 +138,14 @@ spec:
     service:
       app:
         controller: *app
-        ipFamilyPolicy: SingleStack
+        ipFamilyPolicy: RequireDualStack
         ipFamilies:
           - IPv6
+          - IPv4
         type: LoadBalancer
         externalTrafficPolicy: Local
         annotations:
-          lbipam.cilium.io/ips: "fdca:fec0:ffee:88::99"
+          lbipam.cilium.io/ips: "172.16.88.99,fdca:fec0:ffee:88::99"
         ports:
           minecraft:
             port: 19132
