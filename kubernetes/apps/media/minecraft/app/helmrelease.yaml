@@ -97,6 +97,14 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
         seccompProfile:
           type: RuntimeDefault
+    networkPolicies:
+      ipv6:
+        enabled: true
+        type: cilium
+        controller: *app
+        egressDeny:
+          - toCIDR:
+              - "0.0.0.0/0"
     persistence:
       data:
         existingClaim: "{{ .Release.Name }}"
