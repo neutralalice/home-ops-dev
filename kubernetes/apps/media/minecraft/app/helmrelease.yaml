@@ -27,7 +27,7 @@ spec:
               ALLOW_LIST_USERS: "Kalax48,arita1052"
               VIEW_DISTANCE: "16"
               CONTENT_LOG_CONSOLE_OUTPUT_ENABLED: "true"
-              VERSION: "1.26.45.1"
+              VERSION: "1.26.51.1"
               ENABLE_BDS_V6BIND_FIX: "true"
               SERVER_PORT: &port "19132"
               SERVER_PORT_V6: *port
