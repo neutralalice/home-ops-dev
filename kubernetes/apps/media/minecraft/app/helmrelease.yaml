@@ -98,7 +98,7 @@ spec:
         seccompProfile:
           type: RuntimeDefault
     networkPolicies:
-      ipv6:
+      ipv4Deny:
         enabled: true
         type: cilium
         controller: *app
