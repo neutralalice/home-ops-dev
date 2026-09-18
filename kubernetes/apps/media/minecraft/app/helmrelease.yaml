@@ -33,6 +33,13 @@ spec:
               SERVER_PORT_V6: *port
               ENABLE_LAN_VISIBILITY: "true"
               TRANSPORT: "nethernet"
+            ports:
+              - name: bedrock-tcp
+                containerPort: 19132
+                protocol: TCP
+              - name: bedrock-udp
+                containerPort: 19132
+                protocol: UDP
             probes:
               liveness:
                 enabled: false
