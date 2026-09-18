@@ -27,12 +27,15 @@ hostDNS:
   forwardKubeDNSToHost: true
   resolveMemberNames: true
 nameservers:
+  - address: fdca:fec0:ffee:69::1
   - address: 172.16.69.1
 ---
 apiVersion: v1alpha1
 kind: TimeSyncConfig
 ntp:
   servers:
+    - 2606:4700:f1::1
+    - 2606:4700:f1::123
     - 162.159.200.1
     - 162.159.200.123
 ---
@@ -120,8 +123,8 @@ apiVersion: v1alpha1
 kind: KubeNodeConfig
 nodeIP:
   validSubnets:
+    - fdca:fec0:ffee:69::/64
     - 172.16.69.0/24
-    - fdca:fec0:ffee:0069::/64
 labels:
   node.kubernetes.io/gpu: "true"
   topology.kubernetes.io/region: main
@@ -147,13 +150,13 @@ apiVersion: v1alpha1
 kind: KubeNetworkConfig
 dnsDomain: cluster.local
 podSubnets:
-  - 10.42.0.0/16
   - fdca:fec0:ffee:42::/108
+  - 10.42.0.0/16
 serviceSubnets:
-  - 10.43.0.0/16
   - fdca:fec0:ffee:43::/108
-nodeCIDRMaskSizeIPv4: 24
+  - 10.43.0.0/16
 nodeCIDRMaskSizeIPv6: 112
+nodeCIDRMaskSizeIPv4: 24
 ---
 apiVersion: v1alpha1
 kind: KubePrismConfig
