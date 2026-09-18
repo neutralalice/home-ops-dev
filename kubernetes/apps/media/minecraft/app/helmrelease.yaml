@@ -28,9 +28,9 @@ spec:
               VIEW_DISTANCE: "16"
               CONTENT_LOG_CONSOLE_OUTPUT_ENABLED: "true"
               VERSION: "1.26.51.1"
-              ENABLE_BDS_V6BIND_FIX: "true"
-              SERVER_PORT: &port "19132"
-              SERVER_PORT_V6: *port
+              #              ENABLE_BDS_V6BIND_FIX: "true"
+              SERVER_PORT_V6: &port "19132"
+              #              SERVER_PORT: *port
               ENABLE_LAN_VISIBILITY: "true"
               TRANSPORT: "nethernet"
             ports:
@@ -130,11 +130,13 @@ spec:
     service:
       app:
         controller: *app
-        ipFamilyPolicy: RequireDualStack
+        ipFamilyPolicy: SingleStack
+        ipFamilies:
+          - IPv6
         type: LoadBalancer
         externalTrafficPolicy: Local
         annotations:
-          lbipam.cilium.io/ips: "172.16.88.99,fdca:fec0:ffee:88::99"
+          lbipam.cilium.io/ips: "fdca:fec0:ffee:88::99"
         ports:
           minecraft:
             port: 19132
