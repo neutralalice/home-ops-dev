@@ -100,15 +100,24 @@ spec:
           - path: /tmp
     route:
       app:
-        kind: UDPRoute
-        parentRefs:
-          - name: envoy-internal
-            namespace: network
-            sectionName: bedrock-udp
-        rules:
-          - backendRefs:
-              - name: minecraft
-                port: 19132
+        - kind: UDPRoute
+          parentRefs:
+            - name: envoy-internal
+              namespace: network
+              sectionName: bedrock-udp
+          rules:
+            - backendRefs:
+                - name: minecraft
+                  port: 19132
+        - kind: TCPRoute
+          parentRefs:
+            - name: envoy-internal
+              namespace: network
+              sectionName: bedrock-tcp
+          rules:
+            - backendRefs:
+                - name: minecraft
+                  port: 19132
     service:
       app:
         controller: *app

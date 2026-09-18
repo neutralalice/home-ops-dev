@@ -172,9 +172,9 @@ spec:
           selector:
             matchLabels:
               kubernetes.io/metadata.name: media
-    - name: ssh-tcp
+    - name: bedrock-tcp
       protocol: TCP
-      port: 2222
+      port: 19132
       allowedRoutes:
         kinds:
           - kind: TCPRoute
