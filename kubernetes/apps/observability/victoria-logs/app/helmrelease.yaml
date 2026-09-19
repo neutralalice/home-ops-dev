@@ -12,6 +12,7 @@ spec:
     fullnameOverride: victoria-logs
     server:
       extraArgs:
+        enableTCP6: "true"
         maxConcurrentInserts: 6
       persistentVolume:
         enabled: true
