@@ -46,14 +46,14 @@ spec:
     gatewayAPI:
       enabled: false
     hubble:
-      enabled: true
+      enabled: false
       hostUsers: false
       relay:
-        enabled: true
+        enabled: false
         logOptions:
           format: json-ts
       ui:
-        enabled: true
+        enabled: false
         httpRoute:
           enabled: true
           parentRefs:
@@ -61,7 +61,7 @@ spec:
               namespace: network
               sectionName: https
           hostnames:
-            - hubble.arita.moe
+            - hubble.${SECRET_DOMAIN}
     initResources:
       limits:
         cpu: 100m
