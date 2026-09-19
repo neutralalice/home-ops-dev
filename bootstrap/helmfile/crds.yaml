@@ -15,11 +15,11 @@ releases:
   - name: envoy-gateway
     namespace: network
 
-  - name: grafana-operator
+  - name: grafana
     namespace: observability
 
   - name: kopiur
-    namespace: system
+    namespace: kopiur-system
 
   - name: kube-prometheus-stack
     namespace: observability

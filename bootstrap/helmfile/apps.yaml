@@ -43,13 +43,16 @@ releases:
 
   - name: coredns
     namespace: kube-system
-    needs:
-      - kube-system/cilium
 
   - name: cert-manager
     namespace: cert-manager
     needs:
       - kube-system/coredns
+
+  - name: external-secrets
+    namespace: external-secrets
+    needs:
+      - cert-manager/cert-manager
 
   - name: onepassword-connect
     namespace: external-secrets

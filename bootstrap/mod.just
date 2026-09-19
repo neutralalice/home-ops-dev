@@ -5,51 +5,53 @@ set quiet
 set script-interpreter := ['bash', '-euo', 'pipefail']
 set shell := ['bash', '-euo', 'pipefail', '-c']
 
+kubernetes_dir := justfile_dir() + '/kubernetes'
+bootstrap_dir := justfile_dir() + '/bootstrap'
 controller := `talosctl config info -o yaml | yq -r -e '.endpoints[0]'`
 nodes := `talosctl config info -o yaml | yq -r -e '.nodes | join (" ")'`
 
 [confirm('Bootstrap cluster? [y|N]')]
 [doc('Bootstrap a Talos & Kubernetes cluster end-to-end')]
-cluster: nodes k8s (kubeconfig "node") base apps kubeconfig
+cluster: talos kubernetes (kubeconfig "node") base apps kubeconfig
 
 [private]
-nodes:
+talos:
     just log info "Running stage..." "stage" "{{ recipe_name() }}"
     for n in {{ nodes }}; do
-        if ! op=$(just --yes talos apply-node "$n" --insecure 2>&1); then
-            if [[ "$op" == *"certificate required"* ]]; then
-                just log info "Talos already configured, skipping apply of config" "stage" "{{ recipe_name() }}" "node" "$n"
-                continue
-            fi
-            just log fatal "Failed to apply Talos configuration" "stage" "{{ recipe_name() }}" "node" "$n" "output" "$op"
+      if ! op=$(just --yes talos apply-node "$n" --insecure 2>&1); then
+        if [[ "$op" == *"certificate required"* ]]; then
+          just log info "Talos already configured, skipping apply of config" "stage" "{{ recipe_name() }}" "node" "$n"
+          continue
         fi
+        just log fatal "Failed to apply Talos configuration" "stage" "{{ recipe_name() }}" "node" "$n" "output" "$op"
+      fi
     done
 
 [private]
-k8s:
+kubernetes:
     just log info "Running stage..." "stage" "{{ recipe_name() }}"
     until op=$(talosctl -n "{{ controller }}" bootstrap 2>&1 || true) && [[ "$op" == *"AlreadyExists"* ]]; do
-        just log info "Kubernetes bootstrap in progress. Retrying in 5 seconds..." "stage" "{{ recipe_name() }}"
-        sleep 5
+      just log info "Kubernetes bootstrap in progress. Retrying in 5 seconds..." "stage" "{{ recipe_name() }}"
+      sleep 5
     done
 
 [private]
 kubeconfig lb="cilium":
     just log info "Running stage..." "stage" "{{ recipe_name() }}"
-    if ! talosctl kubeconfig -n "{{ controller }}" -f --force-context-name main {{ justfile_dir() }}; then
-        just log fatal "Failed to fetch kubeconfig" "stage" "{{ recipe_name() }}"
+    if ! talosctl kubeconfig -n "{{ controller }}" -f --force-context-name home-ops {{ justfile_dir() }}; then
+      just log fatal "Failed to fetch kubeconfig" "stage" "{{ recipe_name() }}"
     fi
     if [[ "{{ lb }}" != "cilium" ]]; then
-        if ! kubectl config set-cluster main --server "https://{{ controller }}:6443"; then
-            just log fatal "Failed to set kubectl cluster server address" "stage" "{{ recipe_name() }}"
-        fi
+      if ! kubectl config set-cluster home-ops --server "https://{{ controller }}:6443"; then
+        just log fatal "Failed to set kubectl cluster server address" "stage" "{{ recipe_name() }}"
+      fi
     fi
 
 [private]
 base: api-ready nodes-ready
     just log info "Running stage..." "stage" "{{ recipe_name() }}"
     if ! kustomize build {{ source_directory() }}/kustomize | just template - | kubectl apply --server-side --force-conflicts -f -; then
-        just log fatal "Failed to apply personal manifests" "stage" "{{ recipe_name() }}"
+       just log fatal "Failed to apply manifests" "stage" "{{ recipe_name() }}"
     fi
     if ! helmfile -f "{{ source_directory() }}/helmfile/crds.yaml" template -q | yq ea -r -e 'select(.kind == "CustomResourceDefinition")' | kubectl apply --server-side --force-conflicts -f -; then
         just log fatal "Failed to apply base crds" "stage" "{{ recipe_name() }}"
