@@ -1,10 +1,23 @@
 ---
-apiVersion: kustomize.config.k8s.io/v1beta1
+# yaml-language-server: https://k8s-schemas.home-operations.com/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: blackbox-exporter-pre-secret
-resources:
-  - externalsecret.yaml
+  name: &app blackbox-exporter-prep-secret
+spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  interval: 1h
+  path: "./kubernetes/apps/observability/blackbox-exporter/es"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: observability
+  timeout: 5m
+  wait: true
 ---
 # yaml-language-server: https://k8s-schemas.home-operations.com/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -18,6 +31,8 @@ spec:
   interval: 1h
   path: "./kubernetes/apps/observability/blackbox-exporter/app"
   prune: true
+  dependsOn:
+    - name: blackbox-exporter-prep-secret
   postBuild:
     substituteFrom:
       - name: cluster-secrets
