@@ -14,8 +14,6 @@ spec:
     securityContext:
       capabilities:
         add: [PERFMON]
-    #    env:
-    #      DRM_EXPORTER_ADDRESS: "::"
     config:
       logLevel: info
     monitoring:
