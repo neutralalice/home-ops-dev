@@ -4,7 +4,7 @@ KUBECONFIG = "{{config_root}}/kubeconfig"
 SOPS_CONFIG = "{{config_root}}/.sops.yaml"
 SOPS_AGE_KEY_FILE = "{{config_root}}/age.key"
 MINIJINJA_CONFIG_FILE = "{{config_root}}/.minijinja.toml"
-TALOSCONFIG = "{{config_root}}/talos/clusterconfig/talosconfig"
+TALOSCONFIG = "{{config_root}}/talosconfig"
 JUST_UNSTABLE = "1"
 
 [plugins]
