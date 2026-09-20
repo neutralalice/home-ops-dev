@@ -11,14 +11,20 @@ spec:
   values:
     deploymentAnnotations:
       reloader.stakater.com/auto: "true"
+    env:
+      - name: LISTEN_ADDRESS
+        value: "::"
     logging:
       format: json
       level: info
     webhook:
+      enabled: true
+      env:
+        - name: LISTEN_ADDRESS
+          value: "::"
       logging:
         format: json
         level: info
-      enabled: true
     metrics:
       enabled: true
       serviceMonitor:
