@@ -54,13 +54,13 @@ spec:
             enabled: false # disable until node_proxy issue fixed https://github.com/rook/rook/issues/18124#issuecomment-5332493066
       network:
         provider: host
+        dualstack: true
         addressRanges:
           cluster:
             - 169.254.255.0/24
           public:
             - 169.254.255.0/24
         connections:
-          dualstack: true
           requireMsgr2: true
       resources:
         cleanup:
