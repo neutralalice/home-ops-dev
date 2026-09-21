@@ -46,14 +46,14 @@ spec:
     gatewayAPI:
       enabled: false
     hubble:
-      enabled: false
+      enabled: true
       hostUsers: false
       relay:
-        enabled: false
+        enabled: true
         logOptions:
           format: json-ts
       ui:
-        enabled: false
+        enabled: true
         httpRoute:
           enabled: true
           parentRefs:
