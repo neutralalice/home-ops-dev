@@ -55,6 +55,7 @@ spec:
       network:
         provider: host
         dualstack: true
+        ipFamily: IPv6
         addressRanges:
           cluster:
             - 169.254.255.0/24
