@@ -59,8 +59,10 @@ spec:
         addressRanges:
           cluster:
             - 169.254.255.0/24
+            - fd69:b19:b00b:cafe::/64
           public:
             - 169.254.255.0/24
+            - fd69:b19:b00b:cafe::/64
         connections:
           requireMsgr2: true
       resources:
