@@ -39,6 +39,13 @@ spec:
                           memory: 64Mi
       envoyService:
         externalTrafficPolicy: Cluster
+        patch:
+          type: StrategicMerge
+          value:
+            spec:
+              ipFamilies:
+                - IPv6
+                - IPv4
   shutdown:
     drainTimeout: 180s
   telemetry:
