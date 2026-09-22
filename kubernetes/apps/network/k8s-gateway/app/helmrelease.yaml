@@ -14,6 +14,10 @@ spec:
     ttl: 1
     service:
       type: LoadBalancer
+      ipFamilyPolicy: RequireDualStack
+      ipFamilies:
+        - IPv6
+        - IPv4
       port: 53
       annotations:
         lbipam.cilium.io/ips: "fdca:fec0:ffee:88::68,172.16.88.68"
