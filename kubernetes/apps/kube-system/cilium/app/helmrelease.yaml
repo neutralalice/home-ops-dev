@@ -39,18 +39,18 @@ spec:
       exclusive: false
       resources:
         limits:
-          cpu: 500m
-          memory: 400Mi
+          cpu: 300m
+          memory: 300Mi
         requests:
-          cpu: 500m
-          memory: 400Mi
+          cpu: 300m
+          memory: 300Mi
     cgroup:
       autoMount:
         enabled: true
         resources:
           limits:
-            cpu: 500m
-            memory: 400Mi
+            cpu: 300m
+            memory: 300Mi
       hostRoot: /sys/fs/cgroup
     # NOTE: devices might need to be set if you have more than one active NIC on your hosts
     # devices: eno+ eth+
@@ -82,8 +82,8 @@ spec:
             - hubble.${SECRET_DOMAIN}
     initResources:
       limits:
-        cpu: 500m
-        memory: 400Mi
+        cpu: 300m
+        memory: 300Mi
     ipam:
       mode: kubernetes
     ipv4:
@@ -130,10 +130,10 @@ spec:
         interval: 15s
         scrapeTimeout: 10s
         trustCRDsExist: true
-    #    resources:
-    #      limits:
-    #        cpu: 2000m
-    #        memory: 2048Mi
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 2048Mi
     rollOutCiliumPods: true
     routingMode: native
     securityContext:
