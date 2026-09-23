@@ -8,6 +8,24 @@ spec:
     kind: OCIRepository
     name: cilium
   interval: 1h
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              group: apps
+              version: v1
+              kind: DaemonSet
+              name: cilium
+            patch: |-
+              - op: add
+                path: /spec/template/spec/resources
+                value:
+                  requests:
+                    cpu: "2"
+                    memory: "2048Mi"
+                  limits:
+                    cpu: "2"
+                    memory: "2048Mi"
   values:
     autoDirectNodeRoutes: true
     bpf:
@@ -21,18 +39,18 @@ spec:
       exclusive: false
       resources:
         limits:
-          cpu: 100m
-          memory: 100Mi
+          cpu: 500m
+          memory: 400Mi
         requests:
-          cpu: 100m
-          memory: 100Mi
+          cpu: 500m
+          memory: 400Mi
     cgroup:
       autoMount:
         enabled: true
         resources:
           limits:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 500m
+            memory: 400Mi
       hostRoot: /sys/fs/cgroup
     # NOTE: devices might need to be set if you have more than one active NIC on your hosts
     # devices: eno+ eth+
@@ -64,8 +82,8 @@ spec:
             - hubble.${SECRET_DOMAIN}
     initResources:
       limits:
-        cpu: 100m
-        memory: 100Mi
+        cpu: 400m
+        memory: 500Mi
     ipam:
       mode: kubernetes
     ipv4:
@@ -114,8 +132,8 @@ spec:
         trustCRDsExist: true
     resources:
       limits:
-        cpu: 1000m
-        memory: 1024Mi
+        cpu: 2000m
+        memory: 2048Mi
     rollOutCiliumPods: true
     routingMode: native
     securityContext:
