@@ -130,10 +130,10 @@ spec:
         interval: 15s
         scrapeTimeout: 10s
         trustCRDsExist: true
-    resources:
-      limits:
-        cpu: 2000m
-        memory: 2048Mi
+    #    resources:
+    #      limits:
+    #        cpu: 2000m
+    #        memory: 2048Mi
     rollOutCiliumPods: true
     routingMode: native
     securityContext:
