@@ -34,7 +34,7 @@ certExtraSANs:
 extraArgs:
   enable-aggregator-routing: "true"
   logging-format: json
-image: registry.k8s.io/kube-apiserver:v1.37.0
+image: registry.k8s.io/kube-apiserver:v1.37.1
 resources:
   limits:
     cpu: 1000m
@@ -78,7 +78,7 @@ extraArgs:
   bind-address: 0.0.0.0
   logging-format: json
   node-cidr-mask-size-ipv6: "112"
-image: registry.k8s.io/kube-controller-manager:v1.37.0
+image: registry.k8s.io/kube-controller-manager:v1.37.1
 resources:
   limits:
     cpu: 1000m
@@ -107,7 +107,7 @@ config:
 apiVersion: v1alpha1
 kind: KubeProxyConfig
 enabled: false
-image: registry.k8s.io/kube-proxy:v1.37.0
+image: registry.k8s.io/kube-proxy:v1.37.1
 ---
 apiVersion: v1alpha1
 kind: KubeSchedulerConfig
@@ -129,7 +129,7 @@ config:
 extraArgs:
   bind-address: 0.0.0.0
   logging-format: json
-image: registry.k8s.io/kube-scheduler:v1.37.0
+image: registry.k8s.io/kube-scheduler:v1.37.1
 resources:
   limits:
     cpu: 1000m
