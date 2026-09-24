@@ -170,8 +170,9 @@ port: 7445
 apiVersion: v1alpha1
 kind: UdevRulesConfig
 rules:
-  - ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{power/control}="on"
-  - ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x46a6", ATTR{sriov_numvfs}="7"
+  - ACTION=="add|change", SUBSYSTEM=="pci", KERNEL=="0000:00:02.0", ATTR{vendor}=="0x8086", ATTR{device}=="0x46a6", ATTR{sriov_numvfs}="7"
+  - ACTION=="add|change", SUBSYSTEM=="block", ENV{ID_MODEL}=="TS256GMTS430S", ATTR{queue/discard_max_bytes}="128000000"
+  - ACTION=="add|change", SUBSYSTEM=="block", ENV{ID_MODEL}=="TS256GMTS430S", ATTR{queue/write_cache}="write through"
 ---
 apiVersion: v1alpha1
 kind: DHCPv4Config
