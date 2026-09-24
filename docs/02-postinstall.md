@@ -1,17 +1,30 @@
-## 📣 Post installation
+# Post
+
+I am working toward reducing the amount of things to look at post bootstrap so
+that it gets the whole cluster going right away.
+
+This cluster is IPv6 FIRST, but still dualstack supported for the most part.
+There are certain aspects of the cluster that are currently broken due to lack
+of innate dualstack support in applications. Often the applications are set to
+only listen on IPv4 as the default, but can be tuned to be dualstack.
 
 ### ✅ Verifications
 
 1. Check the status of Cilium:
 
     ```sh
+    # repository external
+    cilium status
+    ```
+
+    ```sh
+    # pod internal
     kubectl -n kube-system exec ds/cilium --container cilium-agent -- cilium status
     ```
 
-2. Check the status of Flux and if the Flux resources are up-to-date and in a
-   ready state:
+2. Check the status of Flux and its resources:
 
-    📍 _Run `just kube reconcile` to force Flux to sync your Git repository
+    📍 _Run `just kube::sync-all-*` to force Flux to sync your Git repository
     state_
 
     ```sh
@@ -23,64 +36,54 @@
 
 3. Check TCP connectivity to both the internal and external gateways:
 
-    📍 _The variables are only placeholders, replace them with your actual
-    values_
-
     ```sh
     nmap -Pn -n -p 443 ${gateways_internal} ${gateways_external} -vv
     ```
 
-4. Check you can resolve DNS for `echo`, this should resolve to
+4. Check DNS resolution for `echo`, this should resolve to
    `${gateways_external}`:
-
-    📍 _The variables are only placeholders, replace them with your actual
-    values_
 
     ```sh
     dig @${gateways_dns} echo.${cloudflare_domain}
     ```
 
-5. Check the status of your wildcard `Certificate`:
+5. Check the wildcard `Certificate` status:
 
     ```sh
     kubectl -n network describe certificates
     ```
 
-### 🌐 Public DNS
+## External DNS
 
-> [!TIP]
-> Use the `envoy-external` gateway on `HTTPRoutes` to make applications public
-> to the internet. These are also accessible on your private network once you
-> set up split DNS.
+External dns is a kubernetes SIG project that looks at managing dns records
+based off of kubernetes resource presence or lack of. It handles updates for
+specific resources either via pre-set automatic ingest, or via annotation
+watches. This cluster has two primary gateways that get used for dns resource
+creation determination. The two gateway handle routing for internally sourced
+traffic, and externally sourced traffic and have different routes for
+applications.
 
-The `external-dns` application created in the `network` namespace will handle
-creating public DNS records. By default, `echo` and the `flux-webhook` are the
-only subdomains reachable from the public internet. In order to make additional
-applications public you must **set the correct gateway** like in the HelmRelease
-for `echo`.
+### Cloudflare DNS
 
-### 🏠 Home DNS
+Applications that link to the external-gateway have their dns resources managed
+in Cloudflare creating public DNS records. Resources in cloudflares dns
+management are effectively CNAMED to a cloudflare tunnel running in cluster and
+have their access granted that way.
 
-> [!TIP]
-> Use the `envoy-internal` gateway on `HTTPRoutes` to make applications private
-> to your network. If you're having trouble with internal DNS resolution check
-> out [this](https://github.com/onedr0p/cluster-template/discussions/719) GitHub
-> discussion.
+### OPNSense DNS
 
-`k8s_gateway` will provide DNS resolution to external Kubernetes resources (i.e.
-points of entry to the cluster) from any device that uses your home DNS server.
-For this to work, your home DNS server must be configured to forward DNS queries
-for `${cloudflare_domain}` to `${gateways_dns}` instead of the upstream DNS
-server(s) it normally uses. This is a form of **split DNS** (aka split-horizon
-DNS / conditional forwarding).
+Applications that link to the internal-gateway have the dns resources managed by
+OPNSense. When running internally on the LAN, there is a rule that all of my
+external domains never query upstream dns servers, instead, requests redirect to
+`k8s_gateway` to provide DNS resolution. This is a form of split-horizon DNS.
 
-_... Nothing working? That is expected, this is DNS after all!_
+## Flux
 
-### 🪝 GitHub Webhook
+By default Flux checks watched git repositories for updates. It is also
+configured to update on push, but this is not out of the box and requires
+configuration.
 
-By default Flux will periodically check your git repository for changes.
-In-order to have Flux reconcile on `git push` you must configure GitHub to send
-`push` events to Flux.
+### Git Webhook
 
 1. Obtain the webhook path:
 
@@ -101,25 +104,3 @@ In-order to have Flux reconcile on `git push` you must configure GitHub to send
    "Settings/Webhooks" press the "Add webhook" button. Fill in the webhook URL
    and your token from `github-push-token.txt`, Content type:
    `application/json`, Events: Choose Just the push event, and save.
-
-## 🧹 Tidy up
-
-Once your cluster is fully configured and you no longer need to run
-`just configure`, it's a good idea to clean up the repository by removing the
-[template](./template) directory and any files related to the templating
-process. This will help eliminate unnecessary clutter from the upstream template
-repository and resolve any "duplicate registry" warnings from Renovate.
-
-1. Tidy up your repository:
-
-    ```sh
-    just template tidy
-    ```
-
-2. Push your changes to git:
-
-    ```sh
-    git add -A
-    git commit -m "chore: tidy up :broom:"
-    git push
-    ```

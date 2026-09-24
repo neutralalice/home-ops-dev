@@ -1,5 +1,20 @@
 # Bootstrap
 
+Bootstrapping nodes is all about just getting the core of the cluster made. The
+core backbone of this cluster consists of a talos and kubernetes. The core
+components of the bootstrap are
+
+- Justfile: for running tasks
+- Mise: for dep management
+- Sops: for simple encrypted resources
+- External secrets: for essentially all other secrets
+- 1p: for external secrets
+- Cloudflare: for external dns
+- Opnsense: for internal dns and api loadbalancing
+- Cilium: for all things cluster internal networking
+- Coredns: for all cluster internal dns resolution
+- flux: for automated resource management.
+
 ## 01: Node prep
 
 1. Head to the [Talos Linux Image Factory](https://factory.talos.dev) and follow
@@ -69,7 +84,7 @@
     just bootstrap::talos
     ```
 
-2. Install cilium, coredns, spegel, flux:
+2. Install cilium, coredns, flux:
 
     ```sh
     just bootstrap::apps

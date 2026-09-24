@@ -1,43 +1,34 @@
-## 🛠️ Talos and Kubernetes Maintenance
+# Talos and Kubernetes Maintenance
 
-### ⚙️ Updating Talos node configuration
+## Updating components
 
-```sh
-# (Re)generate the Talos config
-just talos generate-config
-# Apply the config to the node
-just talos apply-node <ip>
-# e.g. just talos apply-node 10.10.10.10
-```
+Parts to this consist of
 
-### ⬆️ Updating Talos and Kubernetes versions
+- Talos configuration: The underlying talos resources
+- Talos versioning: The actual changes talos operating system
+- Kubernetes versioning: The core apiserver,kubelet,scheduler versions
 
-> [!TIP]
-> Ensure the `talosVersion` and `kubernetesVersion` in `talenv.yaml` are
-> up-to-date with the version you wish to upgrade to.
+### Updating Talos node configuration
 
 ```sh
-# (Re)generate the Talos config
-just talos generate-config
-# Apply the config to the node
-just talos apply-node <ip>
-# e.g. just talos apply-node 10.10.10.10
-just talos upgrade-node <ip>
-# e.g. just talos upgrade-node 10.10.10.10
+# Rendering the config just lets it be inspected
+just talos::render-config
+# Apply the config to a node
+just talos::apply-node -n $ip
+# Apply the config to the whole cluster
+just talos::apply-cluster -n $ip
 ```
+
+### Updating Talos and Kubernetes versions
 
 ```sh
-# Upgrade cluster to a newer Kubernetes version
-just talos upgrade-k8s
+# Upgrade a talos node version
+just talos::upgrade-node -n $ip
+# Upgrade kubernetes across the cluster
+just talos::upgrade-k8s
 ```
 
-### ➕ Adding a node to your cluster
-
-At some point you might want to expand your cluster to run more workloads and/or
-improve the reliability of your cluster. Keep in mind it is recommended to have
-an **odd number** of control plane nodes for quorum reasons.
-
-You don't need to re-bootstrap the cluster to add new nodes. Follow these steps:
+## Adding nodes
 
 1. **Prepare the new node**: Review the
    [Stage 2: Machine Preparation](#stage-2-machine-preparation) section and boot
