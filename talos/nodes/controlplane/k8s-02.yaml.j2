@@ -33,8 +33,13 @@ name: ethSel1
 mtu: 65520
 addresses:
   - address: 169.254.255.12/32
+  - address: fd69:b19:b00b:cafe::12/128
 routes:
   - destination: 169.254.255.11/32
+    source: 169.254.255.12
+    metric: 2048
+  - destination: fd69:b19:b00b:cafe::11/128
+    source: fd69:b19:b00b:cafe::12
     metric: 2048
 ---
 apiVersion: v1alpha1
@@ -43,6 +48,11 @@ name: ethSel2
 mtu: 65520
 addresses:
   - address: 169.254.255.12/32
+  - address: fd69:b19:b00b:cafe::12/128
 routes:
   - destination: 169.254.255.13/32
+    source: 169.254.255.12
+    metric: 2048
+  - destination: fd69:b19:b00b:cafe::13/128
+    source: fd69:b19:b00b:cafe::12
     metric: 2048
