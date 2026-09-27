@@ -33,13 +33,13 @@ spec:
               ENABLE_LAN_VISIBILITY: "true"
               TRANSPORT: "nethernet"
             ports:
-              - name: bedrock-tcp-19132
+              - name: tcp-19132
                 containerPort: 19132
                 protocol: TCP
-              - name: bedrock-udp-19133
+              - name: udp-19133
                 containerPort: 19133
                 protocol: UDP
-              - name: bedrock-udp-19134
+              - name: udp-19134
                 containerPort: 19134
                 protocol: UDP
             probes:
@@ -159,15 +159,15 @@ spec:
         annotations:
           lbipam.cilium.io/ips: "fdca:fec0:ffee:88::99,172.16.88.99"
         ports:
-          bedrock-tcp-19132:
+          tcp-19132:
             port: 19132
             protocol: TCP
             targetPort: 19132
-          bedrock-udp-19133:
+          udp-19133:
             port: 19133
             protocol: UDP
             targetPort: 19133
-          bedrock-udp-19134:
+          udp-19134:
             port: 19134
             protocol: UDP
             targetPort: 19134
