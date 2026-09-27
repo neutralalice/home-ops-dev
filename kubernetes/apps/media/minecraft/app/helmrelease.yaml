@@ -30,7 +30,7 @@ spec:
               VERSION: "1.26.52.3"
               SERVER_PORT: &port "19132"
               SERVER_UDP_PORTS: "19133-19134"
-              ENABLE_LAN_VISIBILITY: "true"
+              ENABLE_LAN_VISIBILITY: "false"
               TRANSPORT: "nethernet"
             ports:
               - name: tcp-19132
