@@ -150,14 +150,14 @@ spec:
     service:
       app:
         controller: *app
-        ipFamilyPolicy: RequireDualStack
+        ipFamilyPolicy: SingleStack
         ipFamilies:
           - IPv6
-          - IPv4
+        #          - IPv4
         type: LoadBalancer
         externalTrafficPolicy: Local
         annotations:
-          lbipam.cilium.io/ips: "fdca:fec0:ffee:88::99,172.16.88.99"
+          lbipam.cilium.io/ips: "fdca:fec0:ffee:88::99"
         ports:
           tcp-19132:
             port: 19132
