@@ -29,9 +29,11 @@ spec:
               CONTENT_LOG_CONSOLE_OUTPUT_ENABLED: "true"
               VERSION: "1.26.52.3"
               SERVER_PORT: &port "19132"
-              SERVER_UDP_PORTS: "19133-19134"
+              ENABLE_BDS_V6BIND_FIX: "true"
+              SERVER_PORT_V6: *port
+              #SERVER_UDP_PORTS: "19133-19134"
               ENABLE_LAN_VISIBILITY: "false"
-              TRANSPORT: "nethernet"
+              TRANSPORT: "raknet" #nethernet broken
             ports:
               - name: tcp-19132
                 containerPort: 19132
