@@ -29,8 +29,8 @@ spec:
               CONTENT_LOG_CONSOLE_OUTPUT_ENABLED: "true"
               VERSION: "1.26.52.3"
               SERVER_PORT: &port "19132"
-              ENABLE_BDS_V6BIND_FIX: "true"
-              SERVER_PORT_V6: *port
+              #              ENABLE_BDS_V6BIND_FIX: "true"
+              #              SERVER_PORT_V6: *port
               #SERVER_UDP_PORTS: "19133-19134"
               ENABLE_LAN_VISIBILITY: "false"
               TRANSPORT: "raknet" #nethernet broken
@@ -167,12 +167,12 @@ spec:
         controller: *app
         ipFamilyPolicy: SingleStack
         ipFamilies:
-          - IPv6
-        #          - IPv4
+          #  - IPv6
+          - IPv4
         type: LoadBalancer
         externalTrafficPolicy: Local
         annotations:
-          lbipam.cilium.io/ips: "fdca:fec0:ffee:88::99"
+          lbipam.cilium.io/ips: "172.16.88.99" #"fdca:fec0:ffee:88::99"
         ports:
           tcp-19132:
             port: 19132
