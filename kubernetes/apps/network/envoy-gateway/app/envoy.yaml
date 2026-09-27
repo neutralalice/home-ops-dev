@@ -169,9 +169,20 @@ spec:
           selector:
             matchLabels:
               kubernetes.io/metadata.name: observability
-    - name: bedrock-udp
+    - name: bedrock-udp-19133
       protocol: UDP
-      port: 19132
+      port: 19133
+      allowedRoutes:
+        kinds:
+          - kind: UDPRoute
+        namespaces:
+          from: Selector
+          selector:
+            matchLabels:
+              kubernetes.io/metadata.name: media
+    - name: bedrock-udp-19134
+      protocol: UDP
+      port: 19134
       allowedRoutes:
         kinds:
           - kind: UDPRoute

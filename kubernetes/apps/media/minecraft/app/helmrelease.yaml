@@ -28,17 +28,19 @@ spec:
               VIEW_DISTANCE: "16"
               CONTENT_LOG_CONSOLE_OUTPUT_ENABLED: "true"
               VERSION: "1.26.51.1"
-              #              ENABLE_BDS_V6BIND_FIX: "true"
-              SERVER_PORT_V6: &port "19132"
-              #              SERVER_PORT: *port
+              SERVER_PORT: &port "19132"
+              SERVER_UDP_PORTS: "19133-19134"
               ENABLE_LAN_VISIBILITY: "true"
               TRANSPORT: "nethernet"
             ports:
-              - name: bedrock-tcp
+              - name: bedrock-tcp-19132
                 containerPort: 19132
                 protocol: TCP
-              - name: bedrock-udp
-                containerPort: 19132
+              - name: bedrock-udp-19133
+                containerPort: 19133
+                protocol: UDP
+              - name: bedrock-udp-19134
+                containerPort: 19134
                 protocol: UDP
             probes:
               liveness:
@@ -117,14 +119,21 @@ spec:
     route:
       udp:
         kind: UDPRoute
-        parentRefs:
-          - name: envoy-internal
-            namespace: network
-            sectionName: bedrock-udp
         rules:
-          - backendRefs:
+          - parentRefs:
+              - name: envoy-internal
+                namespace: network
+                sectionName: bedrock-udp-19133
+            backendRefs:
               - name: minecraft
-                port: 19132
+                port: 19133
+          - parentRefs:
+              - name: envoy-internal
+                namespace: network
+                sectionName: bedrock-udp-19134
+            backendRefs:
+              - name: minecraft
+                port: 19134
       tcp:
         kind: TCPRoute
         parentRefs:
@@ -147,11 +156,15 @@ spec:
         annotations:
           lbipam.cilium.io/ips: "fdca:fec0:ffee:88::99,172.16.88.99"
         ports:
-          minecraft:
-            port: 19132
-            protocol: UDP
-            targetPort: 19132
-          minecraft-tcp:
+          bedrock-tcp-19132:
             port: 19132
             protocol: TCP
             targetPort: 19132
+          bedrock-udp-19133:
+            port: 19133
+            protocol: UDP
+            targetPort: 19133
+          bedrock-udp-19134:
+            port: 19134
+            protocol: UDP
+            targetPort: 19134
