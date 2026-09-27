@@ -117,21 +117,24 @@ spec:
         globalMounts:
           - path: /tmp
     route:
-      udp:
+      udp-19133:
         kind: UDPRoute
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+            sectionName: bedrock-udp-19133
         rules:
-          - parentRefs:
-              - name: envoy-internal
-                namespace: network
-                sectionName: bedrock-udp-19133
-            backendRefs:
+          - backendRefs:
               - name: minecraft
                 port: 19133
-          - parentRefs:
-              - name: envoy-internal
-                namespace: network
-                sectionName: bedrock-udp-19134
-            backendRefs:
+      udp-19134:
+        kind: UDPRoute
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+            sectionName: bedrock-udp-19134
+        rules:
+          - backendRefs:
               - name: minecraft
                 port: 19134
       tcp:
