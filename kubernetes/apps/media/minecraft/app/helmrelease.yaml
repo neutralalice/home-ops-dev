@@ -36,6 +36,9 @@ spec:
               - name: tcp-19132
                 containerPort: 19132
                 protocol: TCP
+              - name: udp-19132
+                containerPort: 19132
+                protocol: UDP
               - name: udp-19133
                 containerPort: 19133
                 protocol: UDP
@@ -117,6 +120,16 @@ spec:
         globalMounts:
           - path: /tmp
     route:
+      udp-19132:
+        kind: UDPRoute
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+            sectionName: bedrock-udp-19132
+        rules:
+          - backendRefs:
+              - name: minecraft
+                port: 19132
       udp-19133:
         kind: UDPRoute
         parentRefs:
@@ -162,6 +175,10 @@ spec:
           tcp-19132:
             port: 19132
             protocol: TCP
+            targetPort: 19132
+          udp-19132:
+            port: 19132
+            protocol: UDP
             targetPort: 19132
           udp-19133:
             port: 19133
