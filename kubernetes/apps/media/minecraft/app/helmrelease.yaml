@@ -95,7 +95,7 @@ spec:
                 memory: 3072Mi
     defaultPodOptions:
       automountServiceAccountToken: false
-      hostUsers: false
+      hostUsers: true
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       securityContext:
