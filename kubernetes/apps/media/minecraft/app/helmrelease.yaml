@@ -38,9 +38,9 @@ spec:
               - name: tcp-19132
                 containerPort: 19132
                 protocol: TCP
-              - name: udp-7551
-                containerPort: 7551
-                protocol: UDP
+              #              - name: udp-7551
+              #                containerPort: 7551
+              #                protocol: UDP
               - name: udp-19132
                 containerPort: 19132
                 protocol: UDP
