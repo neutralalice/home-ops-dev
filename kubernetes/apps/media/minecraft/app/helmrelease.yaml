@@ -32,7 +32,7 @@ spec:
               #              ENABLE_BDS_V6BIND_FIX: "true"
               #              SERVER_PORT_V6: *port
               SERVER_UDP_PORTS: "19132-19134"
-              ENABLE_LAN_VISIBILITY: "false"
+              ENABLE_LAN_VISIBILITY: "true"
               TRANSPORT: "nethernet" #nethernet broken
             ports:
               - name: tcp-19132
