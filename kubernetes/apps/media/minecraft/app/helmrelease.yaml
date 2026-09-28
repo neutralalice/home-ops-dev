@@ -19,6 +19,7 @@ spec:
             env:
               EULA: "true"
               GAMEMODE: survival
+              LEVEL_NAME: "Bedrock level"
               DIFFICULTY: normal
               ENABLE_SSH: "false"
               ALLOW_CHEATS: "false"
