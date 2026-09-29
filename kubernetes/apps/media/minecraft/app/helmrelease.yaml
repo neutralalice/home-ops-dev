@@ -101,6 +101,7 @@ spec:
       automountServiceAccountToken: false
       hostUsers: true
       hostNetwork: true
+      shareProcessNamespace: true
       dnsPolicy: ClusterFirstWithHostNet
       securityContext:
         runAsNonRoot: false
