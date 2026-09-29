@@ -88,7 +88,7 @@ spec:
                   failureThreshold: 30
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
+              readOnlyRootFilesystem: false
               capabilities: { drop: ["ALL"] }
             resources:
               limits:
@@ -103,7 +103,7 @@ spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       securityContext:
-        runAsNonRoot: true
+        runAsNonRoot: false
         runAsUser: 1000
         runAsGroup: 1000
         fsGroup: 1000
