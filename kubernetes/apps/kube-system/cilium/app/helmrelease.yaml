@@ -29,7 +29,7 @@ spec:
   values:
     autoDirectNodeRoutes: true
     bpf:
-      masquerade: false
+      masquerade: true
       # Ref: https://github.com/siderolabs/talos/issues/10002
       hostLegacyRouting: true
     bgpControlPlane:
@@ -56,7 +56,7 @@ spec:
     # devices: eno+ eth+
     dashboards:
       enabled: true
-    enableIPv4Masquerade: false
+    enableIPv4Masquerade: true
     enableIPv6Masquerade: false
     endpointRoutes:
       enabled: true
