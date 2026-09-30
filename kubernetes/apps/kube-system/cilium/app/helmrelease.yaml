@@ -124,6 +124,7 @@ spec:
           cpu: 1000m
           memory: 300Mi
       rollOutPods: true
+    pmtuDiscovery.enabled: true
     prometheus:
       enabled: true
       serviceMonitor:
