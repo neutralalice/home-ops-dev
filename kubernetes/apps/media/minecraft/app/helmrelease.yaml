@@ -100,8 +100,8 @@ spec:
     defaultPodOptions:
       automountServiceAccountToken: false
       hostUsers: false
-      hostNetwork: false
-      shareProcessNamespace: true
+      hostNetwork: true
+      shareProcessNamespace: false
       dnsPolicy: ClusterFirstWithHostNet
       securityContext:
         runAsNonRoot: true
