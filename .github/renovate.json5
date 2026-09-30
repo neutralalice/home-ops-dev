@@ -22,7 +22,6 @@
   dependencyDashboardAutoclose: true,
   dependencyDashboardTitle: "Renovate Dashboard",
   minimumReleaseAge: "1 days",
-  minimumReleaseAgeBehavior: "timestamp-optional",
   enabledManagers: [
     "flux",
     "github-actions",
