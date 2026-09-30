@@ -179,10 +179,7 @@ spec:
         ipFamilies:
           - IPv6
           - IPv4
-        type: LoadBalancer
-        externalTrafficPolicy: Local
-        annotations:
-          lbipam.cilium.io/ips: "fdca:fec0:ffee:88::99,172.16.88.99"
+        type: ClusterIP
         ports:
           tcp-19132:
             port: 19132
