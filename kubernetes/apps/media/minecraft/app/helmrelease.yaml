@@ -19,6 +19,7 @@ spec:
             env:
               EULA: "true"
               GAMEMODE: survival
+              SERVER_NAME: "vystrana"
               LEVEL_NAME: "vystrana"
               DIFFICULTY: normal
               ENABLE_SSH: "false"
