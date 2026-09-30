@@ -19,7 +19,7 @@ spec:
             env:
               EULA: "true"
               GAMEMODE: survival
-              LEVEL_NAME: "Bedrock level"
+              LEVEL_NAME: "vystrana"
               DIFFICULTY: normal
               ENABLE_SSH: "false"
               ALLOW_CHEATS: "false"
