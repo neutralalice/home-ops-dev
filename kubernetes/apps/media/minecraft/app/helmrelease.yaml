@@ -33,12 +33,15 @@ spec:
               #              ENABLE_BDS_V6BIND_FIX: "true"
               #              SERVER_PORT_V6: *port
               SERVER_UDP_PORTS: "19132-19134"
-              ENABLE_LAN_VISIBILITY: "false"
+              ENABLE_LAN_VISIBILITY: "true"
               TRANSPORT: "nethernet"
             ports:
               - name: tcp-19132
                 containerPort: 19132
                 protocol: TCP
+              - name: udp-7551
+                containerPort: 19132
+                protocol: UDP
               - name: udp-19132
                 containerPort: 19132
                 protocol: UDP
@@ -118,6 +121,16 @@ spec:
         globalMounts:
           - path: /tmp
     route:
+      udp-7551:
+        kind: UDPRoute
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+            sectionName: bedrock-udp-7551
+        rules:
+          - backendRefs:
+              - name: minecraft
+                port: 7551
       udp-19132:
         kind: UDPRoute
         parentRefs:
@@ -174,6 +187,10 @@ spec:
             port: 19132
             protocol: TCP
             targetPort: 19132
+          udp-7551:
+            port: 7551
+            protocol: UDP
+            targetPort: 7551
           udp-19132:
             port: 19132
             protocol: UDP
