@@ -12,6 +12,11 @@ spec:
       cpu: 1000m
     requests:
       cpu: 25m
+  env:
+    - name: K8S_NODE_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
   volumes:
     - name: proc
       hostPath:
@@ -55,6 +60,11 @@ spec:
         check_interval: 5s
         limit_percentage: 70
         spike_limit_percentage: 25
+      resource_detection:
+        detectors: [env, system]
+        timeout: 2s
+        system:
+          hostname_sources: ["os"]
       batch: {}
     exporters:
       otlp_http/prometheus:
@@ -69,6 +79,7 @@ spec:
             - host_metrics
           processors:
             - memory_limiter
+            - resource_detection
             - batch
           exporters:
             - otlp_http/prometheus
