@@ -33,7 +33,7 @@ spec:
       readOnly: true
   config:
     receivers:
-      hostmetrics:
+      host_metrics:
         collection_interval: 10s
         root_path: /host
         scrapers:
@@ -63,7 +63,7 @@ spec:
         metrics:
           receivers:
             - otlp
-            - hostmetrics
+            - host_metrics
           processors:
             - memory_limiter
             - batch
