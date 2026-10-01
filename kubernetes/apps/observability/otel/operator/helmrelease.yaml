@@ -22,3 +22,5 @@ spec:
           memory: 128Mi
         requests:
           cpu: 30m
+    serviceMonitor:
+      enabled: true
