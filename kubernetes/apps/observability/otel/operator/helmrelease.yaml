@@ -1,0 +1,24 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: opentelemetry-operator
+  namespace: observability
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: opentelemetry-operator
+  values:
+    crds:
+      create: true
+    admissionWebhooks:
+      certManager:
+        enabled: true
+    manager:
+      resources:
+        limits:
+          cpu: 1000m
+          memory: 128Mi
+        requests:
+          cpu: 30m
