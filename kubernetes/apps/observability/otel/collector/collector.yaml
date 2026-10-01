@@ -11,8 +11,27 @@ spec:
       cpu: 1000m
     requests:
       cpu: 25m
+  volumes:
+    - name: hostfs
+      hostPath:
+        path: /
+  volumeMounts:
+    - name: hostfs
+      mountPath: /hostfs
+      readOnly: true
+      mountPropagation: HostToContainer
   config:
     receivers:
+      hostmetrics:
+        collection_interval: 10s
+        root_path: /hostfs
+        scrapers:
+          cpu: {}
+          memory: {}
+          disk: {}
+          filesystem: {}
+          load: {}
+          network: {}
       otlp:
         protocols:
           grpc:
@@ -33,6 +52,7 @@ spec:
         metrics:
           receivers:
             - otlp
+            - hostmetrics
           processors:
             - memory_limiter
             - batch
