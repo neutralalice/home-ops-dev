@@ -58,6 +58,8 @@ spec:
     exporters:
       otlp_http/prometheus:
         endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp
+        tls:
+          insecure: true
     service:
       pipelines:
         metrics:
