@@ -12,19 +12,30 @@ spec:
     requests:
       cpu: 25m
   volumes:
-    - name: hostfs
+    - name: proc
+      hostPath:
+        path: /proc
+    - name: root
       hostPath:
         path: /
+    - name: sys
+      hostPath:
+        path: /sys
   volumeMounts:
-    - name: hostfs
-      mountPath: /hostfs
+    - name: proc
+      mountPath: /host/proc
       readOnly: true
-      mountPropagation: HostToContainer
+    - name: root
+      mountPath: /host/root
+      readOnly: true
+    - name: sys
+      mountPath: /host/sys
+      readOnly: true
   config:
     receivers:
       hostmetrics:
         collection_interval: 10s
-        root_path: /hostfs
+        root_path: /host
         scrapers:
           cpu: {}
           memory: {}
