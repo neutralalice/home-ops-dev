@@ -26,8 +26,8 @@ spec:
         spike_limit_percentage: 25
       batch: {}
     exporters:
-      prometheusremotewrite:
-        endpoint: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090/api/v1/write
+      otlphttp/prometheus:
+        endpoint: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090/api/v1/otlp
     service:
       pipelines:
         metrics:
@@ -37,4 +37,4 @@ spec:
             - memory_limiter
             - batch
           exporters:
-            - prometheusremotewrite
+            - otlphttp/prometheus
