@@ -5,3 +5,36 @@ metadata:
   name: otel-collector
 spec:
   mode: daemonset
+  resources:
+    limits:
+      memory: 512Mi
+      cpu: 1000m
+    requests:
+      cpu: 25m
+  config:
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: "[::]:4317"
+          http:
+            endpoint: "[::]:4318"
+    processors:
+      memory_limiter:
+        check_interval: 5s
+        limit_percentage: 70
+        spike_limit_percentage: 25
+      batch: {}
+    exporters:
+      prometheusremotewrite:
+        endpoint: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090/api/v1/write
+    service:
+      pipelines:
+        metrics:
+          receivers:
+            - otlp
+          processors:
+            - memory_limiter
+            - batch
+          exporters:
+            - prometheusremotewrite
