@@ -92,6 +92,7 @@ spec:
       prometheusSpec:
         externalUrl: https://prometheus.${SECRET_DOMAIN}
         enableRemoteWriteReceiver: true
+        RemoteWriteDashboards: true
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
         ruleSelectorNilUsesHelmValues: false
