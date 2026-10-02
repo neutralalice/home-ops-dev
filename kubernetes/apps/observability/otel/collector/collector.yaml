@@ -80,6 +80,11 @@ spec:
       telemetry:
         metrics:
           readers:
+            - pull:
+                exporter:
+                  prometheus:
+                    host: 0.0.0.0
+                    port: 8889
             - periodic:
                 interval: 10s
                 exporter:
