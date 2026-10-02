@@ -77,6 +77,15 @@ spec:
         tls:
           insecure: true
     service:
+      telemetry:
+        metrics:
+          readers:
+            - periodic:
+                interval: 10s
+                exporter:
+                  otlp:
+                    protocol: http/protobuf
+                    endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp
       pipelines:
         metrics/host:
           receivers:
