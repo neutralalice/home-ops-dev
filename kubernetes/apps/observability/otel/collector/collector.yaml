@@ -5,7 +5,7 @@ metadata:
   name: otel-collector
 spec:
   mode: daemonset
-  image: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-k8s:0.162.0
+  image: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.162.0
   # this enables the servicemonitor for the daemonset
   observability:
     metrics:
@@ -55,6 +55,8 @@ spec:
           #          filesystem: {}
           load: {}
           network: {}
+      tcp_log/talos:
+        listen_address: "[::]:5140"
       otlp:
         protocols:
           grpc:
@@ -69,15 +71,29 @@ spec:
       resource_detection/env:
         detectors: [env]
         timeout: 2s
-      transform:
+      transform/hostmetrics:
         metric_statements:
           - context: datapoint
             statements:
               - set(attributes["instance"], resource.attributes["host.name"])
+      transform/talos:
+        error_mode: ignore
+        log_statements:
+          - context: log
+            statements:
+              - merge_maps(cache, ParseJSON(body), "upsert")
+              - set(body, cache["msg"])
+              - set(attributes["talos.level"], cache["talos-level"])
+              - set(attributes["talos.service"], cache["talos-service"])
+              - set(attributes["talos.time"], cache["talos-time"])
       batch: {}
     exporters:
       otlp_http/prometheus:
         endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp
+        tls:
+          insecure: true
+      otlp_http/victorialogs:
+        endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/logs
         tls:
           insecure: true
     service:
@@ -89,13 +105,22 @@ spec:
       #                  otlp_http:
       #                    endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp
       pipelines:
+        logs/talos_machine:
+          receivers:
+            - tcp_log/talos
+          processors:
+            - memory_limits
+            - transform/talos
+            - batch
+          exporters:
+            - otlp_http/victorialogs
         metrics/host:
           receivers:
             - host_metrics
           processors:
             - memory_limiter
             - resource_detection/env
-            - transform
+            - transform/hostmetrics
             - batch
           exporters:
             - otlp_http/prometheus
