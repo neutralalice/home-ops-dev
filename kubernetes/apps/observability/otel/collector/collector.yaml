@@ -6,6 +6,7 @@ metadata:
 spec:
   mode: daemonset
   image: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-k8s:0.162.0
+  # this enables the servicemonitor for the daemonset
   observability:
     metrics:
       enableMetrics: true
@@ -80,17 +81,8 @@ spec:
         tls:
           insecure: true
     service:
-      # this is all ignored in the current otel operator version and overwritten
-      # placing a "canary in the coalmine" here to port 8889 and going to scrape with prometheus @ port 8888
-      # when it's fixed, I should get alerted that the service is down and can switch to periodic
-      telemetry:
-        metrics:
-          readers:
-            - pull:
-                exporter:
-                  prometheus:
-                    host: 0.0.0.0
-                    port: 8889
+      # this is ignored in the current otel operator version and overwritten
+      # when it's fixed, I can switch to periodic
       #            - periodic:
       #                interval: 10s
       #                exporter:
