@@ -83,8 +83,7 @@ spec:
             - periodic:
                 interval: 10s
                 exporter:
-                  otlp:
-                    protocol: http/protobuf
+                  otlp_http:
                     endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp
       pipelines:
         metrics/host:
