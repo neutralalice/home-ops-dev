@@ -14,6 +14,6 @@ spec:
       logFormat: json
       logLevel: info
       readOnlyRootFileSystem: true
-      podMonitor:
+      serviceMonitor:
         enabled: true
         namespace: "{{ .Release.Namespace }}"
