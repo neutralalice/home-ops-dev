@@ -109,7 +109,7 @@ spec:
           receivers:
             - tcp_log/talos
           processors:
-            - memory_limits
+            - memory_limiter
             - transform/talos
             - batch
           exporters:
