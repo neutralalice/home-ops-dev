@@ -17,6 +17,8 @@ spec:
       valueFrom:
         fieldRef:
           fieldPath: spec.nodeName
+    - name: OTEL_RESOURCE_ATTRIBUTES
+      value: "host.name=$(K8S_NODE_NAME)"
   volumes:
     - name: proc
       hostPath:
@@ -60,11 +62,9 @@ spec:
         check_interval: 5s
         limit_percentage: 70
         spike_limit_percentage: 25
-      resource_detection:
-        detectors: [env, system]
+      resource_detection/env:
+        detectors: [env]
         timeout: 2s
-        system:
-          hostname_sources: ["os"]
       batch: {}
     exporters:
       otlp_http/prometheus:
@@ -73,13 +73,20 @@ spec:
           insecure: true
     service:
       pipelines:
-        metrics:
+        metrics/host:
           receivers:
-            - otlp
             - host_metrics
           processors:
             - memory_limiter
-            - resource_detection
+            - resource_detection/env
+            - batch
+          exporters:
+            - otlp_http/prometheus
+        metrics:
+          receivers:
+            - otlp
+          processors:
+            - memory_limiter
             - batch
           exporters:
             - otlp_http/prometheus
