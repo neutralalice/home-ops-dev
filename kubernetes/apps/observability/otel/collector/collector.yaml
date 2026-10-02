@@ -65,6 +65,11 @@ spec:
       resource_detection/env:
         detectors: [env]
         timeout: 2s
+      transform:
+        metric_statements:
+          - context: datapoint
+            statements:
+              - set(attributes["instance"], resource.attributes["host.name"])
       batch: {}
     exporters:
       otlp_http/prometheus:
@@ -79,6 +84,7 @@ spec:
           processors:
             - memory_limiter
             - resource_detection/env
+            - transform
             - batch
           exporters:
             - otlp_http/prometheus
