@@ -88,12 +88,9 @@ spec:
               - set(attributes["talos.time"], cache["talos-time"])
       batch: {}
     exporters:
-      otlp_http/prometheus:
-        endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp
-        tls:
-          insecure: true
-      otlp_http/victorialogs:
-        endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry
+      otlp_http:
+        logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
+        metrics_endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp/v1/metrics
         tls:
           insecure: true
     service:
@@ -113,7 +110,7 @@ spec:
             - transform/talos
             - batch
           exporters:
-            - otlp_http/victorialogs
+            - otlp_http
         metrics/host:
           receivers:
             - host_metrics
@@ -123,7 +120,7 @@ spec:
             - transform/hostmetrics
             - batch
           exporters:
-            - otlp_http/prometheus
+            - otlp_http
         metrics:
           receivers:
             - otlp
@@ -131,4 +128,4 @@ spec:
             - memory_limiter
             - batch
           exporters:
-            - otlp_http/prometheus
+            - otlp_http
