@@ -2,7 +2,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: TCPRoute
 metadata:
-  name:
+  name: talos-tcp
   namespace: observability
   annotations:
     external-dns.kubernetes.io/hostname: otel-collector.${SECRET_DOMAIN}
