@@ -107,7 +107,6 @@ spec:
             - tcp_log/talos
           processors:
             - memory_limiter
-            - transform/talos
             - batch
           exporters:
             - otlp_http
