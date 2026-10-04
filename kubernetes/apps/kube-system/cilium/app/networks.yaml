@@ -33,7 +33,6 @@ spec:
       service:
         addresses:
           - LoadBalancerIP
-          - ClusterIP
       selector:
         matchExpressions:
           - { key: somekey, operator: NotIn, values: ["never-used-value"] }
