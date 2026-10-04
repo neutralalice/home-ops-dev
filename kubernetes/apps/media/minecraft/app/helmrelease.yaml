@@ -27,7 +27,7 @@ spec:
               ONLINE_MODE: "true"
               ALLOW_LIST: "true"
               ALLOW_LIST_USERS: "Kalax48,arita1052"
-              OPS: "arita1052"
+              OPS: "2535470052457386"
               VIEW_DISTANCE: "20"
               CONTENT_LOG_CONSOLE_OUTPUT_ENABLED: "true"
               VERSION: "1.26.52.3"
