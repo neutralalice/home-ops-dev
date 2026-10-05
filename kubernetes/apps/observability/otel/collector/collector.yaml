@@ -81,7 +81,7 @@ spec:
         log_statements:
           - context: log
             statements:
-              - merge_maps(log.cache, ParseJSON(log.body), "upsert")
+              - merge_maps(log.cache, ParseJSON(log.body), "upsert") where IsMatch(log.body, "^\\{")
               - set(log.body, log.cache["msg"])
               - set(log.attributes["talos.level"], log.cache["talos-level"])
               - set(log.attributes["talos.service"], log.cache["talos-service"])
