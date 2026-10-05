@@ -80,14 +80,17 @@ spec:
         error_mode: ignore
         log_statements:
           - context: log
+              - IsString(log.body) and IsMatch(log.body, "^\\s*\\{")
             statements:
-              - merge_maps(log.cache, ParseJSON(log.body), "upsert") where IsMatch(log.body, "^\\{")
+              - merge_maps(log.cache, ParseJSON(log.body), "upsert")
               - set(log.body, log.cache["msg"])
               - set(log.attributes["talos.level"], log.cache["talos-level"])
               - set(log.attributes["talos.service"], log.cache["talos-service"])
               - set(log.attributes["talos.time"], log.cache["talos-time"])
       batch: {}
     exporters:
+      debug:
+        verbosity: detailed
       otlp_http:
         logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
         metrics_endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp/v1/metrics
@@ -110,6 +113,7 @@ spec:
             - transform/talos
             - batch
           exporters:
+            - debug
             - otlp_http
         metrics/host:
           receivers:
