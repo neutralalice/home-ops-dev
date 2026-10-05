@@ -80,6 +80,7 @@ spec:
         error_mode: ignore
         log_statements:
           - context: log
+            conditions:
               - IsString(log.body) and IsMatch(log.body, "^\\s*\\{")
             statements:
               - merge_maps(log.cache, ParseJSON(log.body), "upsert")
