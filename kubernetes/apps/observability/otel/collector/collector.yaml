@@ -81,7 +81,7 @@ spec:
         log_statements:
           - context: log
             conditions:
-              - IsString(log.body) and IsMatch(log.body, "^\\s*\\{")
+              - IsString(log.body) and IsMatch(log.body, "^\\{")
             statements:
               - merge_maps(log.cache, ParseJSON(log.body), "upsert")
               - set(log.body, log.cache["msg"])
