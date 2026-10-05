@@ -93,6 +93,7 @@ spec:
       debug:
         verbosity: detailed
       otlp_http:
+        compression: zstd
         logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
         metrics_endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp/v1/metrics
         tls:
