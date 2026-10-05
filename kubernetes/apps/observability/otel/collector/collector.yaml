@@ -81,11 +81,11 @@ spec:
         log_statements:
           - context: log
             statements:
-              - merge_maps(cache, ParseJSON(body), "upsert")
-              - set(body, cache["msg"])
-              - set(attributes["talos.level"], cache["talos-level"])
-              - set(attributes["talos.service"], cache["talos-service"])
-              - set(attributes["talos.time"], cache["talos-time"])
+              - merge_maps(log.cache, ParseJSON(log.body), "upsert")
+              - set(log.body, log.cache["msg"])
+              - set(log.attributes["talos.level"], log.cache["talos-level"])
+              - set(log.attributes["talos.service"], log.cache["talos-service"])
+              - set(log.attributes["talos.time"], log.cache["talos-time"])
       batch: {}
     exporters:
       otlp_http:
