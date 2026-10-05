@@ -55,7 +55,7 @@ spec:
           #          filesystem: {}
           load: {}
           network: {}
-      tcp_log/talos:
+      tcp_log:
         listen_address: "[::]:5140"
       otlp:
         protocols:
@@ -104,9 +104,10 @@ spec:
       pipelines:
         logs/talos_machine:
           receivers:
-            - tcp_log/talos
+            - tcp_log
           processors:
             - memory_limiter
+            - transform/talos
             - batch
           exporters:
             - otlp_http
