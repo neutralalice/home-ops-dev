@@ -85,7 +85,7 @@ spec:
             statements:
               - merge_maps(log.cache, ParseJSON(log.body), "upsert")
               - set(log.body, log.cache["msg"])
-              - set(log.attributes["talos.level"], log.cache["talos-level"])
+              - set(log.attributes["level"], log.cache["talos-level"])
               - set(log.attributes["talos.service"], log.cache["talos-service"])
               - set(log.attributes["talos.time"], log.cache["talos-time"])
       batch: {}
@@ -95,6 +95,9 @@ spec:
       otlp_http/vlogs:
         compression: zstd
         logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
+        headers:
+          VL-Stream-Fields: "talos.service"
+          VL-Time-Field: "talos.time"
         tls:
           insecure: true
       otlp_http/prom:
