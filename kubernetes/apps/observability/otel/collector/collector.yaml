@@ -84,10 +84,10 @@ spec:
               - IsString(log.body) and IsMatch(log.body, "^\\{")
             statements:
               - merge_maps(log.cache, ParseJSON(log.body), "upsert")
-              - set(resource.attributes["talos.service"], log.cache["talos-service"])
               - set(time_unix_nano, Time(log.cache["talos-time"], "%Y-%m-%dT%H:%M:%S.%fZ"))
-              - set(log.body, log.cache["msg"])
+              - set(resource.attributes["talos.service"], log.cache["talos-service"])
               - set(log.attributes["level"], log.cache["talos-level"])
+              - set(log.body, log.cache["msg"])
       batch: {}
     exporters:
       debug:
@@ -95,8 +95,6 @@ spec:
       otlp_http/vlogs:
         compression: zstd
         logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
-        headers:
-          VL-Time-Field: "talos.time,talos-time"
         tls:
           insecure: true
       otlp_http/prom:
