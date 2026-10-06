@@ -90,8 +90,8 @@ spec:
               - set(log.body, log.cache["msg"])
       batch: {}
     exporters:
-      debug:
-        verbosity: detailed
+      #      debug:
+      #        verbosity: detailed
       otlp_http/vlogs:
         compression: zstd
         logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
@@ -119,7 +119,6 @@ spec:
             - transform/talos
             - batch
           exporters:
-            - debug
             - otlp_http/vlogs
         metrics/host:
           receivers:
