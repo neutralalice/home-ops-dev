@@ -10,9 +10,6 @@ spec:
   observability:
     metrics:
       enableMetrics: true
-  presets:
-    logsCollection:
-      enabled: true
   resources:
     limits:
       memory: 512Mi
@@ -36,6 +33,9 @@ spec:
     - name: sys
       hostPath:
         path: /sys
+    - name: varlogpods
+      hostPath:
+        path: /var/log/pods
   volumeMounts:
     - name: proc
       mountPath: /host/proc
@@ -46,8 +46,22 @@ spec:
     - name: sys
       mountPath: /host/sys
       readOnly: true
+    - name: varlogpods
+      mountPath: /var/logs/pods
+      readOnly: true
   config:
     receivers:
+      file_log/pods:
+        include:
+          - /var/log/pods/*/*/*.log
+        exclude:
+          - /var/log/pods/*/otc-collector/*.log
+        start_at: end
+        include_file_path: true
+        include_file_name: false
+        operators:
+          - type: container
+            id: container-parser
       host_metrics:
         collection_interval: 10s
         root_path: /host
@@ -114,7 +128,9 @@ spec:
       #                  otlp_http:
       #                    endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp
       pipelines:
-        logs:
+        logs/k8s:
+          receiver:
+            - file_log/pods
           processors:
             - memory_limiter
             - batch
