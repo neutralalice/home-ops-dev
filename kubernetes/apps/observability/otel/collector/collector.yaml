@@ -135,8 +135,8 @@ spec:
               - set(log.time_unix_nano, UnixNano(Time(log.cache["talos-time"], "%Y-%m-%dT%H:%M:%S.%fZ")))
       batch: {}
     exporters:
-      #      debug:
-      #        verbosity: detailed
+      debug:
+        verbosity: detailed
       otlp_http/vlogs:
         compression: zstd
         logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
@@ -164,6 +164,7 @@ spec:
             - k8s_attributes
             - batch
           exporters:
+            - debug
             - otlp_http/vlogs
         logs/talos_machine:
           receivers:
