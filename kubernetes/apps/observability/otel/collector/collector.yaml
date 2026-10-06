@@ -129,7 +129,7 @@ spec:
       #                    endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp
       pipelines:
         logs/k8s:
-          receiver:
+          receivers:
             - file_log/pods
           processors:
             - memory_limiter
