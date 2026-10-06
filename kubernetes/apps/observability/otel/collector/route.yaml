@@ -15,5 +15,5 @@ spec:
       sectionName: talos-tcp
   rules:
     - backendRefs:
-        - name: otel-collector-collector
+        - name: otel-daemonset-collector
           port: 5140
