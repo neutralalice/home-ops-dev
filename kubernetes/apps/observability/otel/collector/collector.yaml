@@ -10,6 +10,9 @@ spec:
   observability:
     metrics:
       enableMetrics: true
+  presets:
+    logsCollection:
+      enabled: true
   resources:
     limits:
       memory: 512Mi
@@ -111,6 +114,12 @@ spec:
       #                  otlp_http:
       #                    endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp
       pipelines:
+        logs:
+          processors:
+            - memory_limiter
+            - batch
+          exporters:
+            - otlp_http/vlogs
         logs/talos_machine:
           receivers:
             - tcp_log
