@@ -84,10 +84,10 @@ spec:
               - IsString(log.body) and IsMatch(log.body, "^\\{")
             statements:
               - merge_maps(log.cache, ParseJSON(log.body), "upsert")
-              - set(time_unix_nano, Time(log.cache["talos-time"], "%Y-%m-%dT%H:%M:%S.%fZ"))
               - set(resource.attributes["talos.service"], log.cache["talos-service"])
               - set(log.attributes["level"], log.cache["talos-level"])
               - set(log.body, log.cache["msg"])
+              - set(log.time_unix_nano, UnixNano(Time(log.cache["talos-time"], "%Y-%m-%dT%H:%M:%S.%fZ")))
       batch: {}
     exporters:
       #      debug:
