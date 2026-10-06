@@ -85,9 +85,9 @@ spec:
             statements:
               - merge_maps(log.cache, ParseJSON(log.body), "upsert")
               - set(resource.attributes["talos.service"], log.cache["talos-service"])
+              - set(time_unix_nano, Time(log.cache["talos-time"], "%Y-%m-%dT%H:%M:%S.%fZ"))
               - set(log.body, log.cache["msg"])
               - set(log.attributes["level"], log.cache["talos-level"])
-              - set(log.attributes["talos.time"], log.cache["talos-time"])
       batch: {}
     exporters:
       debug:
