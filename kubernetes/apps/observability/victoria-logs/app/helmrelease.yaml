@@ -18,6 +18,7 @@ spec:
         - name: http
           primary: true
           value: "[::]:9428"
+          decolorizeFields: '["_msg"]'
       persistentVolume:
         enabled: true
         storageClassName: ceph-block
