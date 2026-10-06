@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - ./collector.yaml
   - ./grafanadashboard.yaml
+  - ./role.yaml
   - ./route.yaml
