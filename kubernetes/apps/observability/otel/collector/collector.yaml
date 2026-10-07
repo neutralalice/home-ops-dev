@@ -77,7 +77,7 @@ spec:
           network: {}
       syslog:
         tcp:
-          listen_address: "0.0.0.0:514"
+          listen_address: "[::]:514"
         protocol: rfc5424
       tcp_log:
         listen_address: "[::]:5140"
