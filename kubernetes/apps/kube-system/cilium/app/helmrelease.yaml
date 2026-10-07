@@ -35,6 +35,7 @@ spec:
       masquerade: true
       datapathMode: netkit
       hostLegacyRouting: false
+      preallocateMaps: true
     bgpControlPlane:
       enabled: true
     cni:
