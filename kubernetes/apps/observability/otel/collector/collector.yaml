@@ -75,7 +75,7 @@ spec:
           #          filesystem: {}
           load: {}
           network: {}
-      sys_log:
+      syslog:
         tcp:
           listen_address: "[::]:514"
         protocol: rfc5424
@@ -171,7 +171,7 @@ spec:
       pipelines:
         logs/syslog:
           receivers:
-            - sys_log
+            - syslog
           processors:
             - memory_limiter
             - batch
