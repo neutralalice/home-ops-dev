@@ -104,7 +104,7 @@ spec:
             - k8s.container.name
             - container.id
             - container.image.name
-            - container.image.tag
+            - container.image.tags
           labels:
             - tag_name: app.label.component
               key: app.kubernetes.io/component
