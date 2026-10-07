@@ -149,8 +149,6 @@ spec:
       otlp_http/vlogs:
         compression: zstd
         logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
-        headers:
-          VL-Stream-Fields: k8s.namespace.name
         tls:
           insecure: true
       otlp_http/prom:
