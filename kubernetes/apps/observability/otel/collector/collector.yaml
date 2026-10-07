@@ -266,3 +266,44 @@ spec:
             - batch
           exporters:
             - otlp_http/vlogs
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/opentelemetry.io/opentelemetrycollector_v1beta1.json
+apiVersion: opentelemetry.io/v1beta1
+kind: OpenTelemetryCollector
+metadata:
+  name: stolen-syslog
+spec:
+  resources:
+    limits:
+      memory: 256Mi
+    requests:
+      cpu: 10m
+  config:
+    receivers:
+      syslog:
+        udp:
+          listen_address: "0.0.0.0:514"
+        allow_skip_pri_header: true
+        protocol: rfc3164
+        location: "America/Los_Angeles"
+        attributes:
+          service.name: unifi
+    processors:
+      batch: {}
+      memory_limiter:
+        check_interval: 1s
+        limit_percentage: 75
+        spike_limit_percentage: 15
+    exporters:
+      debug:
+        verbosity: detailed
+    service:
+      pipelines:
+        logs:
+          receivers:
+            - syslog
+          processors:
+            - memory_limiter
+            - batch
+          exporters:
+            - debug
