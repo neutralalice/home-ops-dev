@@ -79,8 +79,8 @@ spec:
         tcp:
           listen_address: "[::]:514"
         protocol: rfc5424
-      tcp_log:
-        listen_address: "[::]:5140"
+      #tcp_log:
+      #  listen_address: "[::]:5140"
       otlp:
         protocols:
           grpc:
@@ -186,15 +186,15 @@ spec:
             - batch
           exporters:
             - otlp_http/vlogs
-        logs/talos_machine:
-          receivers:
-            - tcp_log
-          processors:
-            - memory_limiter
-            - transform/talos
-            - batch
-          exporters:
-            - otlp_http/vlogs
+        #        logs/talos_machine:
+        #          receivers:
+        #            - tcp_log
+        #          processors:
+        #            - memory_limiter
+        #            - transform/talos
+        #            - batch
+        #          exporters:
+        #            - otlp_http/vlogs
         metrics/host:
           receivers:
             - host_metrics
