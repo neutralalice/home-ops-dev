@@ -213,3 +213,57 @@ spec:
             - batch
           exporters:
             - otlp_http/prom
+---
+apiVersion: opentelemetry.io/v1beta1
+kind: OpenTelemetryCollector
+metadata:
+  name: otel-test
+spec:
+  mode: daemonset
+  serviceAccount: collector
+  image: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.162.0
+  resources:
+    limits:
+      memory: 512Mi
+      cpu: 1000m
+    requests:
+      cpu: 25m
+  config:
+    receivers:
+      syslog:
+        tcp:
+          listen_address: "[::]:514"
+        protocol: rfc5424
+      otlp:
+        protocols:
+          grpc:
+            endpoint: "[::]:4317"
+          http:
+            endpoint: "[::]:4318"
+    processors:
+      memory_limiter:
+        check_interval: 5s
+        limit_percentage: 70
+        spike_limit_percentage: 25
+      batch: {}
+    exporters:
+      otlp_http/vlogs:
+        compression: zstd
+        logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
+        tls:
+          insecure: true
+      otlp_http/prom:
+        compression: gzip
+        metrics_endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp/v1/metrics
+        tls:
+          insecure: true
+    service:
+      pipelines:
+        logs/syslog:
+          receivers:
+            - syslog
+          processors:
+            - memory_limiter
+            - batch
+          exporters:
+            - otlp_http/vlogs
