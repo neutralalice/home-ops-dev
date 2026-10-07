@@ -234,13 +234,19 @@ spec:
         tcp:
           listen_address: "[::]:514"
         protocol: rfc5424
+      syslog/udp:
+        udp:
+          listen_address: "0.0.0.0:514"
+        allow_skip_pri_header: true
+        protocol: rfc3164
+        location: "Europe/London"
+    processors:
       otlp:
         protocols:
           grpc:
             endpoint: "[::]:4317"
           http:
             endpoint: "[::]:4318"
-    processors:
       memory_limiter:
         check_interval: 5s
         limit_percentage: 70
@@ -261,7 +267,7 @@ spec:
       pipelines:
         logs/syslog:
           receivers:
-            - syslog
+            - syslog/udp
           processors:
             - memory_limiter
             - batch
