@@ -36,6 +36,7 @@ spec:
       datapathMode: netkit
       hostLegacyRouting: false
       preallocateMaps: true
+    bpfClockProbe: true
     bgpControlPlane:
       enabled: true
     cni:
