@@ -63,6 +63,8 @@ spec:
         operators:
           - type: container
             id: container-parser
+          - type: json_parser
+            on_error: send_quiet
       host_metrics:
         collection_interval: 10s
         root_path: /host
@@ -100,6 +102,13 @@ spec:
             - k8s.cronjob.name
             - k8s.node.name
             - k8s.container.name
+            - container.id
+            - container.image.name
+            - container.image.tag
+          labels:
+            - tag_name: app.label.component
+              key: app.kubernetes.io/component
+              from: pod
         pod_association:
           - sources:
               - from: resource_attribute
