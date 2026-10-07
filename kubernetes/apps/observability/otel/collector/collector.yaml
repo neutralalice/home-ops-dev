@@ -76,7 +76,7 @@ spec:
           load: {}
           network: {}
       syslog:
-        tcp:
+        udp:
           listen_address: "[::]:514"
         protocol: rfc5424
       tcp_log:
