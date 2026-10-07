@@ -233,7 +233,6 @@ spec:
       syslog:
         tcp:
           listen_address: "[::]:5142"
-        protocol: rfc5424
       syslog/udp:
         udp:
           listen_address: "0.0.0.0:5142"
