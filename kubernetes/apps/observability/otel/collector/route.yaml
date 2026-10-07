@@ -17,3 +17,20 @@ spec:
     - backendRefs:
         - name: otel-daemonset-collector
           port: 5140
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: TCPRoute
+metadata:
+  name: syslog-tcp
+  namespace: observability
+  labels:
+    app.kubernetes.io/name: opentelemetry-collector
+spec:
+  parentRefs:
+    - name: envoy-internal
+      namespace: network
+      sectionName: syslog-tcp
+  rules:
+    - backendRefs:
+        - name: otel-daemonset-collector
+          port: 514
