@@ -30,6 +30,7 @@ spec:
     autoDirectNodeRoutes: true
     bpf:
       masquerade: true
+      datapathMode: netkit
       hostLegacyRouting: false
     bgpControlPlane:
       enabled: true
