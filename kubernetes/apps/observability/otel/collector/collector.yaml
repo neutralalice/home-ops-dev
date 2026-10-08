@@ -221,24 +221,19 @@ metadata:
 spec:
   serviceAccount: collector
   image: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.162.0
+  observability:
+    metrics:
+      enableMetrics: false
   resources:
     limits:
       memory: 512Mi
       cpu: 1000m
-    requests:
-      cpu: 25m
   config:
     receivers:
       syslog/test:
         tcp:
           listen_address: "[::]:5142"
         protocol: rfc3164
-      syslog/udp:
-        udp:
-          listen_address: "0.0.0.0:5142"
-        allow_skip_pri_header: true
-        protocol: rfc3164
-        location: "Europe/London"
     processors:
       memory_limiter:
         check_interval: 5s
@@ -251,17 +246,11 @@ spec:
         logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
         tls:
           insecure: true
-      otlp_http/prom:
-        compression: gzip
-        metrics_endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp/v1/metrics
-        tls:
-          insecure: true
     service:
       pipelines:
         logs/syslog:
           receivers:
             - syslog/test
-            - syslog/udp
           processors:
             - memory_limiter
             - batch
