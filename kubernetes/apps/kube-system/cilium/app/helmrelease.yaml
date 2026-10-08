@@ -114,6 +114,8 @@ spec:
       enabled: true
     logOptions:
       format: json
+    networkDriver:
+      enabled: false
     operator:
       dashboards:
         enabled: true
