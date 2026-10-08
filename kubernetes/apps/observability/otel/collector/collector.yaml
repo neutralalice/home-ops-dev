@@ -251,6 +251,7 @@ spec:
       telemetry:
         metrics:
           level: none
+          readers: []
       pipelines:
         logs/syslog:
           receivers:
