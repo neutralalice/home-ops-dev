@@ -248,6 +248,9 @@ spec:
         tls:
           insecure: true
     service:
+      telemetry:
+        metrics:
+          level: none
       pipelines:
         logs/syslog:
           receivers:
