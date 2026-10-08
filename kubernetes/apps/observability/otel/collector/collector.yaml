@@ -224,6 +224,7 @@ spec:
   observability:
     metrics:
       enableMetrics: false
+      disablePrometheusAnnotations: true
   resources:
     limits:
       memory: 512Mi
