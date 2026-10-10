@@ -30,6 +30,7 @@ spec:
               OPS: "2535470052457386"
               OP_PERMISSION_LEVEL: "4"
               VIEW_DISTANCE: "20"
+              TICK_DISTANCE: "12"
               CONTENT_LOG_CONSOLE_OUTPUT_ENABLED: "true"
               VERSION: "1.26.52.3"
               SERVER_PORT: &port "19132"
