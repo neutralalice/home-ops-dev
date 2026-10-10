@@ -237,7 +237,7 @@ spec:
               TICK_DISTANCE: "12"
               CONTENT_LOG_CONSOLE_OUTPUT_ENABLED: "true"
               VERSION: "1.26.52.3"
-              SERVER_PORT: &port "19135"
+              SERVER_PORT: &port "19132"
               SERVER_UDP_PORTS: "19135-19137"
               ENABLE_LAN_VISIBILITY: "true"
               TRANSPORT: "nethernet"
