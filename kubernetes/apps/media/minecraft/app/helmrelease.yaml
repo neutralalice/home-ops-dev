@@ -103,7 +103,7 @@ spec:
       automountServiceAccountToken: false
       hostUsers: true
       hostNetwork: true
-      shareProcessNamespace: false
+      shareProcessNamespace: true
       dnsPolicy: ClusterFirstWithHostNet
       securityContext:
         runAsNonRoot: true
