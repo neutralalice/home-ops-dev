@@ -83,5 +83,5 @@ spec:
       - gateway-udproute
       - service
     triggerLoopOnEvent: true
-    txtOwnerId: k8s-internal
+    txtOwnerId: main
     txtPrefix: k8s-%{record_type}.
