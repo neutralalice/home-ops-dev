@@ -10,8 +10,6 @@ spec:
   interval: 15m
   values:
     fullnameOverride: *app
-    extraArgs:
-      - --txt-new-format-only
     domainFilters: ["${SECRET_DOMAIN}"]
     interval: 10m
     image:
