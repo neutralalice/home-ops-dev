@@ -12,7 +12,7 @@ krew = "https://github.com/soupglasses/mise-krew"
 
 [tools]
 "1password-cli" = "2.35.0"
-uv = "0.12.24"                          # required:template
+uv = "0.13.1"                          # required:template
 age = "1.3.2"
 cloudflared = "2026.10.0"
 flux2 = "2.9.6"
@@ -30,7 +30,7 @@ kubeconform = "0.8.0"
 kubectl = "1.37.1"
 kustomize = "5.8.3"
 lefthook = "2.2.2"
-oxfmt = "0.72.0"
+oxfmt = "0.73.0"
 sd = "1.1.0"                            # required:template
 sops = "3.13.3"
 talosctl = "1.14.2"
