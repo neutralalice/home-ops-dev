@@ -151,14 +151,14 @@ spec:
     exporters:
       #     debug:
       #       verbosity: detailed
+      otlp_grpc/gateway:
+        endpoint: http://otel-gateway-collector.observability.svc.cluster.local:4317
+        tls:
+          insecure:
+
       otlp_http/vlogs:
         compression: zstd
         logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
-        tls:
-          insecure: true
-      otlp_http/prom:
-        compression: gzip
-        metrics_endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp/v1/metrics
         tls:
           insecure: true
     service:
@@ -205,7 +205,7 @@ spec:
             - transform/hostmetrics
             - batch
           exporters:
-            - otlp_http/prom
+            - otlp_grpc/gateway
 ---
 apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
@@ -236,6 +236,11 @@ spec:
         spike_limit_percentage: 25
       batch: {}
     exporters:
+      otlp_http/prom:
+        compression: gzip
+        metrics_endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp/v1/metrics
+        tls:
+          insecure: true
       otlp_http/vlogs:
         compression: zstd
         logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
@@ -254,6 +259,14 @@ spec:
                     tls:
                       insecure: true
       pipelines:
+        metrics/host:
+          receivers:
+            - otlp
+          processors:
+            - memory_limiter
+            - batch
+          exporters:
+            - otlp_http/prom
         logs/gateway:
           receivers:
             - otlp
