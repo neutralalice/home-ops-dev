@@ -149,12 +149,6 @@ spec:
         endpoint: http://otel-gateway-collector.observability.svc.cluster.local:4317
         tls:
           insecure: true
-
-      otlp_http/vlogs:
-        compression: zstd
-        logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
-        tls:
-          insecure: true
     service:
       pipelines:
         logs/k8s:
@@ -165,7 +159,7 @@ spec:
             - k8s_attributes
             - batch
           exporters:
-            - otlp_http/vlogs
+            - otlp_grpc/gateway
         logs/talos_machine:
           receivers:
             - tcp_log
