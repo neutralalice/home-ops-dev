@@ -82,12 +82,6 @@ spec:
         protocol: rfc5424
       tcp_log:
         listen_address: "[::]:5140"
-      otlp:
-        protocols:
-          grpc:
-            endpoint: "[::]:4317"
-          http:
-            endpoint: "[::]:4318"
     processors:
       k8s_attributes:
         auth_type: serviceAccount
