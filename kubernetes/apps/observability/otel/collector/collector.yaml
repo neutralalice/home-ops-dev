@@ -82,10 +82,6 @@ spec:
             endpoint: "[::]:4317"
           http:
             endpoint: "[::]:4318"
-      syslog:
-        tcp:
-          listen_address: "[::]:514"
-        protocol: rfc5424
       tcp_log:
         listen_address: "[::]:5140"
     processors:
@@ -149,8 +145,6 @@ spec:
               - set(log.time_unix_nano, UnixNano(Time(log.cache["talos-time"], "%Y-%m-%dT%H:%M:%S.%fZ")))
       batch: {}
     exporters:
-      #     debug:
-      #       verbosity: detailed
       otlp_grpc/gateway:
         endpoint: http://otel-gateway-collector.observability.svc.cluster.local:4317
         tls:
@@ -162,22 +156,7 @@ spec:
         tls:
           insecure: true
     service:
-      # this is ignored in the current otel operator version and overwritten
-      # when it's fixed, I can switch to periodic
-      #            - periodic:
-      #                interval: 10s
-      #                exporter:
-      #                  otlp_http:
-      #                    endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp
       pipelines:
-        logs/syslog:
-          receivers:
-            - syslog
-          processors:
-            - memory_limiter
-            - batch
-          exporters:
-            - otlp_http/vlogs
         logs/k8s:
           receivers:
             - file_log/pods
@@ -195,7 +174,7 @@ spec:
             - transform/talos
             - batch
           exporters:
-            - otlp_http/vlogs
+            - otlp_grpc/gateway
         metrics/host:
           receivers:
             - host_metrics
@@ -227,8 +206,6 @@ spec:
         protocols:
           grpc:
             endpoint: "[::]:4317"
-          http:
-            endpoint: "[::]:4318"
     processors:
       memory_limiter:
         check_interval: 5s
