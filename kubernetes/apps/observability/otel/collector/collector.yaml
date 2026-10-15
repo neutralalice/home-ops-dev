@@ -218,13 +218,12 @@ spec:
 apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
-  name: otel-test
+  name: otel-gateway
 spec:
-  serviceAccount: collector
   image: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.162.0
   observability:
     metrics:
-      enableMetrics: false
+      enableMetrics: true
       disablePrometheusAnnotations: true
   resources:
     limits:
@@ -232,10 +231,12 @@ spec:
       cpu: 1000m
   config:
     receivers:
-      syslog/test:
-        tcp:
-          listen_address: "[::]:5142"
-        protocol: rfc3164
+      otlp:
+        protocols:
+          grpc:
+            endpoint: "[::]:4317"
+          http:
+            endpoint: "[::]:4318"
     processors:
       memory_limiter:
         check_interval: 5s
@@ -251,12 +252,19 @@ spec:
     service:
       telemetry:
         metrics:
-          level: none
-          readers: []
+          readers:
+            - periodic:
+                interval: 10s
+                exporter:
+                  otlp_http:
+                    compression: gzip
+                    metrics_endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp/v1/metrics
+                    tls:
+                      insecure: true
       pipelines:
-        logs/syslog:
+        logs/gateway:
           receivers:
-            - syslog/test
+            - otlp
           processors:
             - memory_limiter
             - batch
