@@ -207,9 +207,13 @@ spec:
         check_interval: 5s
         limit_percentage: 70
         spike_limit_percentage: 25
-      batch:
-        send_batch_size: 8096
-        timeout: 2000ms
+      batch: {}
+      batch/quick:
+        send_batch_size: 1024
+        timeout: 1s
+      batch/slow:
+        send_batch_size: 8192
+        timeout: 8s
     exporters:
       otlp_http/prom:
         compression: gzip
@@ -234,19 +238,19 @@ spec:
                     tls:
                       insecure: true
       pipelines:
-        metrics/host:
+        metrics:
           receivers:
             - otlp
           processors:
             - memory_limiter
-            - batch
+            - batch/quick
           exporters:
             - otlp_http/prom
-        logs/gateway:
+        logs:
           receivers:
             - otlp
           processors:
             - memory_limiter
-            - batch
+            - batch/slow
           exporters:
             - otlp_http/vlogs
