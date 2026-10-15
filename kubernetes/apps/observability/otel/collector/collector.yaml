@@ -200,14 +200,6 @@ spec:
             - batch
           exporters:
             - otlp_http/prom
-        metrics:
-          receivers:
-            - otlp
-          processors:
-            - memory_limiter
-            - batch
-          exporters:
-            - otlp_http/prom
 ---
 apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
