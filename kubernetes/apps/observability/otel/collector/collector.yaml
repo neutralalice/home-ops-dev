@@ -76,6 +76,12 @@ spec:
           #          filesystem: {}
           load: {}
           network: {}
+      otlp:
+        protocols:
+          grpc:
+            endpoint: "[::]:4317"
+          http:
+            endpoint: "[::]:4318"
       syslog:
         tcp:
           listen_address: "[::]:514"
