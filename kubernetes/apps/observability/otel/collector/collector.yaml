@@ -154,7 +154,7 @@ spec:
       otlp_grpc/gateway:
         endpoint: http://otel-gateway-collector.observability.svc.cluster.local:4317
         tls:
-          insecure:
+          insecure: true
 
       otlp_http/vlogs:
         compression: zstd
