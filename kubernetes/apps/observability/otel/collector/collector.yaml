@@ -250,7 +250,8 @@ spec:
             - periodic:
                 interval: 10000
                 exporter:
-                  otlp_http:
+                  otlp:
+                    protocol: http/protobuf
                     compression: gzip
                     metrics_endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp/v1/metrics
                     tls:
