@@ -170,18 +170,18 @@ spec:
             - batch:
                 exporter:
                   otlp:
-                    protocol: http/protobuf
+                    protocol: grpc
                     compression: gzip
-                    endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
+                    endpoint: http://otel-gateway-collector.observability.svc.cluster.local:4317
         metrics:
           readers:
             - periodic:
                 interval: 10000
                 exporter:
                   otlp:
-                    protocol: http/protobuf
+                    protocol: grpc
                     compression: gzip
-                    endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp/v1/metrics
+                    endpoint: http://otel-gateway-collector.observability.svc.cluster.local:4317
       pipelines:
         logs/k8s:
           receivers:
