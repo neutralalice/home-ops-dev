@@ -66,6 +66,17 @@ spec:
             id: container-parser
           - type: json_parser
             on_error: send_quiet
+      #      file_log/host:
+      #        include:
+      #          - /var/log/*.log
+      #        exclude:
+      #          - /var/log/kernel.log
+      #        start_at: end
+      #        include_file_path: true
+      #        include_file_name: false
+      #        operators:
+      #          - type: json_parser
+      #            on_error: send_quiet
       host_metrics:
         collection_interval: 10s
         root_path: /host
@@ -163,6 +174,12 @@ spec:
             - batch
           exporters:
             - otlp_grpc/gateway
+        #        logs/talos_host:
+        #          receivers:
+        #            - file_log/host
+        #          processors:
+        #            - memory_limiter
+        #            - batch
         logs/talos_machine:
           receivers:
             - tcp_log
@@ -231,7 +248,7 @@ spec:
         metrics:
           readers:
             - periodic:
-                interval: 10s
+                interval: 10000
                 exporter:
                   otlp_http:
                     compression: gzip
