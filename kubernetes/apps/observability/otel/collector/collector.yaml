@@ -172,9 +172,8 @@ spec:
                   otlp:
                     protocol: http/protobuf
                     compression: gzip
-                    logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
-                    tls:
-                      insecure: true
+                    endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
+                    insecure: true
       pipelines:
         logs/k8s:
           receivers:
@@ -263,9 +262,8 @@ spec:
                   otlp:
                     protocol: http/protobuf
                     compression: gzip
-                    logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
-                    tls:
-                      insecure: true
+                    endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
+                    insecure: true
         metrics:
           readers:
             - periodic:
