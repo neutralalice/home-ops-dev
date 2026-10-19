@@ -164,6 +164,17 @@ spec:
         tls:
           insecure: true
     service:
+      telemetry:
+        logs:
+          processors:
+            - batch:
+                exporter:
+                  otlp:
+                    protocol: http/protobuf
+                    compression: gzip
+                    logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
+                    tls:
+                      insecure: true
       pipelines:
         logs/k8s:
           receivers:
@@ -245,6 +256,16 @@ spec:
           insecure: true
     service:
       telemetry:
+        logs:
+          processors:
+            - batch:
+                exporter:
+                  otlp:
+                    protocol: http/protobuf
+                    compression: gzip
+                    logs_endpoint: http://victoria-logs-server.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
+                    tls:
+                      insecure: true
         metrics:
           readers:
             - periodic:
