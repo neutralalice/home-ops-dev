@@ -9,8 +9,8 @@ spec:
     name: victoria-logs
   interval: 1h
   values:
-    fullnameOverride: victoria-logs
     server:
+      fullnameOverride: victoria-logs
       extraArgs:
         enableTCP6: "true"
         maxConcurrentInserts: 6
