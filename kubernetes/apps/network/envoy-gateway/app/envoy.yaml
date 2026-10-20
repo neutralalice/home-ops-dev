@@ -272,6 +272,7 @@ spec:
     http:
       requestTimeout: 0s
       streamIdleTimeout: 300s
+      maxStreamDuration: 6000s
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: ClientTrafficPolicy
