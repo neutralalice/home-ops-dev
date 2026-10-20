@@ -280,6 +280,14 @@ spec:
                     protocol: http/protobuf
                     compression: gzip
                     endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/otlp/v1/metrics
+        traces:
+          processors:
+            - batch:
+                exporter:
+                  otlp:
+                    protocol: http/protobuf
+                    compression: gzip
+                    endpoint: http://victoria-traces.observability.svc.cluster.local:10248/insert/opentelemetry/v1/traces
       pipelines:
         metrics:
           receivers:
