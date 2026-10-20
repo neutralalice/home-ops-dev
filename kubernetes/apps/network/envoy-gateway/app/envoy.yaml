@@ -72,12 +72,9 @@ spec:
                 path: /dev/stdout
               type: File
     metrics:
-      sinks:
-        - type: OpenTelemetry
-          openTelemetry:
-            host: otel-gateway-collector.observability.svc.cluster.local
-            port: 4317
-            protocol: grpc
+      prometheus:
+        compression:
+          type: Zstd
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: GatewayClass
