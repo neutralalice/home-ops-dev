@@ -10,7 +10,7 @@ spec:
   interval: 1h
   values:
     grafanaDashboard:
-      enabled: true
+      enabled: false
       mode: GrafanaOperator
       grafanaOperator:
         matchLabels:
