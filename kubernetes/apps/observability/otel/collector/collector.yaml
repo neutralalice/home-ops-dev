@@ -10,7 +10,7 @@ spec:
   # this enables the servicemonitor for the daemonset
   observability:
     metrics:
-      enableMetrics: true
+      enableMetrics: false
       disablePrometheusAnnotations: true
   resources:
     limits:
@@ -226,7 +226,7 @@ spec:
   image: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.163.1
   observability:
     metrics:
-      enableMetrics: true
+      enableMetrics: false
       disablePrometheusAnnotations: true
   resources:
     limits:
