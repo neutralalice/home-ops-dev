@@ -287,7 +287,7 @@ spec:
                   otlp:
                     protocol: http/protobuf
                     compression: gzip
-                    endpoint: http://victoria-traces.observability.svc.cluster.local:10248/insert/opentelemetry/v1/traces
+                    endpoint: http://victoria-traces.observability.svc.cluster.local:10428/insert/opentelemetry/v1/traces
       pipelines:
         metrics:
           receivers:
