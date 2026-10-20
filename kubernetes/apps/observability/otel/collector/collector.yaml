@@ -182,6 +182,14 @@ spec:
                     protocol: grpc
                     compression: gzip
                     endpoint: http://otel-gateway-collector.observability.svc.cluster.local:4317
+        traces:
+          processors:
+            - batch:
+                exporter:
+                  otlp:
+                    protocol: grpc
+                    compression: gzip
+                    endpoint: http://otel-gateway-collector.observability.svc.cluster.local:4317
       pipelines:
         logs/k8s:
           receivers:
@@ -261,6 +269,11 @@ spec:
         logs_endpoint: http://victoria-logs.observability.svc.cluster.local:9428/insert/opentelemetry/v1/logs
         tls:
           insecure: true
+      otlp_http/vtraces:
+        compression: zstd
+        traces_endpoint: http://victoria-traces.observability.svc.cluster.local:10428/insert/opentelemetry/v1/traces
+        tls:
+          insecure: true
     service:
       telemetry:
         logs:
@@ -289,14 +302,6 @@ spec:
                     compression: gzip
                     endpoint: http://victoria-traces.observability.svc.cluster.local:10428/insert/opentelemetry/v1/traces
       pipelines:
-        metrics:
-          receivers:
-            - otlp
-          processors:
-            - memory_limiter
-            - batch/quick
-          exporters:
-            - otlp_http/prom
         logs:
           receivers:
             - otlp
@@ -305,3 +310,19 @@ spec:
             - batch/slow
           exporters:
             - otlp_http/vlogs
+        metrics:
+          receivers:
+            - otlp
+          processors:
+            - memory_limiter
+            - batch/quick
+          exporters:
+            - otlp_http/prom
+        traces:
+          receivers:
+            - otlp
+          processors:
+            - memory_limiter
+            - batch/slow
+          exporters:
+            - otlp_http/vtraces
