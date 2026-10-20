@@ -10,7 +10,6 @@ resources:
   - ./limitrange.yaml
   - ./namespace.yaml
   - ./blackbox-exporter/ks.yaml
-  #  - ./fluent-bit/ks.yaml
   - ./grafana/ks.yaml
   - ./kepler/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
@@ -19,4 +18,4 @@ resources:
   - ./silence-operator/ks.yaml
   - ./smartctl-exporter/ks.yaml
   - ./victoria-logs/ks.yaml
-#  - ./victoria-logs-collector/ks.yaml
+  - ./victoria-traces/ks.yaml
