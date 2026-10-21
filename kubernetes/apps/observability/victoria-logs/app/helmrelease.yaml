@@ -9,6 +9,7 @@ spec:
     name: victoria-logs
   interval: 1h
   values:
+    nameOverride: vl-single
     server:
       fullnameOverride: victoria-logs
       extraArgs:
