@@ -93,6 +93,10 @@ spec:
             endpoint: "[::]:4317"
           http:
             endpoint: "[::]:4318"
+      syslog:
+        tcp:
+          listen_address: "[::]:514"
+        protocol: rfc5424
       tcp_log:
         listen_address: "[::]:5140"
     processors:
@@ -212,6 +216,14 @@ spec:
           processors:
             - memory_limiter
             - transform/talos
+            - batch
+          exporters:
+            - otlp_grpc/gateway
+        logs/syslog:
+          receivers:
+            - syslog
+          processors:
+            - memory_limiter
             - batch
           exporters:
             - otlp_grpc/gateway
