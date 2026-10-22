@@ -23,6 +23,8 @@ kind: TCPRoute
 metadata:
   name: syslog-tcp
   namespace: observability
+  annotations:
+    external-dns.kubernetes.io/hostname: otel-syslog-collector.${SECRET_DOMAIN}
   labels:
     app.kubernetes.io/name: opentelemetry-collector
 spec:
@@ -32,5 +34,5 @@ spec:
       sectionName: syslog-tcp
   rules:
     - backendRefs:
-        - name: otel-daemonset-collector
+        - name: otel-syslog-collector
           port: 514
