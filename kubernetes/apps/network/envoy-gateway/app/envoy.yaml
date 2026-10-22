@@ -166,17 +166,6 @@ spec:
         certificateRefs:
           - kind: Secret
             name: ${SECRET_DOMAIN/./-}-production-tls
-    - name: syslog-udp
-      protocol: UDP
-      port: 514
-      allowedRoutes:
-        kinds:
-          - kind: UDPRoute
-        namespaces:
-          from: Selector
-          selector:
-            matchLabels:
-              kubernetes.io/metadata.name: observability
     - name: bedrock-udp-7551
       protocol: UDP
       port: 7551
