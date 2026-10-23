@@ -166,6 +166,7 @@ spec:
             statements:
               - set(resource.attributes["host.name"], attributes["hostname"])
               - set(resource.attributes["service.name"], attributes["appname"])
+              - set(log.body, attributes["message"])
       batch:
         send_batch_size: 1024
         timeout: 200ms
