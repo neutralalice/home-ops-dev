@@ -154,7 +154,7 @@ spec:
               - IsString(log.body) and IsMatch(log.body, "^\\{")
             statements:
               - merge_maps(log.cache, ParseJSON(log.body), "upsert")
-              - set(resource.attributes["talos.service"], log.cache["talos-service"])
+              - set(resource.attributes["service.name"], log.cache["talos-service"])
               - set(resource.attributes["host.name"], log.cache["hostname"])
               - set(log.attributes["level"], log.cache["talos-level"])
               - set(log.body, log.cache["msg"])
