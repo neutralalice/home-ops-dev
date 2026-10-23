@@ -156,8 +156,8 @@ spec:
               - merge_maps(log.cache, ParseJSON(log.body), "upsert")
               - set(resource.attributes["service.name"], log.cache["talos-service"])
               - set(resource.attributes["host.name"], log.cache["hostname"])
+              - set(log.attributes["level"], log.cache["talos-level"])
               - set(log.body, log.cache["msg"])
-              - set(log.severity_text, log.cache["talos-level"])
               - set(log.time_unix_nano, UnixNano(Time(log.cache["talos-time"], "%Y-%m-%dT%H:%M:%S.%fZ")))
       transform/syslog:
         error_mode: ignore
@@ -166,10 +166,9 @@ spec:
             statements:
               - set(resource.attributes["host.name"], attributes["hostname"])
               - set(resource.attributes["service.name"], attributes["appname"])
-              - set(log.body, attributes["message"])
-              - set(log.severity_text, attributes["level"])
               - delete_key(attributes, "hostname")
               - delete_key(attributes, "appname")
+              - set(log.body, attributes["message"])
       batch:
         send_batch_size: 1024
         timeout: 200ms
