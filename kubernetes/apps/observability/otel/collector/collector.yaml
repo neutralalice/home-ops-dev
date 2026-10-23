@@ -155,7 +155,7 @@ spec:
             statements:
               - merge_maps(log.cache, ParseJSON(log.body), "upsert")
               - set(resource.attributes["talos.service"], log.cache["talos-service"])
-              - set(resource.attributes["hostname"], log.cache["hostname"])
+              - set(resource.attributes["host.name"], log.cache["hostname"])
               - set(log.attributes["level"], log.cache["talos-level"])
               - set(log.body, log.cache["msg"])
               - set(log.time_unix_nano, UnixNano(Time(log.cache["talos-time"], "%Y-%m-%dT%H:%M:%S.%fZ")))
