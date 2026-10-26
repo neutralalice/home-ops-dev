@@ -40,6 +40,27 @@ spec:
             target:
               kind: Deployment
               name: (kustomize-controller|helm-controller|source-controller)
+          - # Patch in OTEL config
+            patch: |
+              apiVersion: apps/v1
+              kind: Deployment
+              metadata:
+                name: all
+              spec:
+                template:
+                  spec:
+                    containers:
+                      - name: manager
+                        env:
+                          - name: OTEL_LOGS_EXPORTER
+                            value: "otlp"
+                          - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                            value: "http://otel-daemonset-collector.observability.svc.cluster.local"
+                          - name: OTEL_RESOURCE_ATTRIBUTES
+                            value: "k8s.namespace.name=flux-system"
+            target:
+              kind: Deployment
+              name: (kustomize-controller|helm-controller|notification-controller|source-controller)
           - # Patch in manager specific resource requirements
             patch: |
               apiVersion: apps/v1
