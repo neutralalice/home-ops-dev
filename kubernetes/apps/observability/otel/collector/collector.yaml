@@ -180,6 +180,7 @@ spec:
     service:
       telemetry:
         logs:
+          encoding: json
           processors:
             - batch:
                 exporter:
