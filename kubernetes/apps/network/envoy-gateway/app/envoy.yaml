@@ -280,6 +280,7 @@ spec:
     xForwardedFor:
       trustedCIDRs:
         - "10.42.0.0/16"
+        - "fdca:fec0:ffee:42::/108"
   http2:
     onInvalidMessage: TerminateStream
   http3: {}
