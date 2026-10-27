@@ -118,7 +118,7 @@ url = "https://github.com/cloudflare/cloudflared/releases/download/2026.10.4/clo
 url_api = "https://api.github.com/repos/cloudflare/cloudflared/releases/assets/677938166"
 
 [[tools.flux2]]
-version = "2.9.6"
+version = "2.10.0"
 backend = "aqua:fluxcd/flux2"
 
 [tools.flux2."platforms.linux-arm64"]
@@ -644,7 +644,7 @@ url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/63
 provenance = "github-attestations"
 
 [[tools.oxfmt]]
-version = "0.74.0"
+version = "0.75.0"
 backend = "npm:oxfmt"
 
 [[tools.sd]]
