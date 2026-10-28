@@ -32,7 +32,7 @@ spec:
               VIEW_DISTANCE: "20"
               TICK_DISTANCE: "12"
               CONTENT_LOG_CONSOLE_OUTPUT_ENABLED: "true"
-              VERSION: "1.26.60"
+              VERSION: "1.26.60.6"
               SERVER_PORT: &port "19132"
               SERVER_UDP_PORTS: "19132-19134"
               ENABLE_LAN_VISIBILITY: "true"
