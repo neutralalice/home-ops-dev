@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: external-secrets
 
 components:
+  - ../../components/flux-alerts
   - ../../components/sops
 
 resources:

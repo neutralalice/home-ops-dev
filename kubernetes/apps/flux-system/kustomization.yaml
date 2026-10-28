@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: flux-system
 
 components:
+  - ../../components/flux-alerts
   - ../../components/sops
 
 resources:

@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: kopiur-system
 
 components:
-  #  - ../../components/alerts
+  - ../../components/flux-alerts
   - ../../components/kopiur/secret
 
 resources:

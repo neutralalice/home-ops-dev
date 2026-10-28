@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: cert-manager
 
 components:
+  - ../../components/flux-alerts
   - ../../components/sops
 
 resources:
