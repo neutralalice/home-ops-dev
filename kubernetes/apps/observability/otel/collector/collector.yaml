@@ -249,6 +249,14 @@ spec:
             - batch
           exporters:
             - otlp_grpc/gateway
+        traces:
+          receivers:
+            - otlp
+          processors:
+            - memory_limiter
+            - batch
+          exporters:
+            - otlp_grpc/gateway
 ---
 apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
