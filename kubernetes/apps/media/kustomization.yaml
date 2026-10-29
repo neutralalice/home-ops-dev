@@ -15,4 +15,3 @@ resources:
   - ./jellyfin/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./minecraft/ks.yaml
-  - ./minecraft-test/ks.yaml
