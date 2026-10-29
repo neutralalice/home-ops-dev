@@ -14,7 +14,7 @@ spec:
     config:
       envoyGateway:
         logging:
-          encoder: "json"
+          encoder: "JSON"
         provider:
           type: Kubernetes
           kubernetes:
