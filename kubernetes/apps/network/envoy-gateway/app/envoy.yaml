@@ -4,6 +4,10 @@ kind: EnvoyProxy
 metadata:
   name: envoy
 spec:
+  extraArgs:
+    - --log-format
+    - '{"timestamp": "%Y-%m-%dT%T.%F", "thread_id": "%t", "level": "%l", "component": "%n", "message": "%j"}'
+    - --log-format-escaped
   logging:
     level:
       default: info
