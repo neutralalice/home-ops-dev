@@ -6,7 +6,7 @@ metadata:
 spec:
   extraArgs:
     - --log-format
-    - '{"timestamp": "%Y-%m-%dT%T.%F", "thread_id": "%t", "level": "%l", "component": "%n", "message": "%j"}'
+    - '{"timestamp":"%Y-%m-%dT%T.%F","thread_id":"%t","level":"%l","component":"%n","message":"%j"}'
   logging:
     level:
       default: info
