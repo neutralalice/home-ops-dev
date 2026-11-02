@@ -13,6 +13,8 @@ spec:
     provider: cloudflare
     logFormat: json
     logLevel: info
+    image:
+      tag: v0.24.0
     env:
       - name: CF_API_TOKEN
         valueFrom:
