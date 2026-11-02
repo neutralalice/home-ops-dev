@@ -13,7 +13,7 @@ spec:
     domainFilters: ["${SECRET_DOMAIN}"]
     interval: 10m
     image:
-      tag: v0.22.0
+      tag: v0.24.0
     logFormat: json
     logLevel: &logLevel debug
     policy: sync
