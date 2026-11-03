@@ -107,6 +107,7 @@ spec:
         forceRename: "{{ .Release.Name }}"
         primary: true
         ipFamilyPolicy: SingleStack
+        clusterIP: "fdca:fec0:ffee:43::dead"
         ports:
           http:
             port: *port
