@@ -127,7 +127,7 @@ spec:
         drop:
           - "ALL"
     service:
-      ipFamilyPolicy: PreferDualStack
+      ipFamilyPolicy: RequireDualStack
     resources:
       limits:
         cpu: 2000m
