@@ -176,10 +176,9 @@ spec:
     service:
       app:
         controller: *app
-        ipFamilyPolicy: RequireDualStack
+        ipFamilyPolicy: SingleStack
         ipFamilies:
           - IPv6
-          - IPv4
         type: ClusterIP
         ports:
           tcp-19132:
