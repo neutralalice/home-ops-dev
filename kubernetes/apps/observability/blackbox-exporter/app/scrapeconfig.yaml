@@ -106,7 +106,7 @@ spec:
         - "[fdca:fec0:ffee:69::17]:2049"
       labels:
         prober: tcp
-        module: tcp
+        module: tcp6
   metricsPath: /probe
   relabelings:
     - sourceLabels: [__address__]
