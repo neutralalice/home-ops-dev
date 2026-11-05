@@ -103,7 +103,7 @@ spec:
   scrapeTimeout: 5s
   staticConfigs:
     - targets:
-        - fdca:fec0:ffee:69::17:2049
+        - "[fdca:fec0:ffee:69::17]:2049"
       labels:
         prober: tcp
         module: tcp
