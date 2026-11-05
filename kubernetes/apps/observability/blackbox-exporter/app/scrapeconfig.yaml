@@ -2,9 +2,9 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
-  name: blackbox-exporter-internal-dns
+  name: blackbox-exporter-dns-internal
 spec:
-  jobName: blackbox-internal-dns
+  jobName: blackbox-dns-internal
   scrapeInterval: 135s
   scrapeTimeout: 5s
   staticConfigs:
@@ -51,9 +51,9 @@ spec:
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
-  name: blackbox-exporter-cloudflare-dns
+  name: blackbox-exporter-dns-cloudflare
 spec:
-  jobName: blackbox-cloudflare-dns
+  jobName: blackbox-dns-cloudflare
   scrapeInterval: 135s
   scrapeTimeout: 5s
   staticConfigs:
