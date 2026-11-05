@@ -10,5 +10,8 @@ spec:
   interval: 1h
   values:
     alertmanagerAddress: http://alertmanager-operated.observability.svc.cluster.local:9093
+    extraArgs:
+      - --zap-encoder=json
+      - --zap-log-level=debug
     networkPolicy:
       enabled: false
