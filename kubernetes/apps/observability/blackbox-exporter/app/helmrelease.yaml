@@ -41,6 +41,51 @@ spec:
           dns:
             query_name: "${SECRET_DOMAIN}"
             query_type: "TXT"
+        dns_cloudflare_a:
+          prober: dns
+          dns:
+            query_name: "${SECRET_DOMAIN}"
+            query_type: "A"
+            transport_protocol: "tcp"
+            dns_over_tls: true
+            tls_config:
+              server_name: "one.one.one.one"
+        dns_cloudflare_aaaa:
+          prober: dns
+          dns:
+            query_name: "${SECRET_DOMAIN}"
+            query_type: "AAAA"
+            transport_protocol: "tcp"
+            dns_over_tls: true
+            tls_config:
+              server_name: "one.one.one.one"
+        dns_cloudflare_caa:
+          prober: dns
+          dns:
+            query_name: "${SECRET_DOMAIN}"
+            query_type: "CAA"
+            transport_protocol: "tcp"
+            dns_over_tls: true
+            tls_config:
+              server_name: "one.one.one.one"
+        dns_cloudflare_soa:
+          prober: dns
+          dns:
+            query_name: "${SECRET_DOMAIN}"
+            query_type: "SOA"
+            transport_protocol: "tcp"
+            dns_over_tls: true
+            tls_config:
+              server_name: "one.one.one.one"
+        dns_cloudflare_txt:
+          prober: dns
+          dns:
+            query_name: "${SECRET_DOMAIN}"
+            query_type: "TXT"
+            transport_protocol: "tcp"
+            dns_over_tls: true
+            tls_config:
+              server_name: "one.one.one.one"
         http:
           prober: http
         http4:
