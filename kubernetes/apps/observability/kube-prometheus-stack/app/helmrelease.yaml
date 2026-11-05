@@ -137,6 +137,8 @@ spec:
         ipDualStack:
           enabled: false
     prometheusOperator:
+      extraArgs:
+        - --kubelet-service-ip-family-policy=SingleStack
       logFormat: json
       logLevel: info
       resources:
