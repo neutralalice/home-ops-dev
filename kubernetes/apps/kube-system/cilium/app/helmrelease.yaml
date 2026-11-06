@@ -101,8 +101,8 @@ spec:
     k8s:
       requireIPv4PodCIDR: true
       requireIPv6PodCIDR: true
-    k8sServiceHost: k8s.internal
-    k8sServicePort: 6443
+    k8sServiceHost: "::1"
+    k8sServicePort: 7445
     kubeProxyReplacement: true
     kubeProxyReplacementHealthzBindAddr: "[::]:10256"
     l2announcements:
