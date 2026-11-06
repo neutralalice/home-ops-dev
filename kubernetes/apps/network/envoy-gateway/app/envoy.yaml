@@ -10,7 +10,7 @@ spec:
   logging:
     level:
       default: info
-  ipFamily: DualStack
+  ipFamily: SingleStack
   provider:
     type: Kubernetes
     kubernetes:
@@ -48,7 +48,6 @@ spec:
             spec:
               ipFamilies:
                 - IPv6
-                - IPv4
   shutdown:
     drainTimeout: 180s
   telemetry:
@@ -282,7 +281,6 @@ spec:
   clientIPDetection:
     xForwardedFor:
       trustedCIDRs:
-        - "10.42.0.0/16"
         - "fdca:fec0:ffee:42::/108"
   http2:
     onInvalidMessage: TerminateStream
