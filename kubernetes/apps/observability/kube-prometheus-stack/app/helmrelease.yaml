@@ -137,6 +137,9 @@ spec:
         ipDualStack:
           enabled: false
     prometheusOperator:
+      kubeletService:
+        ipFamilies: IPv6
+        ipFamilyPolicy: SingleStack
       logFormat: json
       logLevel: info
       resources:
