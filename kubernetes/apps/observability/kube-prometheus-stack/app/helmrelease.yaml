@@ -138,6 +138,7 @@ spec:
           enabled: false
     prometheusOperator:
       kubeletService:
+        enabled: false
         ipFamilies:
           - IPv6
         ipFamilyPolicy: SingleStack
