@@ -21,11 +21,9 @@ spec:
       clusterIP: fdca:fec0:ffee:43::a
       clusterIPs:
         - fdca:fec0:ffee:43::a
-        - 10.43.0.10
-      ipFamilyPolicy: RequireDualStack
+      ipFamilyPolicy: SingleStack
       ipFamilies:
         - IPv6
-        - IPv4
     priorityClassName: system-cluster-critical
     replicaCount: 2
     resources:
@@ -65,7 +63,7 @@ spec:
           - name: reload
           - name: loadbalance
           - name: prometheus
-            parameters: 0.0.0.0:9153
+            parameters: "[::]:9153"
           - name: log
             configBlock: |-
               class error
