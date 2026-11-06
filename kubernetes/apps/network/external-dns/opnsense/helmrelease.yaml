@@ -11,6 +11,9 @@ spec:
   values:
     fullnameOverride: *app
     domainFilters: ["${SECRET_DOMAIN}"]
+    managedRecordTypesFilters:
+      - AAAA
+      - TXT
     interval: 10m
     image:
       tag: v0.24.0
