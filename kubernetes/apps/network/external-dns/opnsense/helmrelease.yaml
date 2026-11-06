@@ -13,6 +13,7 @@ spec:
     domainFilters: ["${SECRET_DOMAIN}"]
     managedRecordTypesFilters:
       - AAAA
+      - CNAME
       - TXT
     interval: 10m
     image:
