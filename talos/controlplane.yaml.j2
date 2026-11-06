@@ -31,7 +31,9 @@ apiVersion: v1alpha1
 kind: KubeAPIServerConfig
 certExtraSANs:
   - k8s.internal
+  - ::1
 extraArgs:
+  bind-address: "::"
   enable-aggregator-routing: "true"
   logging-format: json
 image: registry.k8s.io/kube-apiserver:v1.37.2
@@ -75,7 +77,7 @@ type: RBAC
 apiVersion: v1alpha1
 kind: KubeControllerManagerConfig
 extraArgs:
-  bind-address: 0.0.0.0
+  bind-address: "::"
   logging-format: json
   node-cidr-mask-size-ipv6: "112"
 image: registry.k8s.io/kube-controller-manager:v1.37.2
@@ -127,7 +129,7 @@ config:
                 topologyKey: kubernetes.io/hostname
                 whenUnsatisfiable: ScheduleAnyway
 extraArgs:
-  bind-address: 0.0.0.0
+  bind-address: "::"
   logging-format: json
 image: registry.k8s.io/kube-scheduler:v1.37.2
 resources:
