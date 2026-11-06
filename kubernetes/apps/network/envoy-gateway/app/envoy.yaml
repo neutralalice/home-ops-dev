@@ -10,7 +10,7 @@ spec:
   logging:
     level:
       default: info
-  ipFamily: SingleStack
+  ipFamily: IPv6
   provider:
     type: Kubernetes
     kubernetes:
