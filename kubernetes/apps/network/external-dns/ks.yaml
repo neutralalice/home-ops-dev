@@ -26,29 +26,6 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: externaldns-opnsense
-spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: externaldns-opnsense
-  interval: 1h
-  path: "./kubernetes/apps/network/external-dns/opnsense"
-  postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-    namespace: flux-system
-  targetNamespace: network
-  timeout: 5m
-  wait: false
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
   name: externaldns-rfc2136
 spec:
   commonMetadata:
