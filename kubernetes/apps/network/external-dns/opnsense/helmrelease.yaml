@@ -11,7 +11,7 @@ spec:
   values:
     fullnameOverride: *app
     domainFilters: ["${SECRET_DOMAIN}"]
-    managedRecordTypesFilters:
+    managedRecordTypes:
       - AAAA
       - CNAME
       - TXT
