@@ -41,6 +41,8 @@ spec:
         value: 60s
       - name: EXTERNAL_DNS_RFC2136_TSIG_SECRET_ALG
         value: hmac-sha256
+    extraArgs:
+      - --rfc2136-axfr
     managedRecordTypesFilters:
       - AAAA
       - CNAME
