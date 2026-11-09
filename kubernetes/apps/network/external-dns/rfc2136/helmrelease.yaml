@@ -43,7 +43,7 @@ spec:
         value: hmac-sha256
     extraArgs:
       - --rfc2136-axfr
-    managedRecordTypesFilters:
+    managedRecordTypes:
       - AAAA
       - CNAME
       - TXT
