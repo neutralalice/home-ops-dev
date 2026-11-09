@@ -1,0 +1,77 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app rfc2136-dns
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: rfc2136-dns
+  interval: 15m
+  values:
+    fullnameOverride: *app
+    domainFilters: ["${SECRET_DOMAIN}"]
+    env:
+      - name: EXTERNAL_DNS_RFC2136_TSIG_SECRET
+        valueFrom:
+          secretKeyRef:
+            key: TSIG_SECRET
+            name: rfc2136-secrets
+      - name: EXTERNAL_DNS_RFC2136_TSIG_KEYNAME
+        valueFrom:
+          secretKeyRef:
+            key: TSIG_KEYNAME
+            name: rfc2136-secrets
+      - name: EXTERNAL_DNS_RFC2136_HOST
+        valueFrom:
+          secretKeyRef:
+            key: HOST
+            name: rfc2136-secrets
+      - name: EXTERNAL_DNS_RFC2136_PORT
+        valueFrom:
+          secretKeyRef:
+            key: PORT
+            name: rfc2136-secrets
+      - name: EXTERNAL_DNS_RFC2136_ZONE
+        valueFrom:
+          secretKeyRef:
+            key: ZONE
+            name: rfc2136-secrets
+      - name: EXTERNAL_DNS_RFC2136_MIN_TTL
+        value: 60s
+      - name: EXTERNAL_DNS_RFC2136_TSIG_SECRET_ALG
+        value: hmac-sha256
+    managedRecordTypesFilters:
+      - AAAA
+      - CNAME
+      - TXT
+    interval: 10m
+    image:
+      tag: v0.24.0
+    logFormat: json
+    logLevel: debug
+    policy: sync
+    provider:
+      name: rfc2136
+    registry: txt
+    resources:
+      limits:
+        cpu: 2000m
+        memory: 256Mi
+      requests:
+        cpu: 8m
+        memory: 256Mi
+    serviceMonitor:
+      enabled: true
+    podAnnotations:
+      secret.reloader.stakater.com/reload: *secret
+    sources:
+      - gateway-httproute
+      - gateway-grpcroute
+      - gateway-tcproute
+      - gateway-tlsroute
+      - gateway-udproute
+      - service
+    triggerLoopOnEvent: true
+    txtOwnerId: main
+    txtPrefix: k8s-%{record_type}.
