@@ -41,8 +41,8 @@ spec:
         value: 60s
       - name: EXTERNAL_DNS_RFC2136_TSIG_SECRET_ALG
         value: hmac-sha256
-    extraArgs:
-      - --rfc2136-axfr
+    #    extraArgs:
+    #      - --rfc2136-axfr
     managedRecordTypes:
       - AAAA
       - CNAME
@@ -52,7 +52,7 @@ spec:
       tag: v0.24.0
     logFormat: json
     logLevel: debug
-    policy: sync
+    policy: upsert-only
     provider:
       name: rfc2136
     registry: txt
