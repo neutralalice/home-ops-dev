@@ -14,11 +14,12 @@ cluster:
   etcd:
     advertisedSubnets:
       - 172.16.69.0/24
+      - fdca:fec0:ffee:69::/64
     ca:
       crt: op://kubernetes/talos/CLUSTER_ETCD_CA_CRT
       key: op://kubernetes/talos/CLUSTER_ETCD_CA_KEY
     extraArgs:
-      listen-metrics-urls: http://0.0.0.0:2381
+      listen-metrics-urls: http://[::]:2381
   serviceAccount:
     key: op://kubernetes/talos/CLUSTER_SERVICEACCOUNT_KEY
 ---
@@ -168,6 +169,7 @@ configuration:
             - observability
             - rook-ceph
             - security
+            - media
         runtimeClasses: []
         usernames: []
     kind: PodSecurityConfiguration
