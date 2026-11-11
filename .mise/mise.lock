@@ -659,38 +659,44 @@ url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-x86_64-pc-
 url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325573"
 
 [[tools.sofka]]
-version = "0.34.0"
+version = "0.35.1"
 backend = "aqua:nklmilojevic/sofka"
 
 [tools.sofka."platforms.linux-arm64"]
-checksum = "sha256:47f9459bac9076a2eb2a604e78b8129fad011378937e5782ad7bd034b4e88289"
-url = "https://github.com/nklmilojevic/sofka/releases/download/v0.34.0/sofka-v0.34.0-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/nklmilojevic/sofka/releases/assets/699465156"
+checksum = "sha256:85fefe3c4a2db9bf88a777ff7de49075041dd1e234a24ff48e0d107679d88f0e"
+checksum_source = "mise-versions"
+url = "https://github.com/nklmilojevic/sofka/releases/download/v0.35.1/sofka-v0.35.1-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/nklmilojevic/sofka/releases/assets/732858219"
 
 [tools.sofka."platforms.linux-arm64-musl"]
-checksum = "sha256:47f9459bac9076a2eb2a604e78b8129fad011378937e5782ad7bd034b4e88289"
-url = "https://github.com/nklmilojevic/sofka/releases/download/v0.34.0/sofka-v0.34.0-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/nklmilojevic/sofka/releases/assets/699465156"
+checksum = "sha256:85fefe3c4a2db9bf88a777ff7de49075041dd1e234a24ff48e0d107679d88f0e"
+checksum_source = "mise-versions"
+url = "https://github.com/nklmilojevic/sofka/releases/download/v0.35.1/sofka-v0.35.1-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/nklmilojevic/sofka/releases/assets/732858219"
 
 [tools.sofka."platforms.linux-x64"]
-checksum = "sha256:afa9e37662be8f3804b7a890e0fb78bbe7afcea798bcb2c584c390fae8761ecd"
-url = "https://github.com/nklmilojevic/sofka/releases/download/v0.34.0/sofka-v0.34.0-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/nklmilojevic/sofka/releases/assets/699465163"
+checksum = "sha256:b9a60774a4e173b5e9018294451db790a02b5d6e566f7a2163d87b10e0f2846f"
+checksum_source = "mise-versions"
+url = "https://github.com/nklmilojevic/sofka/releases/download/v0.35.1/sofka-v0.35.1-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/nklmilojevic/sofka/releases/assets/732858211"
 
 [tools.sofka."platforms.linux-x64-musl"]
-checksum = "sha256:afa9e37662be8f3804b7a890e0fb78bbe7afcea798bcb2c584c390fae8761ecd"
-url = "https://github.com/nklmilojevic/sofka/releases/download/v0.34.0/sofka-v0.34.0-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/nklmilojevic/sofka/releases/assets/699465163"
+checksum = "sha256:b9a60774a4e173b5e9018294451db790a02b5d6e566f7a2163d87b10e0f2846f"
+checksum_source = "mise-versions"
+url = "https://github.com/nklmilojevic/sofka/releases/download/v0.35.1/sofka-v0.35.1-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/nklmilojevic/sofka/releases/assets/732858211"
 
 [tools.sofka."platforms.macos-arm64"]
-checksum = "sha256:dff9ee7d16757f6b0c83a788e750aeeeff49518b3dde4370266ca337fde4eed1"
-url = "https://github.com/nklmilojevic/sofka/releases/download/v0.34.0/sofka-v0.34.0-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/nklmilojevic/sofka/releases/assets/699465158"
+checksum = "sha256:6b51127bb918b32d6abc9aed940c2ffcf99e595c173fd48f432ec3591647c5c1"
+checksum_source = "mise-versions"
+url = "https://github.com/nklmilojevic/sofka/releases/download/v0.35.1/sofka-v0.35.1-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/nklmilojevic/sofka/releases/assets/732858207"
 
 [tools.sofka."platforms.macos-x64"]
-checksum = "sha256:137323c5501dd5b89a361c073a258c979515dc13392b72b5112b7e34bc740204"
-url = "https://github.com/nklmilojevic/sofka/releases/download/v0.34.0/sofka-v0.34.0-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/nklmilojevic/sofka/releases/assets/699465160"
+checksum = "sha256:1e0776eb5cd38dc9b24d1cdf6502eb90be7179f813fe3ac80d7528e393c5ff5a"
+checksum_source = "mise-versions"
+url = "https://github.com/nklmilojevic/sofka/releases/download/v0.35.1/sofka-v0.35.1-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/nklmilojevic/sofka/releases/assets/732858214"
 
 [[tools.sops]]
 version = "3.13.3"
