@@ -20,14 +20,13 @@ cluster:
       key: op://kubernetes/talos/CLUSTER_ETCD_CA_KEY
     extraArgs:
       listen-metrics-urls: http://[::]:2381
-  serviceAccount:
-    key: op://kubernetes/talos/CLUSTER_SERVICEACCOUNT_KEY
-#---
-#apiVersion: v1alpha1
-#kind: KubeServiceAccountConfig
-#issuer:
-#  privateKey: op://kubernetes/talos/CLUSTER_SERVICEACCOUNT_KEY
-#  issuerURL: https://k8s.internal:6443
+---
+apiVersion: v1alpha1
+kind: KubeServiceAccountConfig
+issuer:
+  privateKey: |
+    op://kubernetes/talos/CLUSTER_SERVICEACCOUNT_ISSUER_KEY
+  issuerURL: https://k8s.internal:6443
 #---
 #apiVersion: v1alpha1
 #kind: EtcdMemberConfig

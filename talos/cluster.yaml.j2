@@ -13,15 +13,12 @@ machine:
 cluster:
   ca:
     crt: op://kubernetes/talos/CLUSTER_CA_CRT
-  clusterName: main
-  controlPlane:
-    endpoint: https://k8s.internal:6443
   token: op://kubernetes/talos/CLUSTER_TOKEN
-#---
-#apiVersion: v1alpha1
-#kind: KubeClusterConfig
-#clusterName: main
-#endpoint: https://k8s.internal:6443
+---
+apiVersion: v1alpha1
+kind: KubeClusterConfig
+clusterName: main
+endpoint: https://k8s.internal:6443
 ---
 apiVersion: v1alpha1
 kind: ResolverConfig
@@ -57,7 +54,7 @@ clusterSecret: op://kubernetes/talos/CLUSTER_SECRET
 apiVersion: v1alpha1
 kind: UnattendedInstallConfig
 installer:
-  image: factory.talos.dev/metal-installer/{{ schematic }}:v1.14.5
+  image: factory.talos.dev/metal-installer/{{ schematic }}:v1.15.0-beta.0
 provisioning:
   diskSelector:
     match: disk.model == "TS256GMTS430S"
