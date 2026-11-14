@@ -22,6 +22,21 @@ cluster:
       listen-metrics-urls: http://[::]:2381
   serviceAccount:
     key: op://kubernetes/talos/CLUSTER_SERVICEACCOUNT_KEY
+#---
+#apiVersion: v1alpha1
+#kind: EtcdMemberConfig
+#image: registry.k8s.io/etcd:3.7.3
+#advertisedSubnets:
+#  - 172.16.69.0/24
+#  - fdca:fec0:ffee:69::/64
+#extraArgs:
+#  listen-metrics-urls: http://[::]:2381
+#---
+#apiVersion: v1alpha1
+#kind: EtcdPKIConfig
+#ca:
+#  crt: op://kubernetes/talos/CLUSTER_ETCD_CA_CRT
+#  key: op://kubernetes/talos/CLUSTER_ETCD_CA_KEY
 ---
 apiVersion: v1alpha1
 kind: KubeNodeConfig
