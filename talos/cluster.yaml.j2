@@ -17,6 +17,11 @@ cluster:
   controlPlane:
     endpoint: https://k8s.internal:6443
   token: op://kubernetes/talos/CLUSTER_TOKEN
+#---
+#apiVersion: v1alpha1
+#kind: KubeClusterConfig
+#clusterName: main
+#endpoint: https://k8s.internal:6443
 ---
 apiVersion: v1alpha1
 kind: ResolverConfig
