@@ -38,6 +38,11 @@ spec:
       root_url: https://grafana.${SECRET_DOMAIN}
     time_picker:
       quick_ranges: '"""[{"from":"now-5m","to":"now","display":"Last 5 minutes"},{"from":"now-20m","to":"now","display":"Last 20 minutes"},{"from":"now-1h","to":"now","display":"Last 1 hour"},{"from":"now-6h","to":"now","display":"Last 6 hours"},{"from":"now-12h","to":"now","display":"Last 12 hours"},{"from":"now-1d","to":"now","display":"Last 1 day"},{"from":"now-2d","to":"now","display":"Last 2 days"},{"from":"now-1w","to":"now","display":"Last 1 week"},{"from":"now-2w","to":"now","display":"Last 2 weeks"},{"from":"now/w","to":"now/w","display":"Current week"},{"from":"now-1w/w","to":"now-1w/w","display":"Previous week"}]"""'
+    tracing.opentelemetry.otlp:
+      address: "otel-daemonset-collector.observability.svc.cluster.local:4317"
+      protocol: "grpc"
+      insecure: "true"
+      sampler_param: "1.0"
   deployment:
     spec:
       strategy:
