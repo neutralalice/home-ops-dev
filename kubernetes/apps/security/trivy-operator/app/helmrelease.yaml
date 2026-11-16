@@ -26,7 +26,6 @@ spec:
     #      tag: 0.34.0
     operator:
       scanJobsConcurrentLimit: 3
-      scanJobCompressLogs: false
       scanJobTTL: 300s
       scanJobTimeout: 20m
       builtInTrivyServer: true
@@ -66,6 +65,7 @@ spec:
 
     trivyOperator:
       skipResourceByLabels: "app.kubernetes.io/managed-by=kopiur"
+      scanJobCompressLogs: false
       scanJobPodTemplatePodSecurityContext:
         runAsNonRoot: true
         runAsUser: 10000
