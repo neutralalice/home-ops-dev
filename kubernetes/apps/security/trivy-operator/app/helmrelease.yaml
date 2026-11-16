@@ -37,7 +37,8 @@ spec:
     trivy:
       slow: true
       ignoreUnfixed: true
-      configFile:
+      serverListen: "[::]:4954"
+      configFile: |
         scan:
           disable-telemetry: true
           skip-version-check: true
