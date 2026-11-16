@@ -66,6 +66,8 @@ spec:
               response_code: "%RESPONSE_CODE%"
               response_flags: "%RESPONSE_FLAGS%"
               start_time: "%START_TIME%"
+              span_id: "%SPAN_ID%"
+              trace_id: "%TRACE_ID%"
               upstream_host: "%UPSTREAM_HOST%"
               user_agent: "%REQ(USER-AGENT)%"
               x_forwarded_for: "%REQ(X-FORWARDED-FOR)%"
