@@ -254,6 +254,7 @@ spec:
             - otlp
           processors:
             - memory_limiter
+            - k8s_attributes
             - batch
           exporters:
             - otlp_grpc/gateway
