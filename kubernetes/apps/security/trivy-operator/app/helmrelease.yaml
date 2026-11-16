@@ -37,7 +37,10 @@ spec:
     trivy:
       slow: true
       ignoreUnfixed: true
-
+      configFile:
+        scan:
+          disable-telemetry: true
+          skip-version-check: true
       server:
         securityContext:
           allowPrivilegeEscalation: false
