@@ -38,7 +38,7 @@ spec:
       slow: true
       ignoreUnfixed: true
       serverListen: "[::]:4954"
-      configFile: |
+      configFile:
         scan:
           disable-telemetry: true
           skip-version-check: true
