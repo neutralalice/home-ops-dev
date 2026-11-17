@@ -18,6 +18,11 @@ spec:
   serviceAccountNamespaceSelector:
     matchLabels: {}
   disableUpgradeChecks: true
+  env:
+    - name: KANIDM_OTEL_GRPC_URL
+      value: "http://otel-daemonset-collector.observability.svc.cluster.local:4317"
+    - name: OTEL_SERVICE_NAME
+      value: "kanidm"
   replicaGroups:
     - name: default
       replicas: 1
@@ -42,11 +47,6 @@ spec:
       type: RuntimeDefault
   containers:
     - name: kanidm
-      env:
-        - name: KANIDM_OTEL_GRPC_URL
-          value: "http://otel-daemonset-collector.observability.svc.cluster.local:4317"
-        - name: OTEL_SERVICE_NAME
-          value: "kanidm"
       securityContext:
         allowPrivilegeEscalation: false
         capabilities:
