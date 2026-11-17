@@ -10,8 +10,6 @@ spec:
   interval: 1h
   values:
     logLevel: 1
-    extraArguments:
-      - --logging-format=json
     prometheus:
       url: http://prometheus-operated.observability.svc.cluster.local
     rules:
