@@ -22,6 +22,11 @@ spec:
     - name: default
       replicas: 1
       primaryNode: true
+      env:
+        - name: KANIDM_OTEL_GRPC_URL
+          value: "http://otel-daemonset-collector.observability.svc.cluster.local:4317"
+        - name: OTEL_SERVICE_NAME
+          values: "kanidm"
       statefulSetAnnotations:
         reloader.stakater.com/auto: "true"
       resources:
