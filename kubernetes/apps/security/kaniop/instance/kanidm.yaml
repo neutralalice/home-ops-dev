@@ -46,7 +46,7 @@ spec:
         - name: KANIDM_OTEL_GRPC_URL
           value: "http://otel-daemonset-collector.observability.svc.cluster.local:4317"
         - name: OTEL_SERVICE_NAME
-          values: "kanidm"
+          value: "kanidm"
       securityContext:
         allowPrivilegeEscalation: false
         capabilities:
