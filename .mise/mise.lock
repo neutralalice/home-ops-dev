@@ -150,7 +150,7 @@ url = "https://github.com/fluxcd/flux2/releases/download/v2.10.0/flux_2.10.0_win
 url_api = "https://api.github.com/repos/fluxcd/flux2/releases/assets/678609573"
 
 [[tools.gh]]
-version = "2.103.3"
+version = "2.104.0"
 backend = "aqua:cli/cli"
 
 [tools.gh."platforms.linux-arm64"]
