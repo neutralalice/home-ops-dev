@@ -39,12 +39,17 @@
   ],
   suppressNotifications: ["prEditedNotification", "prIgnoreNotification"],
   flux: {
-    managerFilePatterns: ["/\\.yaml(?:\\.j2)?$/"],
+    managerFilePatterns: ["/\\.ya?ml(?:\\.j2)?$/"],
   },
   "helm-values": {
-    managerFilePatterns: ["/\\.yaml(?:\\.j2)?$/"],
+    managerFilePatterns: [
+      "/(^|/)values\\.ya?ml(?:\\.j2)?$/",
+      "/(^|/)helmrelease\\.ya?ml(?:\\.j2)?$/",
+      "/(^|/)helm-release\\.ya?ml(?:\\.j2)?$/",
+      "/(^|/)hr\\.ya?ml(?:\\.j2)?$/",
+    ],
   },
   kubernetes: {
-    managerFilePatterns: ["/\\.yaml(?:\\.j2)?$/"],
+    managerFilePatterns: ["/\\.ya?ml(?:\\.j2)?$/"],
   },
 }
