@@ -54,7 +54,8 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  url: https://grafana.com/api/dashboards/15757/revisions/43/download
+  #  url: https://grafana.com/api/dashboards/15757/revisions/43/download
+  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/fc8bba8f64f1464808ff4b2fe06f106bfc26bee2/dashboards/k8s-views-global.json
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -68,7 +69,8 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  url: https://grafana.com/api/dashboards/15758/revisions/46/download
+  #  url: https://grafana.com/api/dashboards/15758/revisions/46/download
+  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/fc8bba8f64f1464808ff4b2fe06f106bfc26bee2/dashboards/k8s-views-namespaces.json
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
