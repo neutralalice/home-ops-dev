@@ -5,7 +5,7 @@
       matchUpdateTypes: ["major"],
       semanticCommitType: "feat",
       commitMessagePrefix: "{{semanticCommitType}}({{semanticCommitScope}})!:",
-      commitMessageExtra: "( {{currentVersion}} ➔ {{newVersion}} )",
+      commitMessageExtra: "( {{currentVersion}} ➔ {{prettyNewMajor}} )",
     },
     {
       matchUpdateTypes: ["minor"],
@@ -19,7 +19,7 @@
     },
     {
       matchUpdateTypes: ["digest"],
-      semanticCommitType: "chore",
+      semanticCommitType: "fix",
       commitMessageExtra: "( {{currentDigestShort}} ➔ {{newDigestShort}} )",
     },
     {
@@ -33,6 +33,11 @@
       commitMessageTopic: "chart {{depName}}",
     },
     {
+      matchDepTypes: ["HelmChart"],
+      semanticCommitScope: "helm",
+      commitMessageTopic: "chart {{depName}}",
+    },
+    {
       matchManagers: ["github-actions"],
       semanticCommitType: "ci",
       semanticCommitScope: "github-action",
@@ -40,6 +45,7 @@
     },
     {
       matchDatasources: ["github-releases"],
+      semanticCommitType: "chore",
       semanticCommitScope: "github-release",
       commitMessageTopic: "release {{depName}}",
     },
