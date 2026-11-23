@@ -71,6 +71,10 @@ spec:
             regex: ".+;"
     kubeProxy:
       enabled: false
+    kubeScheduler:
+      serviceMonitor:
+        resource:
+          enabled: true
     nodeExporter:
       operatingSystems:
         linux:
