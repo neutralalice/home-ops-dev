@@ -97,7 +97,7 @@ spec:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
   #  url: https://grafana.com/api/dashboards/15760/revisions/41/download
-  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/5593416e5fb8740b08627dfdf5963c7a409b4e67/dashboards/k8s-views-pods.json
+  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/fc8bba8f64f1464808ff4b2fe06f106bfc26bee2/dashboards/k8s-views-pods.json
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
