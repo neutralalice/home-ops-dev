@@ -805,7 +805,7 @@ url_api = "https://api.github.com/repos/siderolabs/talos/releases/assets/6784709
 provenance = "cosign"
 
 [[tools.uv]]
-version = "0.13.8"
+version = "0.13.9"
 backend = "aqua:astral-sh/uv"
 
 [tools.uv."platforms.linux-arm64"]
