@@ -6,7 +6,7 @@ metadata:
 spec:
   mode: daemonset
   serviceAccount: collector
-  image: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.165.0
+  image: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.166.0
   # this enables the servicemonitor for the daemonset
   observability:
     metrics:
@@ -265,7 +265,7 @@ kind: OpenTelemetryCollector
 metadata:
   name: otel-gateway
 spec:
-  image: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.165.0
+  image: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.166.0
   observability:
     metrics:
       enableMetrics: false
