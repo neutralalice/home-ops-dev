@@ -54,7 +54,7 @@ clusterSecret: op://kubernetes/talos/CLUSTER_SECRET
 apiVersion: v1alpha1
 kind: UnattendedInstallConfig
 installer:
-  image: factory.talos.dev/metal-installer/{{ schematic }}:v1.15.0-beta.0
+  image: factory.talos.dev/metal-installer/{{ schematic }}:v1.15.0-beta.1
 provisioning:
   diskSelector:
     match: disk.model == "TS256GMTS430S"
@@ -146,7 +146,7 @@ config:
   shutdownGracePeriod: 90s
   shutdownGracePeriodCriticalPods: 60s
 defaultRuntimeSeccompProfileEnabled: true
-image: ghcr.io/siderolabs/kubelet:v1.37.2
+image: ghcr.io/siderolabs/kubelet:v1.37.3
 ---
 apiVersion: v1alpha1
 kind: KubeNetworkConfig

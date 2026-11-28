@@ -54,8 +54,7 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  #  url: https://grafana.com/api/dashboards/15757/revisions/43/download
-  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/fc8bba8f64f1464808ff4b2fe06f106bfc26bee2/dashboards/k8s-views-global.json
+  url: https://grafana.com/api/dashboards/15757/revisions/46/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -69,8 +68,7 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  #  url: https://grafana.com/api/dashboards/15758/revisions/46/download
-  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/fc8bba8f64f1464808ff4b2fe06f106bfc26bee2/dashboards/k8s-views-namespaces.json
+  url: https://grafana.com/api/dashboards/15758/revisions/47/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -98,8 +96,7 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  #  url: https://grafana.com/api/dashboards/15760/revisions/41/download
-  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/fc8bba8f64f1464808ff4b2fe06f106bfc26bee2/dashboards/k8s-views-pods.json
+  url: https://grafana.com/api/dashboards/15760/revisions/42/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
