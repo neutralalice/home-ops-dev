@@ -659,7 +659,7 @@ url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-x86_64-pc-
 url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325573"
 
 [[tools.sofka]]
-version = "0.37.0"
+version = "0.39.0"
 backend = "aqua:nklmilojevic/sofka"
 
 [tools.sofka."platforms.linux-arm64"]
@@ -897,7 +897,7 @@ url_api = "https://api.github.com/repos/mikefarah/yq/releases/assets/726219881"
 provenance = "cosign"
 
 [[tools.zizmor]]
-version = "1.32.0"
+version = "1.33.1"
 backend = "aqua:zizmorcore/zizmor"
 
 [tools.zizmor."platforms.linux-arm64"]
